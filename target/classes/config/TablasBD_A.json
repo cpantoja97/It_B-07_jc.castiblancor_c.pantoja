@@ -1,0 +1,23 @@
+{
+	"title": "Nombres de las tablas de Parranderos Uniandes para la aplicación A",
+	"unidadPersistencia": "EPSAndes",
+	"tablas":
+	[
+		"EPSANDES_SEQUENCE",
+		"ROLUSUARIO",
+		"IPS",
+		"SERVICIOS",
+		"USUARIOS",
+		"MEDICOS",
+		"AFILIADOS",
+		"RECEPCIONISTAS",
+		"SERVICIOSIPS",
+		"MEDICOSABSCRITOS",
+		"RECETAS",
+		"MEDICAMENTOS",
+		"ITEMSRECETA",
+		"ORDENES",
+		"RESERVASERVICIO",
+		"PRESTACIONSERVICIO"
+	]
+}
