@@ -19,13 +19,13 @@ class SQLIPS {
 	}
 
 	public long adicionarIPS(PersistenceManager pm, long idIPS, String nombre, String localizacion) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaIPS() + "(idIPS, nombre, localizacion) values (?, ?, ?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaIPS() + "(ID_IPS,NOMBRE, LOCALIZACION) values (?, ?, ?)");
 		q.setParameters(idIPS, nombre, localizacion);
 		return (long) q.executeUnique();
 	}
 
 	public long eliminarIPSPorId(PersistenceManager pm, long id) {
-		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaIPS() + " WHERE idIPS = ?");
+		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaIPS() + " WHERE ID_IPS = ?");
 		q.setParameters(id);
 		return (long) q.executeUnique();  
 	}

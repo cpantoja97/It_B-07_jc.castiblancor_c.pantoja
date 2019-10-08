@@ -227,32 +227,32 @@ public class PersistenciaEPSAndes
 		return tablas.get (0);
 	}
 
+	public String darTablaRolUsuario() {
+		return tablas.get(1);
+	}
+	
+	public String darTablaIPS() {
+		return tablas.get(2);
+	}
+	
+	public String darTablaServicio() {
+		return tablas.get(3);
+	}
+	
+	public String darTablaUsuario() {
+		return tablas.get(4);
+	}
+	
+	public String darTablaMedico() {
+		return tablas.get(5);
+	}
+	
 	public String darTablaAfiliados ()
 	{
-		return tablas.get (1);
+		return tablas.get (6);
 	}
 
 	public String darTablaRecepcionistas() {
-		return tablas.get(2);
-	}
-
-	public String darTablaIPS() {
-		return tablas.get(3);
-	}
-
-	public String darTablaServicio() {
-		return tablas.get(4);
-	}
-
-	public String darTablaUsuario() {
-		return tablas.get(5);
-	}
-
-	public String darTablaMedico() {
-		return tablas.get(6);
-	}
-
-	public String darTablaRolUsuario() {
 		return tablas.get(7);
 	}
 
@@ -263,33 +263,33 @@ public class PersistenciaEPSAndes
 	public String darTablaMedicosAbscritos() {
 		return tablas.get(9);
 	}
+	
+	public String darTablaReceta() {
+		return tablas.get(10);
+	}
+	
+	public String darTablaMedicamento() {
+		return tablas.get(11);
+	}
 
+	public String darTablaItemReceta() {
+		return tablas.get(12);
+	}
+	
+	public String darTablaOrdenDeServicio() {
+		return tablas.get(13);
+	}
+	
+	public String darTablaReservaServicio() {
+		return tablas.get(14);
+	}
+	
 	public String darTablaServiciosMedicos() {
 		return tablas.get(10);
 	}
 
-	public String darTablaReceta() {
-		return tablas.get(11);
-	}
-
-	public String darTablaMedicamento() {
-		return tablas.get(12);
-	}
-
-	public String darTablaItemReceta() {
-		return tablas.get(13);
-	}
-
-	public String darTablaOrdenDeServicio() {
-		return tablas.get(14);
-	}
-
-	public String darTablaReservaServicio() {
-		return tablas.get(15);
-	}
-
 	public String darTablaPrestacionServicio() {
-		return tablas.get(16);
+		return tablas.get(15);
 	}
 
 	/**
