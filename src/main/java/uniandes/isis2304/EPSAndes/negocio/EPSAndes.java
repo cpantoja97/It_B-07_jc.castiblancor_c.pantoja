@@ -50,7 +50,7 @@ public class EPSAndes
 	{
 		peps.cerrarUnidadPersistencia ();
 	}
-	
+
 
 	/* ****************************************************************
 	 * 			Métodos para manejar los AFILIADOS
@@ -658,9 +658,9 @@ public class EPSAndes
 	 */
 	public long [] limpiarEPSAndes ()
 	{
-        log.info ("Limpiando la BD de Parranderos");
-        long [] borrrados = peps.limpiarEPSAndes();	
-        log.info ("Limpiando la BD de Parranderos: Listo!");
-        return borrrados;
+		log.info ("Limpiando la BD de Parranderos");
+		long [] borrrados = peps.limpiarEPSAndes();	
+		log.info ("Limpiando la BD de Parranderos: Listo!");
+		return borrrados;
 	}
 }

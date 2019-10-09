@@ -366,6 +366,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			if (nombreTipo != null)
 			{
 				RolUsuario rol = EPSAndes.buscarRolPorNombre(nombreTipo);
+				System.out.println(nombreTipo);
+				System.out.println(rol);
 				if(rol == null) {
 					throw new Exception ("No se pudo crear un Usuario con rol: " + nombreTipo);
 				}
