@@ -9,6 +9,10 @@
 		  "options":
 			[
 				{
+					"label": "Ver roles",
+					"event": "listarRolUsuario"
+				},
+				{
 					"label": "Adicionar",
 					"event": "adicionarUsuario"
 				},
