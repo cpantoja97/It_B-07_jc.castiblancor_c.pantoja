@@ -36,7 +36,7 @@ class SQLRolUsuario {
 	public List<RolUsuario> darRolUsuario(PersistenceManager persistenceManager) {
 		Query q = persistenceManager.newQuery(SQL, "SELECT * FROM " + peps.darTablaRolUsuario());
 		q.setResultClass(RolUsuario.class);
-		log.info ("persistence manager " + q.executeList()); 
+		//log.info ("persistence manager " + q.executeList()); 
 		return (List<RolUsuario>) q.executeList();
 	}
 	

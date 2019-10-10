@@ -1305,6 +1305,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	public void listarReservasPorUsuario() {
+		//TODO
+	}
 	/*
 	public void eliminar_____PorId( )
     {
