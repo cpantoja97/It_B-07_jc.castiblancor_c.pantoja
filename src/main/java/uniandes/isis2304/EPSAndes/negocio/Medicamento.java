@@ -26,5 +26,15 @@ public class Medicamento implements VOMedicamento{
 	public String getDescripcion() {
 		return this.descripcion;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "id=" + id + ", nombre=" + nombre+ 
+				", descricion=" + descripcion+ "]";
+	}
 
 }

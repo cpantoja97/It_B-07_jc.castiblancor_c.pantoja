@@ -35,7 +35,8 @@ class SQLUsuario {
 	public List<Usuario> darUsuarios(PersistenceManager persistenceManager) {
 		Query q = persistenceManager.newQuery(SQL, "SELECT * FROM " + peps.darTablaUsuario());
 		q.setResultClass(Usuario.class);
-		return (List<Usuario>) q.executeList();
+		List<Usuario> result = (List<Usuario>) q.executeList();
+		return result;
 	}
 
 

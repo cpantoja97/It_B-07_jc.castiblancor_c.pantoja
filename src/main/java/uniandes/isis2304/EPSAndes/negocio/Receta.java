@@ -41,4 +41,14 @@ public class Receta implements VOReceta{
 	public void setIdAfiliado(int numDoc) {
 		numDocAfiliado = numDoc;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "id=" + idReceta + ", Documento Afiliado=" + numDocAfiliado+ 
+				", numero documento Medico=" + numDocMedico + "]";
+	}
 }

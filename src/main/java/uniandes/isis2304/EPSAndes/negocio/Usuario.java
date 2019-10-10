@@ -86,5 +86,16 @@ public class Usuario implements VOUsuario{
 	public void setTipoDocumento(TipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "nombre=" + nombre + ", correo=" + correoElectronico+ 
+				", numero documento=" + numeroDocumento
+				+ ", rol=" + rol+ "]";
+	}
 
 }

@@ -37,4 +37,14 @@ public class ServiciosMedico implements VOServiciosMedico{
 	public void setNumeroDocumento(int numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "especialidad=" + especialidad + ", idServicio=" + idServicio+ 
+				", numero documento=" + numeroDocumento + "]";
+	}
 }

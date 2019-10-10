@@ -48,4 +48,14 @@ public class ServiciosIPS implements VOServiciosIPS{
 	public void setIdIPS(int idIPS) {
 		this.idIPS = idIPS;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "capacidad=" + capacidad + ", horarioAtencion=" + horarioAtencion+ 
+				", IdIPS=" + idIPS + ", IdServicio=" + idServicio+ "]";
+	}
 }

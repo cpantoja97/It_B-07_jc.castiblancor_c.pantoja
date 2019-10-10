@@ -36,4 +36,15 @@ public class ItemReceta implements VOItemReceta{
 	public String getIndicaciones() {
 		return indicaciones;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "id Receta=" + idReceta + ", id medicamento=" + idMedicamento+ 
+				", cantidad=" + cantidad + ", indicaciones=" + indicaciones + "]";
+	}
+	
 }

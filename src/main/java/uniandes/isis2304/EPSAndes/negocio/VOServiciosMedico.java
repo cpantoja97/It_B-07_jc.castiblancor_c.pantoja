@@ -7,4 +7,10 @@ public interface VOServiciosMedico {
 	long getIdServicio();
 
 	int getNumeroDocumento();
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase.
+	 */
+	public String toString();
 }

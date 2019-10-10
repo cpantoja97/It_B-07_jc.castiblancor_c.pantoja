@@ -37,4 +37,14 @@ public class IPS implements VOIPS{
 	public String getLocalizacion() {
 		return this.localizacion;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "id=" + idIPS + ", nombre=" + nombre+ 
+				", localizacion=" + localizacion+ "]";
+	}
 }

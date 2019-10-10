@@ -30,4 +30,13 @@ public class Servicio implements VOServicio{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "nombre=" + nombre + ", id=" + idServicio+"]";
+	}
 }

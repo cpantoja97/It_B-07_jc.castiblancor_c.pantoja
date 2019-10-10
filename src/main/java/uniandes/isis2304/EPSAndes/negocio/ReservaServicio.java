@@ -32,13 +32,21 @@ public class ReservaServicio implements VOReservaServicio{
 		this.fechaHora = fechaHora;
 	}
 
-	@Override
 	public long getIdServicio() {
 		return idServicio;
 	}
 
-	@Override
 	public long getIdIPS() {
 		return idIPS;
+	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "numero Documento Afiliado =" + numDocAfiliado + ", IdIPS =" + idIPS+
+				", IdServicio =" + idServicio+ "]";
 	}
 }

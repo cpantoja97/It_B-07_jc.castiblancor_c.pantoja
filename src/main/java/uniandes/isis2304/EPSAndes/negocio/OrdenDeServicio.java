@@ -30,4 +30,14 @@ public class OrdenDeServicio implements VOOrdenDeServicio{
 	public long getIdServicio() {
 		return idServicio;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "idServicio=" + idServicio + ", Documento Afiliado=" + numDocAfiliado+ 
+				", numero documento Medico=" + numDocMedico + "]";
+	}
 }

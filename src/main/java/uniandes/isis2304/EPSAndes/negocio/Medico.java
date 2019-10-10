@@ -39,4 +39,13 @@ public class Medico implements VOMedico{
 		this.numeroDocumento = numeroDocumento;
 	}
 
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "numero documento Medico=" + numeroDocumento + 
+				", numero Registro Medico=" + numeroRegistroMedico+ "]";
+	}
 }

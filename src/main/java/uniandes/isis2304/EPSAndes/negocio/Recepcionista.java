@@ -30,4 +30,13 @@ public class Recepcionista implements VORecepcionista {
 	public void setNumDoc(int numDoc) {
 		this.numDoc = numDoc;
 	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "idIPS=" + idIPS + ", numero Documento=" + numDoc + "]";
+	}
 }

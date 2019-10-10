@@ -24,8 +24,13 @@ public class RolUsuario implements VORolUsuario {
 		nombre = pnombre;
 	}
 	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
 	public String toString() 
 	{
 		return "RolUsuario [id=" + id + ", nombre=" + nombre + "]";
 	}
+	
 }
