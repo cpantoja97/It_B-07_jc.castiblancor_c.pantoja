@@ -778,12 +778,15 @@ public class PersistenciaEPSAndes
 			pm.close();
 		}
 	}
-
+	
 	public List<RolUsuario> darRolUsuario()
 	{
 		return sqlRoUsuario.darRolUsuario(pmf.getPersistenceManager());
 	}
 
+	public List<RolUsuario> darRolPorNombre(String pNombre){
+		return sqlRoUsuario.darRolPorNombre(pmf.getPersistenceManager(), pNombre);
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación ServiciosIPS
 	 *****************************************************************/

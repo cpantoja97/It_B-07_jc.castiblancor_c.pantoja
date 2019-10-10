@@ -329,7 +329,7 @@ public class EPSAndes
 	}
 
 	public RolUsuario buscarRolPorNombre( String pnombre) {
-		List<RolUsuario> roles = darRoles();
+		/*List<RolUsuario> roles = darRoles();
 		RolUsuario resp = null;
 		for(int i = 0; i < roles.size(); i++) {
 			RolUsuario act = roles.get(i);
@@ -338,7 +338,10 @@ public class EPSAndes
 				break;
 			}
 		}
-		return resp;
+		return resp;*/
+		log.info ("Buscando Tipo de bebida por nombre: " + pnombre);
+		List<RolUsuario> ru = peps.darRolPorNombre (pnombre);
+		return !ru.isEmpty () ? ru.get (0) : null;
 	}
 
 	/* ****************************************************************

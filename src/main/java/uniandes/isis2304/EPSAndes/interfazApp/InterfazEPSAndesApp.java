@@ -4,7 +4,7 @@
  * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
  * 		
  * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
+ * Proyecto: EPSAndes Uniandes
  * @version 1.0
  * @author Germán Bravo
  * Julio de 2018
@@ -148,6 +148,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				config = CONFIG_INTERFAZ_GERENTE;
 			} 
 
+		} else {
+			dispose();
 		}
 
 		
@@ -197,7 +199,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		{
 			//			e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de interfaz válido: " + tipo, "EPSAndes App", JOptionPane.ERROR_MESSAGE);
 		}	
 		return config;
 	}
@@ -214,7 +216,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		if ( guiConfig == null )
 		{
 			log.info ( "Se aplica configuración por defecto" );			
-			titulo = "Parranderos APP Default";
+			titulo = "EPSAndes APP Default";
 			alto = 300;
 			ancho = 500;
 		}
@@ -276,6 +278,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 * 			CRUD de RolUsuario
 	 *****************************************************************/
 
+	//Realmente este método no se usa
 	public void adicionarRolUsuario( )
 	{
 		try 
@@ -313,13 +316,13 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			List <VORolUsuario> lista = EPSAndes.darVORoles();
 
 			String resultado = "En listarRolUsuario";
-			resultado +=  "\n" + listarRolUsuario (lista);
+			resultado +=  "\n" + listarRolUsuario(lista);
 			panelDatos.actualizarInterfaz(resultado);
 			resultado += "\n Operación terminada";
 		} 
 		catch (Exception e) 
 		{
-			//			e.printStackTrace();
+			//e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -1635,7 +1638,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	{
 		String resultado = "************ Error en la ejecución\n";
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
-		resultado += "\n\nRevise datanucleus.log y parranderos.log para más detalles";
+		resultado += "\n\nRevise datanucleus.log y EPSAndes.log para más detalles";
 		return resultado;
 	}
 
@@ -1682,11 +1685,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 * 			Métodos administrativos
 	 *****************************************************************/
 	/**
-	 * Muestra el log de Parranderos
+	 * Muestra el log de EPSAndes
 	 */
-	public void mostrarLogParranderos ()
+	public void mostrarLogEPSAndes ()
 	{
-		mostrarArchivo ("parranderos.log");
+		mostrarArchivo ("EPSAndes.log");
 	}
 
 	/**
@@ -1698,16 +1701,16 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	}
 
 	/**
-	 * Limpia el contenido del log de parranderos
+	 * Limpia el contenido del log de EPSAndes
 	 * Muestra en el panel de datos la traza de la ejecución
 	 */
-	public void limpiarLogParranderos ()
+	public void limpiarLogEPSAndes ()
 	{
 		// Ejecución de la operación y recolección de los resultados
-		boolean resp = limpiarArchivo ("parranderos.log");
+		boolean resp = limpiarArchivo ("EPSAndes.log");
 
 		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
+		String resultado = "\n\n************ Limpiando el log de EPSAndes ************ \n";
 		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
 		resultado += "\nLimpieza terminada";
 
@@ -1732,7 +1735,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	}
 
 	/**
-	 * Limpia todas las tuplas de todas las tablas de la base de datos de parranderos
+	 * Limpia todas las tuplas de todas las tablas de la base de datos de EPSAndes
 	 * Muestra en el panel de datos el número de tuplas eliminadas de cada tabla
 	 */
 	public void limpiarBD ()
@@ -1768,23 +1771,23 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 */
 	public void mostrarPresentacionGeneral ()
 	{
-		mostrarArchivo ("data/00-ST-ParranderosJDO.pdf");
+		mostrarArchivo ("data/00-ST-EPSAndesJDO.pdf");
 	}
 
 	/**
-	 * Muestra el modelo conceptual de Parranderos
+	 * Muestra el modelo conceptual de EPSAndes
 	 */
 	public void mostrarModeloConceptual ()
 	{
-		mostrarArchivo ("data/Modelo Conceptual Parranderos.pdf");
+		mostrarArchivo ("data/Modelo Conceptual EPSAndes.pdf");
 	}
 
 	/**
-	 * Muestra el esquema de la base de datos de Parranderos
+	 * Muestra el esquema de la base de datos de EPSAndes
 	 */
 	public void mostrarEsquemaBD ()
 	{
-		mostrarArchivo ("data/Esquema BD Parranderos.pdf");
+		mostrarArchivo ("data/Esquema BD EPSAndes.pdf");
 	}
 
 	/**
@@ -1792,11 +1795,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 */
 	public void mostrarScriptBD ()
 	{
-		mostrarArchivo ("data/EsquemaParranderos.sql");
+		mostrarArchivo ("data/EsquemaEPSAndes.sql");
 	}
 
 	/**
-	 * Muestra la arquitectura de referencia para Parranderos
+	 * Muestra la arquitectura de referencia para EPSAndes
 	 */
 	public void mostrarArqRef ()
 	{
@@ -1822,12 +1825,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		resultado += " * Licenciado	bajo	el	esquema	Academic Free License versión 2.1\n";
 		resultado += " * \n";		
 		resultado += " * Curso: isis2304 - Sistemas Transaccionales\n";
-		resultado += " * Proyecto: Parranderos Uniandes\n";
+		resultado += " * Proyecto: EPSAndes Uniandes\n";
 		resultado += " * @version 1.0\n";
-		resultado += " * @author Germán Bravo\n";
+		resultado += " * @author Juan Camilo Castiblanco & Camila Pantoja\n";
 		resultado += " * Julio de 2018\n";
 		resultado += " * \n";
-		resultado += " * Revisado por: Claudia Jiménez, Christian Ariza\n";
 		resultado += "\n ************************************\n\n";
 
 		panelDatos.actualizarInterfaz(resultado);		

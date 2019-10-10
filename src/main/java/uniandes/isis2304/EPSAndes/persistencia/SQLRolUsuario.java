@@ -39,5 +39,12 @@ class SQLRolUsuario {
 		log.info ("persistence manager " + q.executeList()); 
 		return (List<RolUsuario>) q.executeList();
 	}
+	
+	public List<RolUsuario> darRolPorNombre( PersistenceManager pm, String pnombre) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaRolUsuario() + " WHERE nombre = ?");
+		q.setResultClass(RolUsuario.class);
+		q.setParameters(pnombre);
+		return (List<RolUsuario>) q.executeList();
+	}
 
 }

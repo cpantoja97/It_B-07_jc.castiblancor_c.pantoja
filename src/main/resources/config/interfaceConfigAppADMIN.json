@@ -17,7 +17,7 @@
 					"event": "adicionarUsuario"
 				},
 				{
-					"label": "Listar",
+					"label": "Listar usuarios",
 					"event": "listarUsuario"
 				},
 				{
