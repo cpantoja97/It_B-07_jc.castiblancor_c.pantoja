@@ -1126,6 +1126,10 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	
+	public void listarItemsPorReceta() {
+		//TODO
+	}
 
 	/*
 	public void eliminar_____PorId( )

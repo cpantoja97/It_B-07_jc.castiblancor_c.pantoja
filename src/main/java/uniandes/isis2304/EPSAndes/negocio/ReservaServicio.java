@@ -9,11 +9,30 @@ public class ReservaServicio implements VOReservaServicio{
 	private long idIPS;
 	private Timestamp fechaHora;
 	
+	public ReservaServicio() {
+		numDocAfiliado = 0;
+		this.idServicio = 0;
+		this.idIPS = 0;
+		this.fechaHora = new Timestamp(System.currentTimeMillis());
+	}
+	
 	public ReservaServicio(int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
 		numDocAfiliado = numdocAf;
 		this.idServicio = idServicio;
 		this.idIPS = idIPS;
 		this.fechaHora = fechaHora;
+	}
+	public void setNUMDOC(int p) {
+		numDocAfiliado = p;
+	}
+	public void setID_SERVICIO(long p) {
+		idServicio = p;
+	}
+	public void setID_IPS(long p) {
+		idIPS = p;
+	}
+	public void setFECHAHORA(Timestamp p) {
+		fechaHora = p;
 	}
 	
 	public int getnumDocAfiliado() {
@@ -22,14 +41,6 @@ public class ReservaServicio implements VOReservaServicio{
 
 	public Timestamp getFechaHora() {
 		return this.fechaHora;
-	}
-
-	public void setnumDocAfiliado(int numd) {
-		numDocAfiliado = numd;
-	}
-	
-	public void setFechaHora(Timestamp fechaHora) {
-		this.fechaHora = fechaHora;
 	}
 
 	public long getIdServicio() {

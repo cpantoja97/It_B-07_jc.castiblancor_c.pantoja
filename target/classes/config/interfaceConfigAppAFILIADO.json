@@ -5,70 +5,17 @@
 	"bannerPath": "./src/main/resources/config/logotipo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Usuarios",
+		{ "menuTitle": "Reservas",
 		  "options":
 			[
 				{
 					"label": "Adicionar",
-					"event": "adicionarUsuario"
+					"event": "adicionarReservaServicio"
 				},
 				{
 					"label": "Listar",
-					"event": "listarUsuario"
-				},
-				{
-					"label": "Borrar usuario por ID",
-					"event": "eliminarUsuarioPorId"
+					"event": "listarReservasPorUsuario"
 				}
-			]
-		},{ "menuTitle": "IPS",
-		  "options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarIPS"
-				},
-				{
-					"label": "Listar",
-					"event": "listarIPS"
-				}
-			]
-		},{ "menuTitle": "Servicios de IPS",
-		  "options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarServiciosIPS"
-				},
-				{
-					"label": "Listar",
-					"event": "listarServiciosIPS"
-				}
-			]
-		},{ "menuTitle": "Consultas",
-		  "options":
-			[
-				{
-					"label": "RFC1",
-					"event": ""
-				},
-				{
-					"label": "RFC2",
-					"event": ""
-				},
-				{
-					"label": "RFC3",
-					"event": ""
-				},
-				{
-					"label": "RFC4",
-					"event": ""
-				},
-				{
-					"label": "RFC5",
-					"event": ""
-				}
-				
 			]
 		}
 		

@@ -4,17 +4,18 @@ import java.sql.Timestamp;
 
 public class Afiliado implements  VOAfiliado{
 
-	Timestamp fechaNacimiento;
+	private Timestamp fechaNacimiento;
 
-	int numDoc;
+	private int numDoc;
 
+	public Afiliado() {
+		numDoc = 0;
+		fechaNacimiento = new Timestamp(System.currentTimeMillis());
+	}
+	
 	public Afiliado(int numDoc2, Timestamp fechaNacimiento2) {
 		this.fechaNacimiento=fechaNacimiento2;
 		this.numDoc = numDoc2;
-	}
-
-	public Afiliado() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Timestamp getFechaNacimiento() {

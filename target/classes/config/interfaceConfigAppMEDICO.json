@@ -5,70 +5,39 @@
 	"bannerPath": "./src/main/resources/config/logotipo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Usuarios",
+		{ "menuTitle": "Ordenes de servicio",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarUsuario"
+					"label": "Crear",
+					"event": "AdicionarOrdenDeServicio"
 				},
 				{
-					"label": "Listar",
-					"event": "listarUsuario"
-				},
-				{
-					"label": "Borrar usuario por ID",
-					"event": "eliminarUsuarioPorId"
+					"label": "Ver todas las órdenes de servicio",
+					"event": "listarOrdenDeServicio"
 				}
 			]
-		},{ "menuTitle": "IPS",
+		},{ "menuTitle": "Recetas",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarIPS"
+					"label": "Crear",
+					"event": "adicionarReceta"
 				},
 				{
-					"label": "Listar",
+					"label": "Ver todas las recetas",
 					"event": "listarIPS"
+				},
+				{
+					"label": "Adicionar items a una receta",
+					"event": "adicionarItemReceta"
+				},
+				{
+					"label": "Ver items de una receta",
+					"event": "listarItemsPorReceta"
 				}
-			]
-		},{ "menuTitle": "Servicios de IPS",
-		  "options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarServiciosIPS"
-				},
-				{
-					"label": "Listar",
-					"event": "listarServiciosIPS"
-				}
-			]
-		},{ "menuTitle": "Consultas",
-		  "options":
-			[
-				{
-					"label": "RFC1",
-					"event": ""
-				},
-				{
-					"label": "RFC2",
-					"event": ""
-				},
-				{
-					"label": "RFC3",
-					"event": ""
-				},
-				{
-					"label": "RFC4",
-					"event": ""
-				},
-				{
-					"label": "RFC5",
-					"event": ""
-				}
-				
+
+
 			]
 		}
 		

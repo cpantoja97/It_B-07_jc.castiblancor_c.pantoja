@@ -1,9 +1,16 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
+
+
 public class RolUsuario implements VORolUsuario {
 
-	long id;
-	String nombre;
+	private long id;
+	private String nombre;
+	public RolUsuario() 
+	{
+		this.id = 0;
+		this.nombre = "";
+	}
 
 	public RolUsuario(long pId, String pNom) {
 		id = pId;
@@ -17,7 +24,7 @@ public class RolUsuario implements VORolUsuario {
 		return nombre;
 	}
 
-	public void setIdRolUsuario(long idn) {
+	public void setID_ROL(long idn) {
 		id = idn;
 	}
 	public void setNombre(String pnombre) {

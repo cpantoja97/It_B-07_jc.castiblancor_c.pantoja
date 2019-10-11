@@ -5,70 +5,17 @@
 	"bannerPath": "./src/main/resources/config/logotipo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Usuarios",
+		{ "menuTitle": "Prestaciones de servicios",
 		  "options":
 			[
 				{
-					"label": "Adicionar",
-					"event": "adicionarUsuario"
+					"label": "Registrar prestación de servicio",
+					"event": "adicionarPrestacionServicio"
 				},
 				{
-					"label": "Listar",
-					"event": "listarUsuario"
-				},
-				{
-					"label": "Borrar usuario por ID",
-					"event": "eliminarUsuarioPorId"
+					"label": "Ver prestaciones de servicio",
+					"event": "listarPrestacionServicio"
 				}
-			]
-		},{ "menuTitle": "IPS",
-		  "options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarIPS"
-				},
-				{
-					"label": "Listar",
-					"event": "listarIPS"
-				}
-			]
-		},{ "menuTitle": "Servicios de IPS",
-		  "options":
-			[
-				{
-					"label": "Adicionar",
-					"event": "adicionarServiciosIPS"
-				},
-				{
-					"label": "Listar",
-					"event": "listarServiciosIPS"
-				}
-			]
-		},{ "menuTitle": "Consultas",
-		  "options":
-			[
-				{
-					"label": "RFC1",
-					"event": ""
-				},
-				{
-					"label": "RFC2",
-					"event": ""
-				},
-				{
-					"label": "RFC3",
-					"event": ""
-				},
-				{
-					"label": "RFC4",
-					"event": ""
-				},
-				{
-					"label": "RFC5",
-					"event": ""
-				}
-				
 			]
 		}
 		
