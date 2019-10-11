@@ -20,7 +20,7 @@ class SQLPrestacionServicio {
 	
 	public long adicionarPrestacionServicio(PersistenceManager pm, int numdocAf, long idServicio, long idIPS, Timestamp fechaHora, long id_Recepcionista) {
 		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaPrestacionServicio() + "(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)" );
-		q.setParameters(numdocAf, idServicio, idIPS, fechaHora);
+		q.setParameters(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
 		return (long) q.executeUnique();
 	}
 

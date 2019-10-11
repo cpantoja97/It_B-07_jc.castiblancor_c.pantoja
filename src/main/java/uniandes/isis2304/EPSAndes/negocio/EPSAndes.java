@@ -557,11 +557,20 @@ public class EPSAndes
 
 	public List<OrdenDeServicio> darOrdenDeServicio()
 	{
-		return null;
+		log.info("Consultando Ordenes de Servicio");
+		List<OrdenDeServicio> ordenesServicio = peps.darOrdenes();
+		log.info("Consultando Ordenes de Servicio: " + ordenesServicio.size() + " existentes");
+		return ordenesServicio;
 	}
 
 	public List<VOOrdenDeServicio> darVOOrdenDeServicio(){
-		return null;
+		log.info("Generando los VO de Orden De Servicio");
+		List<VOOrdenDeServicio> voOrdenes = new LinkedList<VOOrdenDeServicio>();
+		for(VOOrdenDeServicio item : peps.darOrdenes()) {
+			voOrdenes.add(item);
+		}
+		log.info("Generando los VO de Orden De Servicio: " + voOrdenes.size() + " existentes");
+		return voOrdenes;
 	}
 
 	/* ****************************************************************
@@ -582,11 +591,20 @@ public class EPSAndes
 
 	public List<ReservaServicio> darReservaServicio()
 	{
-		return null;
+		log.info("Consultando Reservas de Servicios");
+		List<ReservaServicio> reservas = peps.darReservaServicio();
+		log.info("Consultando Reservas de Servicios: " + reservas.size() + " existentes");
+		return reservas;
 	}
 
 	public List<VOReservaServicio> darVOReservaServicio(){
-		return null;
+		log.info("Generando los VO de Reservas de Servicios");
+		List<VOReservaServicio> voReservas = new LinkedList<VOReservaServicio>();
+		for(VOReservaServicio item : peps.darReservaServicio()) {
+			voReservas.add(item);
+		}
+		log.info("Generando los VO de Reservas de Servicios: " + voReservas.size() + " existentes");
+		return voReservas;
 	}
 
 	/* ****************************************************************
@@ -607,11 +625,20 @@ public class EPSAndes
 
 	public List<PrestacionServicio> darPrestacionServicio()
 	{
-		return null;
+		log.info("Consultando Prestaciones de servicio");
+		List<PrestacionServicio> prestaciones = peps.darPrestacionServicio();
+		log.info("Consultando Prestaciones de servicio: " + prestaciones.size() + " existentes");
+		return prestaciones;
 	}
 
 	public List<VOPrestacionServicio> darVOPrestacionServicio(){
-		return null;
+		log.info("Generando los VO de Prestacion de Servicios");
+		List<VOPrestacionServicio> voPrestaciones = new LinkedList<VOPrestacionServicio>();
+		for(VOPrestacionServicio item : peps.darPrestacionServicio()) {
+			voPrestaciones.add(item);
+		}
+		log.info("Generando los VO de Prestacion de Servicios: " + voPrestaciones.size() + " existentes");
+		return voPrestaciones;
 	}
 
 	/* ****************************************************************

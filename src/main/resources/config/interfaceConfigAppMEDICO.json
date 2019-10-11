@@ -10,7 +10,7 @@
 			[
 				{
 					"label": "Crear",
-					"event": "AdicionarOrdenDeServicio"
+					"event": "adicionarOrdenDeServicio"
 				},
 				{
 					"label": "Ver todas las órdenes de servicio",

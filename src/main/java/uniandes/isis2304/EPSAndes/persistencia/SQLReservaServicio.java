@@ -19,7 +19,7 @@ class SQLReservaServicio {
 	}
 	
 	public long adicionarReservaServicio(PersistenceManager pm, int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaReservaServicio() + "(numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)" );
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaReservaServicio() + " (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)" );
 		q.setParameters(numdocAf, idServicio, idIPS, fechaHora);
 		return (long) q.executeUnique();
 	}

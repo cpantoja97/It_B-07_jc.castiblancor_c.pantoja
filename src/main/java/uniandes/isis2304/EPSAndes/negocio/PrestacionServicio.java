@@ -7,7 +7,7 @@ public class PrestacionServicio implements VOPrestacionServicio{
 	private int numDocAfiliado;
 	private long idServicio;
 	private long idIPSl;
-	private Timestamp fechaHora;
+	public Timestamp fechaHora;
 	private long idRecepcionista;
 
 	public PrestacionServicio() {
@@ -35,6 +35,9 @@ public class PrestacionServicio implements VOPrestacionServicio{
 		idIPSl = p;
 	}
 	public void setFECHAHORA(Timestamp p) {
+		fechaHora = p;
+	}
+	public void putFECHAHORA(Timestamp p ) {
 		fechaHora = p;
 	}
 	public void setID_RECEPCIONISTA(long p) {

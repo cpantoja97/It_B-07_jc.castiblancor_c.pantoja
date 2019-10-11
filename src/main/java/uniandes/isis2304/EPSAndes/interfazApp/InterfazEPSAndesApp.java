@@ -1257,7 +1257,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			{
 				int numdocAf = Integer.parseInt(textField1.getText());
 				long idServicio = Long.parseLong(textField2.getText());
-				long idIPS = -Long.parseLong(textField3.getText());
+				long idIPS = Long.parseLong(textField3.getText());
 				int dia = Integer.parseInt(textField4.getText());
 				int mes = Integer.parseInt(textField5.getText());
 				int anio =  Integer.parseInt(textField6.getText());
@@ -1404,14 +1404,14 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			{
 				int numdocAf = Integer.parseInt(textField1.getText());
 				long idServicio = Long.parseLong(textField2.getText());
-				long idIPS = -Long.parseLong(textField3.getText());
+				long idIPS = Long.parseLong(textField3.getText());
 				int dia = Integer.parseInt(textField4.getText());
 				int mes = Integer.parseInt(textField5.getText());
 				int anio =  Integer.parseInt(textField6.getText());
 				int HH = Integer.parseInt(textField7.getText().split(":")[0]);
 				int MM = Integer.parseInt(textField7.getText().split(":")[1]);
 				Timestamp fechaHora = new Timestamp(anio, mes, dia , HH, MM, 0, 0);
-				long idRecep = -Long.parseLong(textField8.getText());
+				long idRecep = Long.parseLong(textField8.getText());
 
 				VOPrestacionServicio tb = EPSAndes.adicionarPrestacionServicio( numdocAf,  idServicio,  idIPS,  fechaHora, idRecep );
 				if (tb == null)
