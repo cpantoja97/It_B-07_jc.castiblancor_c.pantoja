@@ -220,6 +220,7 @@ public class PersistenciaEPSAndes
 		sqlReservaServicio = new SQLReservaServicio(this);
 		sqlPrestacionServicio = new SQLPrestacionServicio(this);
 		sqlUtil = new SQLUtil(this);
+		sqlConsulta = new SQLConsultas(this);
 	}
 
 	public String darSeqEPSAndes ()
@@ -230,23 +231,23 @@ public class PersistenciaEPSAndes
 	public String darTablaRolUsuario() {
 		return tablas.get(1);
 	}
-	
+
 	public String darTablaIPS() {
 		return tablas.get(2);
 	}
-	
+
 	public String darTablaServicio() {
 		return tablas.get(3);
 	}
-	
+
 	public String darTablaUsuario() {
 		return tablas.get(4);
 	}
-	
+
 	public String darTablaMedico() {
 		return tablas.get(5);
 	}
-	
+
 	public String darTablaAfiliados ()
 	{
 		return tablas.get (6);
@@ -263,11 +264,11 @@ public class PersistenciaEPSAndes
 	public String darTablaMedicosAbscritos() {
 		return tablas.get(9);
 	}
-	
+
 	public String darTablaReceta() {
 		return tablas.get(10);
 	}
-	
+
 	public String darTablaMedicamento() {
 		return tablas.get(11);
 	}
@@ -275,15 +276,15 @@ public class PersistenciaEPSAndes
 	public String darTablaItemReceta() {
 		return tablas.get(12);
 	}
-	
+
 	public String darTablaOrdenDeServicio() {
 		return tablas.get(13);
 	}
-	
+
 	public String darTablaReservaServicio() {
 		return tablas.get(14);
 	}
-	
+
 	public String darTablaServiciosMedicos() {
 		return tablas.get(10);
 	}
@@ -778,7 +779,7 @@ public class PersistenciaEPSAndes
 			pm.close();
 		}
 	}
-	
+
 	public List<RolUsuario> darRolUsuario()
 	{
 		return sqlRoUsuario.darRolUsuario(pmf.getPersistenceManager());
@@ -1392,19 +1393,21 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar los requerimientos funcionales.
 	 *****************************************************************/
 
-	public List<Object []> RFC1(Date anio, Date fMin, Date fMax, String nombre)
+	public List<Object []> RFC1(Timestamp anio, Timestamp fechaHoraInicio, Timestamp fechaHoraFin)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
-		List<Object> tuplas = sqlConsulta.RF1(pmf.getPersistenceManager(), anio,  fMin, fMax, nombre);
+		log.info ("inicioando consulta");
+		List<Object> tuplas = sqlConsulta.RF1(pmf.getPersistenceManager(), anio, fechaHoraInicio, fechaHoraFin);
+		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			String nombreIPS = (String) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
+			String nombreEPS = (String) datos [0];
+			int cantidadServiciosPrestados = ((BigDecimal) datos [1]).intValue ();
 
 			Object [] resp = new Object [2];
-			resp [0] = nombreIPS;
-			resp [1] = cuenta;	
+			resp [0] = nombreEPS;
+			resp [1] = cantidadServiciosPrestados;	
 
 			respuesta.add(resp);
 		}
@@ -1415,16 +1418,17 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC2 ()
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("inicioando consulta");
 		List<Object> tuplas = sqlConsulta.RF2(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			String nombreServicio = (String) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
+			long idServicio = ((BigDecimal) datos [1]).longValue ();
+			String nombre = (String) datos [0];
 
 			Object [] resp = new Object [2];
-			resp [0] = nombreServicio;
-			resp [1] = cuenta;	
+			resp [0] = new Servicio(idServicio, nombre);
 
 			respuesta.add(resp);
 		}
@@ -1435,16 +1439,18 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC3 ()
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("inicioando consulta");
 		List<Object> tuplas = sqlConsulta.RF3(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			String nombreServicio = (String) datos [0];
-			int indice = ((BigDecimal) datos [1]).intValue ();
+			String nombreservicio = (String) datos [0];
+			double indiceDeUso = ((BigDecimal) datos [1]).doubleValue();
 
 			Object [] resp = new Object [2];
-			resp [0] = nombreServicio;
-			resp [1] = indice;	
+			resp [0] = nombreservicio;
+			resp [1] = indiceDeUso;	
 
 			respuesta.add(resp);
 		}
@@ -1452,27 +1458,29 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC5 (int numDoc, Date f1, Date f2)
+	public List<Object []> RFC5 (int numDoc, Timestamp f1, Timestamp f2)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("inicioando consulta");
 		List<Object> tuplas = sqlConsulta.RF5(pmf.getPersistenceManager(), numDoc, f1, f2);
+		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
 			String nombreServicio = (String) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
+			int cantidadServiciosPrestados = ((BigDecimal) datos [1]).intValue ();
 
 			Object [] resp = new Object [2];
 			resp [0] = nombreServicio;
-			resp [1] = cuenta;	
+			resp [1] = cantidadServiciosPrestados;	
 
 			respuesta.add(resp);
 		}
 
 		return respuesta;
 	}
-	
-	
+
+
 	/**
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de Parranderos
 	 * Crea y ejecuta las sentencias SQL para cada tabla de la base de datos - EL ORDEN ES IMPORTANTE 

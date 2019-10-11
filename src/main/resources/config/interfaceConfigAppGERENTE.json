@@ -10,23 +10,23 @@
 			[
 				{
 					"label": "RFC1",
-					"event": ""
+					"event": "requerimientoFuncional1"
 				},
 				{
 					"label": "RFC2",
-					"event": ""
+					"event": "requerimientoFuncional2"
 				},
 				{
 					"label": "RFC3",
-					"event": ""
+					"event": "requerimientoFuncional3"
 				},
 				{
 					"label": "RFC4",
-					"event": ""
+					"event": "requerimientoFuncional4"
 				},
 				{
 					"label": "RFC5",
-					"event": ""
+					"event": "requerimientoFuncional5"
 				}
 				
 			]

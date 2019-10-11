@@ -120,7 +120,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 */
 	public InterfazEPSAndesApp( )
 	{
-		
+
 		String config = null;
 		//TODO cambiar a documento en vez de rol
 		JTextField textField = new JTextField();
@@ -152,7 +152,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			dispose();
 		}
 
-		
+
 		// Carga la configuración de la interfaz desde un archivo JSON
 		guiConfig = openConfig ("Interfaz", config);
 
@@ -1126,7 +1126,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+
 	public void listarItemsPorReceta() {
 		//TODO
 	}
@@ -1484,6 +1484,250 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
     }*/
 
+	/* ****************************************************************
+	 * 			Métodos privados para la presentación de resultados y otras operaciones
+	 *****************************************************************/
+
+	public void requerimientoFuncional1( )
+	{
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField4.getText());
+				int mesInicio = Integer.parseInt(textField5.getText());
+				int anioInicio =  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				Timestamp anio = new Timestamp(119, 0, 0, 0, 0, 0, 0);
+				List<Object []> serviciosPrestandosPorIPS= EPSAndes.darRFC1(anio, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional1\n\n";
+				resultado += "\n\n************ Ejecutando RF1 ************ \n";
+				resultado += "\n" + listarNumeroServiciosPrestadosPorIPS(serviciosPrestandosPorIPS);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	private String listarNumeroServiciosPrestadosPorIPS(List<Object[]> lista) {
+		String resp = "La IPS y el número de servicios prestados son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String nombreIPS= (String) tupla [0];
+			int numServicios= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre IPS: " + nombreIPS;
+			resp1 += "numServicios: " + numServicios;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
+	public void requerimientoFuncional2( )
+	{
+		try 
+		{
+			List<Object []> serviciosMasSolicitados= EPSAndes.darRFC2();
+
+			String resultado = "En requerimientoFuncional2\n\n";
+			resultado += "\n\n************ Ejecutando RF2 ************ \n";
+			resultado += "\n" + listarServiciosMasSolicitados(serviciosMasSolicitados);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	private String listarServiciosMasSolicitados(List<Object[]> lista) {
+		String resp = "La IPS y el número de servicios prestados son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			long idServicio= (long) tupla [0];
+			String nombre= (String) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "id=: " + idServicio;
+			resp1 += ", nombre: " + nombre;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
+	public void requerimientoFuncional3( )
+	{
+		try 
+		{
+			List<Object []> indiceDeUsoServicios= EPSAndes.darRFC3();
+
+			String resultado = "En requerimientoFuncional2\n\n";
+			resultado += "\n\n************ Ejecutando RF2 ************ \n";
+			resultado += "\n" + listarIndiceDeUsoServicios(indiceDeUsoServicios);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	private String listarIndiceDeUsoServicios(List<Object[]> lista) {
+		String resp = "Los servicio y su indice de uso son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String nombreServicio= (String) tupla [0];
+			int indiceDeUso= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre Servicio: " + nombreServicio;
+			resp1 += "indice de uso: " + indiceDeUso;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
+	public void requerimientoFuncional4( )
+	{
+		try 
+		{
+			List <VORolUsuario> lista = EPSAndes.darVORoles();
+
+			String resultado = "En listarRolUsuario";
+			resultado +=  "\n" + listarRolUsuario(lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+		catch (Exception e) 
+		{
+			//e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+
+	public void requerimientoFuncional5( )
+	{
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+			JTextField textField7 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+					"numero documento", textField7
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField4.getText());
+				int mesInicio = Integer.parseInt(textField5.getText());
+				int anioInicio =  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				int numdoc = Integer.parseInt(textField6.getText());
+
+				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional5\n\n";
+				resultado += "\n\n************ Ejecutando RF5 ************ \n";
+				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	private String listarUtilizacionServicios(List<Object[]> lista) {
+		String resp = "La IPS y el número de servicios prestados son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String nombreIPS= (String) tupla [0];
+			int numServicios= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre IPS: " + nombreIPS;
+			resp1 += "numServicios: " + numServicios;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
 
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones

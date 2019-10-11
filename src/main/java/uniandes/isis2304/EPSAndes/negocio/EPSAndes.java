@@ -645,14 +645,14 @@ public class EPSAndes
 	 * 			Metodos para requerimientos funcionales
 	 *****************************************************************/
 
-	public List<Object []> darRFC1 (Date anio, Date fMin,Date fMax,String nombre)
+	public List<Object []> darRFC1 (Timestamp anio, Timestamp fechaHoraInicio,Timestamp fechaHoraFin)
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC1(anio, fMin, fMax, nombre);
+		List<Object []> tuplas = peps.RFC1(anio, fechaHoraInicio, fechaHoraFin);
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
-
+	
 	public List<Object []> darRFC2 ()
 	{
 		log.info ("Listando cosas");
@@ -669,7 +669,7 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC5 (int numDoc, Date f1, Date f2)
+	public List<Object []> darRFC5 (int numDoc, Timestamp f1, Timestamp f2)
 	{
 		log.info ("Listando cosas");
 		List<Object []> tuplas = peps.RFC5(numDoc, f1, f2);

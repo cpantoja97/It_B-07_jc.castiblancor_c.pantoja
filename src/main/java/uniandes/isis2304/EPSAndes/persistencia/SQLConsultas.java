@@ -1,13 +1,18 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import org.apache.log4j.Logger;
+
 class SQLConsultas {
 
+	private static Logger log = Logger.getLogger(SQLConsultas.class.getName());
+	
 	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	private PersistenciaEPSAndes peps;
@@ -17,7 +22,7 @@ class SQLConsultas {
 	}
 
 	// RFC 1 MOSTRAR LA CANTIDAD DE SERVICIOS PRESTADOS POR CADA IPS DURANTE UN PERIODO DE TIEMPO Y EN EL A�O CORRIDO.
-	public List<Object> RF1(PersistenceManager pm, Date anio,Date fMin, Date fMax, String nombre) {
+	public List<Object> RF1(PersistenceManager pm, Timestamp anio,Timestamp fechaHoraInicio, Timestamp fechaHoraFin) {
 		String sql = "SELECT IPS.NOMBRE, COUNT(*) ";
 		sql+= "FROM ";
 		sql+= peps.darTablaIPS() +" IPS ";
@@ -26,8 +31,11 @@ class SQLConsultas {
 		sql+= "ON IPS.ID_IPS = prestacion.ID_IPS ";
 		sql+= "WHERE FECHAHORA >? AND FECHAHORA BETWEEN ? AND ? ";
 		sql+= "GROUP BY IPS.NOMBRE ";
+		
+		log.info ("mandando consulta");
+		
 		Query q = pm.newQuery(SQL, sql);
-		q.setParameters(anio, fMin, fMax);
+		q.setParameters(anio, fechaHoraInicio, fechaHoraFin);
 		return q.executeList();  
 	}
 
@@ -40,7 +48,7 @@ class SQLConsultas {
 		sql+= peps.darTablaServicio() + " servicio ";
 		sql+= "NATURAL INNER JOIN ";
 		sql+= peps.darTablaReservaServicio() + " reserva ";
-		sql+= "GROUP BY servicio.NOMBRE";
+		sql+= "GROUP BY servicio.NOMBRE "; 
 		sql+= "ORDER BY cuenta DESC ) ";
 		sql+= "WHERE ROWNUM <20" ;
 
@@ -80,7 +88,7 @@ class SQLConsultas {
 	}
 
 	// RFC5 - MOSTRAR LA UTILIZACI�N DE SERVICIOS DE EPSANDES POR UN AFILIADO DADO.
-	public List<Object> RF5(PersistenceManager pm, int numDoc, Date f1, Date f2) {
+	public List<Object> RF5(PersistenceManager pm, int numDoc, Timestamp f1, Timestamp f2) {
 		String sql = " SELECT servicio.NOMBRE, COUNT(*) ";
 		sql+= "FROM ";
 		sql+= peps.darTablaServicio() + " servicio ";
