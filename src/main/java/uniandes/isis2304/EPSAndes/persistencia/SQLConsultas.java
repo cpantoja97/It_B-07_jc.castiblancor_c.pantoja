@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 class SQLConsultas {
 
 	private static Logger log = Logger.getLogger(SQLConsultas.class.getName());
-	
+
 	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	private PersistenciaEPSAndes peps;
@@ -31,9 +31,9 @@ class SQLConsultas {
 		sql+= "ON IPS.ID_IPS = prestacion.ID_IPS ";
 		sql+= "WHERE FECHAHORA >? AND FECHAHORA BETWEEN ? AND ? ";
 		sql+= "GROUP BY IPS.NOMBRE ";
-		
+
 		log.info ("mandando consulta");
-		
+
 		Query q = pm.newQuery(SQL, sql);
 		q.setParameters(anio, fechaHoraInicio, fechaHoraFin);
 		return q.executeList();  
@@ -100,6 +100,33 @@ class SQLConsultas {
 		sql+= "GROUP BY servicio.NOMBRE";
 		Query q = pm.newQuery(SQL, sql);
 		q.setParameters(numDoc, f1,f2);
+		return q.executeList(); 
+	}
+
+	// RFC6 -ANALIZAR LA OPERACIÓN DE EPSANDES.
+	public List<Object> RF6(PersistenceManager pm) {
+		String sql = " SELECT * ";
+		sql+= "FROM ";
+		sql+= peps.darTablaServicio() + " servicio ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	// RFC7 - ENCONTRAR LOS AFILIADOS EXIGENTES.
+	public List<Object> RF7(PersistenceManager pm) {
+		String sql = " SELECT * ";
+		sql+= "FROM ";
+		sql+= peps.darTablaServicio() + " servicio ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	// RFC8 - ENCONTRAR LOS SERVICIOS QUE NO TIENEN MUCHA DEMANDA.
+	public List<Object> RF8(PersistenceManager pm) {
+		String sql = " SELECT * ";
+		sql+= "FROM ";
+		sql+= peps.darTablaServicio() + " servicio ";
+		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
 

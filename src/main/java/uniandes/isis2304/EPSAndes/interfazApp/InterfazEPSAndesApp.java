@@ -1702,6 +1702,68 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	public void requerimientoFuncional6( )
+	{
+		try 
+		{
+			List <Object []> lista = EPSAndes.darRFC6();
+
+			String resultado = "En requerimientoFuncional6\n\n";
+			resultado += "\n\n************ Ejecutando RF6 ************ \n";
+			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+
+	public void requerimientoFuncional7( )
+	{
+		try 
+		{
+			List <Object []> lista = EPSAndes.darRFC7();
+
+			String resultado = "En requerimientoFuncional7\n\n";
+			resultado += "\n\n************ Ejecutando RF7 ************ \n";
+			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void requerimientoFuncional8( )
+	{
+		try
+		{
+			List <Object []> lista = EPSAndes.darRFC8();
+
+			String resultado = "En requerimientoFuncional8\n\n";
+			resultado += "\n\n************ Ejecutando RF8 ************ \n";
+			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+
 	private String listarUtilizacionServicios(List<Object[]> lista) {
 		String resp = "La IPS y el número de servicios prestados son:\n";
 		int i = 1;

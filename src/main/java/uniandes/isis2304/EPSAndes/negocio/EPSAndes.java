@@ -652,7 +652,7 @@ public class EPSAndes
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
-	
+
 	public List<Object []> darRFC2 ()
 	{
 		log.info ("Listando cosas");
@@ -673,6 +673,30 @@ public class EPSAndes
 	{
 		log.info ("Listando cosas");
 		List<Object []> tuplas = peps.RFC5(numDoc, f1, f2);
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC6 ()
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC6();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC7 ()
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC7();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC8 ()
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC8();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}

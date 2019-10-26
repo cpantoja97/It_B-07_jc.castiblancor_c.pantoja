@@ -1461,7 +1461,7 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC5 (int numDoc, Timestamp f1, Timestamp f2)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("inicioando consulta");
+		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF5(pmf.getPersistenceManager(), numDoc, f1, f2);
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
@@ -1473,6 +1473,60 @@ public class PersistenciaEPSAndes
 			Object [] resp = new Object [2];
 			resp [0] = nombreServicio;
 			resp [1] = cantidadServiciosPrestados;	
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC6 ()
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+
+			Object [] resp = new Object [2];
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC7 ()
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF7(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+
+			Object [] resp = new Object [2];
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC8 ()
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF8(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+
+			Object [] resp = new Object [2];
 
 			respuesta.add(resp);
 		}
