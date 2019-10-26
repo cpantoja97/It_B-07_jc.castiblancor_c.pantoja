@@ -1547,7 +1547,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			int numServicios= (int) tupla [1];
 			String resp1 = i++ + ". " + "[";
 			resp1 += "nombre IPS: " + nombreIPS;
-			resp1 += "numServicios: " + numServicios;
+			resp1 += ", numServicios: " + numServicios;
 			resp1 += "]";
 			resp += resp1 + "\n";
 		}
@@ -1577,7 +1577,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 
 	private String listarServiciosMasSolicitados(List<Object[]> lista) {
-		String resp = "La IPS y el número de servicios prestados son:\n";
+		String resp = "Los servicios más solicitados se muestran en seguida: \n";
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
@@ -1593,8 +1593,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		{
 			List<Object []> indiceDeUsoServicios= EPSAndes.darRFC3();
 
-			String resultado = "En requerimientoFuncional2\n\n";
-			resultado += "\n\n************ Ejecutando RF2 ************ \n";
+			String resultado = "En requerimientoFuncional3\n\n";
+			resultado += "\n\n************ Ejecutando RF3 ************ \n";
 			resultado += "\n" + listarIndiceDeUsoServicios(indiceDeUsoServicios);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);

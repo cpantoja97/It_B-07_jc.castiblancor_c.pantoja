@@ -27,15 +27,15 @@
 				{
 					"label": "RFC5",
 					"event": "requerimientoFuncional5"
-				}
+				},
 				{
 					"label": "RFC6",
 					"event": "requerimientoFuncional6"
-				}
+				},
 				{
 					"label": "RFC7",
 					"event": "requerimientoFuncional7"
-				}
+				},
 				{
 					"label": "RFC8",
 					"event": "requerimientoFuncional8"
