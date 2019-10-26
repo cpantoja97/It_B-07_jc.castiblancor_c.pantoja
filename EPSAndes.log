@@ -249,3 +249,148 @@ ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDRECEP) 
 10:43:38,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
 10:43:39,069 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
 10:43:39,069 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:05:47,963 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:05:47,963 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:05:47,974 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:05:58,835 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:05:58,835 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:05:58,858 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.SQLConsultas] - mandando consulta
+08:05:58,946 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:06:34,363 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:07:50,742 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:07:50,743 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:07:50,755 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:08:07,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:08:07,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:08:07,183 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.SQLConsultas] - mandando consulta
+08:08:07,283 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:08:36,974 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:08:48,279 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:08:48,279 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:08:48,280 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.SQLConsultas] - mandando consulta
+08:08:48,299 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:12:10,804 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:12:10,805 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:12:10,816 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:12:14,042 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:12:14,042 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:12:14,141 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:12:14,142 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:13:55,650 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:13:55,651 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:13:55,662 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:13:58,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:13:58,846 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:13:58,932 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:13:58,933 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:14:14,262 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:14:14,263 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:14:14,274 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:14:17,471 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:14:17,472 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:14:17,558 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:14:17,559 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:16:00,558 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:16:00,559 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:16:00,569 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:16:03,850 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:16:03,850 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:16:03,933 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:16:03,934 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:18:36,874 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:18:36,875 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:18:36,886 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:18:40,486 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:18:40,486 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:18:40,575 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:18:40,575 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:18:52,447 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:18:52,447 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:18:52,460 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:19:00,744 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:19:00,744 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - inicioando consulta
+08:19:00,841 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:19:00,842 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:33:25,417 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:33:25,418 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:33:25,427 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:33:29,086 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:33:29,086 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:33:29,177 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:34:07,561 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:34:07,561 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:34:07,572 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:34:11,032 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:34:11,032 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:34:11,137 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:38:36,161 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:38:36,162 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:38:36,174 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:38:40,308 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:38:40,308 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:38:40,413 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:38:40,414 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:38:53,015 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:38:53,015 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:38:53,034 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:38:53,034 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:39:50,311 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:39:50,311 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:39:50,329 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:39:50,329 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:40:34,192 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:40:34,192 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:40:34,209 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:40:34,209 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:41:11,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:41:11,047 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:41:17,799 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:42:51,722 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:42:51,723 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:42:51,735 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:42:56,520 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:42:56,520 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:43:00,587 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:43:27,287 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:45:57,526 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:45:57,527 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:45:57,542 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:46:00,821 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:46:00,821 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:46:09,055 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:46:15,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:49:40,257 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:49:40,257 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:49:40,270 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:49:43,943 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:49:43,943 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:49:44,058 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:50:19,238 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:51:27,293 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:51:27,294 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:51:27,306 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:51:30,524 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:51:30,524 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:51:30,627 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:51:38,966 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:52:00,058 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:52:00,058 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:52:00,078 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:52:02,373 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:54:31,368 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+08:54:31,368 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+08:54:31,378 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+08:54:34,295 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:54:34,295 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:54:34,383 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:54:34,384 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:54:37,526 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:54:37,526 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:54:37,542 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:54:37,543 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:54:40,793 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+08:54:40,793 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+08:54:40,811 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+08:54:40,811 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+08:55:04,034 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de rol usuario
+08:55:04,070 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Rol Usuario: 5 existentes

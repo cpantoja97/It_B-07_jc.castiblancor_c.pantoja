@@ -1494,35 +1494,29 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		{
 			JTextField textField1 = new JTextField();
 			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
 			JTextField textField4 = new JTextField();
 			JTextField textField5 = new JTextField();
-			JTextField textField6 = new JTextField();
 
 			Object[] inputFields = {
 					"día inicio filtro", textField1,
 					"mes inicio filtro", textField2,
-					"año inicio filtro", textField3,
 					"día fin filtro", textField4,
 					"mes fin filtro", textField5,
-					"año fin filtro", textField6,
 			};
 
 			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
 			if (option == JOptionPane.OK_OPTION)
 			{
-				int diaInicio = Integer.parseInt(textField4.getText());
-				int mesInicio = Integer.parseInt(textField5.getText());
-				int anioInicio =  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+				Timestamp anio = new Timestamp(119, 0, 0, 0, 0, 0, 0);
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				Timestamp fechaHoraInicio = new Timestamp(119, mesInicio-1, diaInicio , 0, 0, 0, 0);
 
 				int diaFin= Integer.parseInt(textField4.getText());
 				int mesFin= Integer.parseInt(textField5.getText());
-				int anioFin=  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+				Timestamp fechaHoraFin = new Timestamp(119, mesFin-1, diaFin, 0, 0, 0, 0);
 
-				Timestamp anio = new Timestamp(119, 0, 0, 0, 0, 0, 0);
 				List<Object []> serviciosPrestandosPorIPS= EPSAndes.darRFC1(anio, fechaHoraInicio, fechaHoraFin);
 
 				String resultado = "En requerimientoFuncional1\n\n";
@@ -1564,35 +1558,31 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	{
 		try 
 		{
-			List<Object []> serviciosMasSolicitados= EPSAndes.darRFC2();
+			List <Object []> lista = EPSAndes.darRFC2();
 
 			String resultado = "En requerimientoFuncional2\n\n";
 			resultado += "\n\n************ Ejecutando RF2 ************ \n";
-			resultado += "\n" + listarServiciosMasSolicitados(serviciosMasSolicitados);
+			resultado +=  "\n" + listarServiciosMasSolicitados (lista);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
-			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 		} 
 		catch (Exception e) 
 		{
-			// e.printStackTrace();
+			//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+
+
 
 	private String listarServiciosMasSolicitados(List<Object[]> lista) {
 		String resp = "La IPS y el número de servicios prestados son:\n";
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
-			long idServicio= (long) tupla [0];
-			String nombre= (String) tupla [1];
-			String resp1 = i++ + ". " + "[";
-			resp1 += "id=: " + idServicio;
-			resp1 += ", nombre: " + nombre;
-			resp1 += "]";
-			resp += resp1 + "\n";
+			Servicio ser = (Servicio) tupla[0];
+			resp += ser.toString() +"\n";
 		}
 		return resp;
 	}
@@ -1608,7 +1598,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			resultado += "\n" + listarIndiceDeUsoServicios(indiceDeUsoServicios);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
-			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
 		} 
 		catch (Exception e) 
 		{
@@ -1624,10 +1613,10 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		for (Object [] tupla : lista)
 		{
 			String nombreServicio= (String) tupla [0];
-			int indiceDeUso= (int) tupla [1];
+			double indiceDeUso= (double) tupla [1];
 			String resp1 = i++ + ". " + "[";
 			resp1 += "nombre Servicio: " + nombreServicio;
-			resp1 += "indice de uso: " + indiceDeUso;
+			resp1 += " indice de uso: " + indiceDeUso;
 			resp1 += "]";
 			resp += resp1 + "\n";
 		}
@@ -1858,6 +1847,16 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		String resp = "Los PrestacionServicio existentes son:\n";
 		int i = 1;
 		for (VOPrestacionServicio tb : lista)
+		{
+			resp += i++ + ". " + tb.toString() + "\n";
+		}
+		return resp;
+	}
+
+	private String listarServicio(List<VOServicio> lista) {
+		String resp = "Los Servicios existentes son:\n";
+		int i = 1;
+		for (VOServicio tb : lista)
 		{
 			resp += i++ + ". " + tb.toString() + "\n";
 		}

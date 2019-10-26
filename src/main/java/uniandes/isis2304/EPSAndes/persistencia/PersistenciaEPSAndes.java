@@ -1396,7 +1396,7 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC1(Timestamp anio, Timestamp fechaHoraInicio, Timestamp fechaHoraFin)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("inicioando consulta");
+		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF1(pmf.getPersistenceManager(), anio, fechaHoraInicio, fechaHoraFin);
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
@@ -1418,7 +1418,7 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC2 ()
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("inicioando consulta");
+		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF2(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
@@ -1427,7 +1427,7 @@ public class PersistenciaEPSAndes
 			long idServicio = ((BigDecimal) datos [1]).longValue ();
 			String nombre = (String) datos [0];
 
-			Object [] resp = new Object [2];
+			Object [] resp = new Object [1];
 			resp [0] = new Servicio(idServicio, nombre);
 
 			respuesta.add(resp);
@@ -1439,7 +1439,7 @@ public class PersistenciaEPSAndes
 	public List<Object []> RFC3 ()
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("inicioando consulta");
+		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF3(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
