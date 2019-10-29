@@ -1,0 +1,91 @@
+/* ****************************************************************
+	 * 			CRUD de Medicamento
+	 *****************************************************************/
+
+	public void adicionarMedicamento( )
+	{
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+
+			Object[] inputFields = {"Nombre", textField1,
+					"Descripción", textField2 };
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información Medicamento", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				String pNombre = textField1.getText();
+				String pDescripcion = textField2.getText();
+				
+				VOMedicamento tb = EPSAndes.adicionarMedicamento( pNombre, pDescripcion );
+				if (tb == null)
+				{
+					throw new Exception ("No se pudo crear un Medicamento con nombre: " + pNombre);
+				}
+				String resultado = "En adicionarMedicamento\n\n";
+				resultado += "Medicamento adicionado exitosamente: " + tb;
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void listarMedicamento( )
+	{
+		try 
+		{
+			List <VOMedicamento> lista = EPSAndes.darVOMedicamento();
+
+			String resultado = "En listarMedicamento";
+			resultado +=  "\n" + listarMedicamento (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	/*
+	public void eliminar_____PorId( )
+    {
+    	try 
+    	{
+    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del Medicamento?", "Borrar Medicamento por Id", JOptionPane.QUESTION_MESSAGE);
+    		if (idTipoStr != null)
+    		{
+    			long idTipo = Long.valueOf (idTipoStr);
+    			long tbEliminados = EPSAndes (idTipo);
+
+    			String resultado = "En eliminar Medicamento\n\n";
+    			resultado += tbEliminados + " Medicamento eliminados\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+    		}
+    		else
+    		{
+    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }*/

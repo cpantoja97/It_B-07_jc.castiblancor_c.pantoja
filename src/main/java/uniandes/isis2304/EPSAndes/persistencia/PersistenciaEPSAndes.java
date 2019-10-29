@@ -17,7 +17,6 @@ package uniandes.isis2304.EPSAndes.persistencia;
 
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -788,6 +787,9 @@ public class PersistenciaEPSAndes
 	public List<RolUsuario> darRolPorNombre(String pNombre){
 		return sqlRoUsuario.darRolPorNombre(pmf.getPersistenceManager(), pNombre);
 	}
+	public List<RolUsuario> darRolPorID(long id){
+		return sqlRoUsuario.darRolPorID(pmf.getPersistenceManager(), id);
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación ServiciosIPS
 	 *****************************************************************/
@@ -1389,6 +1391,17 @@ public class PersistenciaEPSAndes
 		return sqlPrestacionServicio.darPrestacionServicio(pmf.getPersistenceManager());
 	}
 
+	/* ****************************************************************
+	 * 			Métodos útiles
+	 *****************************************************************/
+
+	
+
+	public List<RolUsuario> darRolPorNumDoc(int id){
+		return sqlUtil.darRolPorNumDoc(pmf.getPersistenceManager(), id);
+	}
+	
+	
 	/* ****************************************************************
 	 * 			Métodos para manejar los requerimientos funcionales.
 	 *****************************************************************/

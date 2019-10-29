@@ -74,6 +74,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	private final String CONFIG_INTERFAZ_AFILIADO = "./src/main/resources/config/interfaceConfigAppAFILIADO.json";
 	private final String CONFIG_INTERFAZ_RECEPCIONISTA = "./src/main/resources/config/interfaceConfigAppRECEPCIONISTA.json";
 	private final String CONFIG_INTERFAZ_GERENTE = "./src/main/resources/config/interfaceConfigAppGERENTE.json";
+	private final String CONFIG_INTERFAZ_CAMPANA = "./src/main/resources/config/interfaceConfigAppCAMPANA.json";
 
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos
@@ -124,29 +125,45 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		String config = null;
 		//TODO cambiar a documento en vez de rol
 		JTextField textField = new JTextField();
-		Object[] inputFields = {"Ingrese su ROL DE USUARIO", textField
-		};
+		Object[] inputFields = {"Ingrese su número de documento", textField};
 		int option = JOptionPane.showConfirmDialog(this, inputFields, "INGRESO USUARIO", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		if (option == JOptionPane.OK_OPTION) {
-			/*int numDoc = Integer.parseInt(textField.getText());
-			EPSAndes eps = new EPSAndes();
-			conf = openConfig ("Tablas BD", CONFIG_TABLAS);
-			EPSAndes = new EPSAndes(tableConfig);
-			.buscarUsuarioNumDoc( numDoc );*/
+			int rol = 0;
+			int numDoc = Integer.parseInt(textField.getText());
 
-			String rol = textField.getText();
-			if(rol.equalsIgnoreCase("Afiliado")) {
+			tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
+			EPSAndes = new EPSAndes (tableConfig);
+
+			RolUsuario rolUsuario = EPSAndes.darRolDeUsuarioPorNumDoc( numDoc );
+
+			if (rolUsuario != null) {
+				rol = (int)rolUsuario.getIdRolUsuario();
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Número inválido");
+				dispose();
+			}
+
+			switch(rol) {
+			case 1: 
 				config = CONFIG_INTERFAZ_AFILIADO;
-			}else if(rol.equalsIgnoreCase("Recepcionista")) {
-				config = CONFIG_INTERFAZ_RECEPCIONISTA;
-			} else if(rol.equalsIgnoreCase("Medico")) {
+				break;
+			case 2: 
 				config = CONFIG_INTERFAZ_MEDICO;
-			} 
-			else if(rol.equalsIgnoreCase("admin")) {
+				break;
+			case 3:
+				config = CONFIG_INTERFAZ_RECEPCIONISTA;
+				break;
+			case 4:
 				config = CONFIG_INTERFAZ_ADMIN;
-			} else if(rol.equalsIgnoreCase("gerente")) {
+				break;
+			case 5:
 				config = CONFIG_INTERFAZ_GERENTE;
-			} 
+				break;
+			case 6:
+				config = CONFIG_INTERFAZ_CAMPANA;
+				break;
+			}
 
 		} else {
 			dispose();
@@ -162,9 +179,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		{
 			crearMenu( guiConfig.getAsJsonArray("menuBar") );
 		}
-
-		tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
-		EPSAndes = new EPSAndes (tableConfig);
 
 		String path = guiConfig.get("bannerPath").getAsString();
 		panelDatos = new PanelDatos ( );
@@ -278,37 +292,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 * 			CRUD de RolUsuario
 	 *****************************************************************/
 
-	//Realmente este método no se usa
-	public void adicionarRolUsuario( )
-	{
-		try 
-		{
-			String nombre = JOptionPane.showInputDialog (this, "Nombre del rol?", "Adicionar RolUsuario", JOptionPane.QUESTION_MESSAGE);
-			if (nombre != null)
-			{
-				VORolUsuario tb = EPSAndes.adicionarRolUsuario(nombre);
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un rol de usuario con nombre: " + nombre);
-				}
-				String resultado = "En adicionarRolUsuario\n\n";
-				resultado += "RolUsuario adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
-
 	public void listarRolUsuario( )
 	{
 		try 
@@ -328,110 +311,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del RolUsuario?", "Borrar RolUsuario por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes.eliminarRolUsuarioPorId (idTipo);
-
-    			String resultado = "En eliminar RolUsuario\n\n";
-    			resultado += tbEliminados + " RolUsuario eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
-
 	/* ****************************************************************
 	 * 			CRUD de Usuario
 	 *****************************************************************/
-
-	public void adicionarUsuario( )
-	{
-		try 
-		{
-			//TODO LISTA DE SELECCION DE TIPO DE USUARIO
-			String nombreTipo = JOptionPane.showInputDialog (this, "Rol de Usuario?", "Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			if (nombreTipo != null)
-			{
-				RolUsuario rol = EPSAndes.buscarRolPorNombre(nombreTipo);
-				System.out.println(nombreTipo);
-				System.out.println(rol);
-				if(rol == null) {
-					throw new Exception ("No se pudo crear un Usuario con rol: " + nombreTipo);
-				}
-				long idRol = rol.getIdRolUsuario();
-				int numDoc = -1;
-				TipoDocumento tipoDoc = null;
-				String nombre = null;
-				String correo = null;
-
-				JTextField textField1 = new JTextField();
-				JTextField textField2 = new JTextField();
-				JTextField textField3 = new JTextField();
-				JTextField textField4 = new JTextField();
-				//TODO LISTA DE TIPO DE DOCUMENTO
-				Object[] inputFields = {"Tipo Documento", textField1,
-						"Número documento", textField2,
-						"Nombre", textField3,
-						"Correo", textField4};
-
-				int option = JOptionPane.showConfirmDialog(this, inputFields, "Información usuario", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-				if (option == JOptionPane.OK_OPTION) {
-					String td = textField1.getText();
-					tipoDoc = ( td.equalsIgnoreCase("CC") ? TipoDocumento.CC : ( td.equalsIgnoreCase("TI") ? TipoDocumento.TI : TipoDocumento.CE ));
-					numDoc = Integer.parseInt(textField2.getText());
-					nombre = textField3.getText();
-					correo = textField4.getText();
-				} else {
-					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-				}
-
-				if(rol.getNombre().equalsIgnoreCase("Afiliado")) {
-					adicionarAfiliado( numDoc );
-				}else if(rol.getNombre().equalsIgnoreCase("Recepcionista")) {
-					adicionarRecepcionista(numDoc );
-				} else if(rol.getNombre().equalsIgnoreCase("Medico")) {
-					adicionarMedico(numDoc );
-				} 
-
-				VOUsuario tb = EPSAndes.adicionarUsuario( numDoc, tipoDoc, nombre, correo, idRol );
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un Usuario con numdoc: " + numDoc);
-				}
-				String resultado = "En adicionarUsuario\n\n";
-				resultado += "Usuario adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 
 	public void listarUsuario( )
 	{
@@ -452,102 +334,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*public void eliminarUsuarioPorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del Usuario?", "Borrar Usuario por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes.eliminarUsuarioPorId(idTipo);
-
-    			String resultado = "En eliminar Usuario\n\n";
-    			resultado += tbEliminados + " Usuario eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
-	private void eliminarUsuario( int numDoc )
-	{
-		try 
-		{
-			long tbEliminados = EPSAndes.eliminarUsuarioPorId(numDoc);
-
-			String resultado = "En eliminar Usuario\n\n";
-			resultado += tbEliminados + " Usuario eliminados\n";
-			resultado += "\n Operación terminada";
-			panelDatos.actualizarInterfaz(resultado);
-
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
-
 	/* ****************************************************************
 	 * 			CRUD de Afiliado
 	 *****************************************************************/
-
-	private void adicionarAfiliado( int numDoc )
-	{
-		try 
-		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			//TODO Listas para servicio e ips
-			Object[] inputFields = {"dia", textField1,
-					"mes", textField2,
-					"año", textField3};
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Ingrese Fecha de nacimiento", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				int dia = Integer.parseInt(textField1.getText());
-				int mes = Integer.parseInt(textField2.getText());
-				int anio =  Integer.parseInt(textField3.getText());
-				Timestamp fechaNacimiento = new Timestamp(anio, mes, dia , 0, 0, 0, 0);
-
-				VOAfiliado tb = EPSAndes.adicionarAfiliado( numDoc, fechaNacimiento );
-				if (tb == null)
-				{
-					eliminarUsuario(numDoc);
-					throw new Exception ("No se pudo crear un Afiliado con numdoc: " + numDoc);
-				}
-				String resultado = "En adicionarAfiliado\n\n";
-				resultado += "Afiliado adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				eliminarUsuario(numDoc);
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 
 	public void listarAfiliado( )
 	{
@@ -568,76 +357,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*
-	public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del Afiliado?", "Borrar Afiliado por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes.eliminarAfiliadoPorId (idTipo);
-
-    			String resultado = "En eliminar Afiliado\n\n";
-    			resultado += tbEliminados + " Afiliado eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
-
-
 	/* ****************************************************************
 	 * 			CRUD de Recepcionista
 	 *****************************************************************/
-
-	private void adicionarRecepcionista( int numDoc )
-	{
-		try 
-		{
-			JTextField textField1 = new JTextField();
-
-			Object[] inputFields = {"Código IPS", textField1,
-			};
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información adicional Recepcionista", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				long idIPS = Long.parseLong( textField1.getText());
-				VORecepcionista tb = EPSAndes.adicionarRecepcionista( numDoc, idIPS );
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un Recepcionista con numDoc: " + numDoc);
-				}
-				String resultado = "En adicionarRecepcionista\n\n";
-				resultado += "Recepcionista adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 
 	public void listarRecepcionista( )
 	{
@@ -658,74 +380,10 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*
-	public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del Recepcionista?", "Borrar Recepcionista por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes (idTipo);
-
-    			String resultado = "En eliminar Recepcionista\n\n";
-    			resultado += tbEliminados + " Recepcionista eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
 
 	/* ****************************************************************
 	 * 			CRUD de Medico
 	 *****************************************************************/
-
-	private void adicionarMedico(int numDoc )
-	{
-		try 
-		{
-			JTextField textField1 = new JTextField();
-
-			Object[] inputFields = {"Número de registro médico" };
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información usuario", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				int numReg = Integer.parseInt(textField1.getText());
-				VOMedico tb = EPSAndes.adicionarMedico( numDoc, numReg );
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un Medico con numDoc: " + numDoc);
-				}
-				String resultado = "En adicionarMedico\n\n";
-				resultado += "Medico adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 
 	public void listarMedico( )
 	{
@@ -746,80 +404,10 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*
-	public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del Medico?", "Borrar Medico por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes (idTipo);
-
-    			String resultado = "En eliminar Medico\n\n";
-    			resultado += tbEliminados + " Medico eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
-
-
 
 	/* ****************************************************************
 	 * 			CRUD de IPS
 	 *****************************************************************/
-
-	public void adicionarIPS( )
-	{
-		try 
-		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			//TODO LISTA DE SERVICIOS E IPS
-			Object[] inputFields = {"Nombre", textField1,
-					"Localización", textField2 };
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información usuario", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				String nombre = textField1.getText();
-				String localizacion = textField2.getText();
-
-				VOIPS tb = EPSAndes.adicionarIPS( nombre, localizacion );
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un IPS con nombre: " + nombre);
-				}
-				String resultado = "En adicionarIPS\n\n";
-				resultado += "IPS adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
 
 	public void listarIPS( )
 	{
@@ -840,85 +428,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-	/*public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del IPS?", "Borrar IPS por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes.eliminarIPSPorId (idTipo);
-
-    			String resultado = "En eliminar IPS\n\n";
-    			resultado += tbEliminados + " IPS eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
-
-
 	/* ****************************************************************
 	 * 			CRUD de ServiciosIPS
 	 *****************************************************************/
-
-	public void adicionarServiciosIPS( )
-	{
-		try 
-		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			JTextField textField4 = new JTextField();
-
-			Object[] inputFields = {"código de IPS", textField1,
-					"código de Servicio", textField2,
-					"Capacidad", textField3,
-					"horarioAtencion", textField4};
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información del Servicio", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				long idIPS = Long.parseLong(textField1.getText());
-				long idServicio = Long.parseLong(textField2.getText());
-				int capacidad = Integer.parseInt(textField3.getText());
-				String horarioDeAtencion = textField4.getText();
-
-				VOServiciosIPS tb = EPSAndes.adicionarServiciosIPS( idIPS,  idServicio,  capacidad,  horarioDeAtencion );
-				if (tb == null)
-				{
-					throw new Exception ("No se pudo crear un ServiciosIPS con IPS y Servicio: " + idIPS + "-" + idServicio);
-				}
-				String resultado = "En adicionarServiciosIPS\n\n";
-				resultado += "ServiciosIPS adicionado exitosamente: " + tb;
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
-		} 
-		catch (Exception e) 
-		{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-	}
-
 	public void listarServiciosIPS( )
 	{
 		try 
@@ -937,34 +449,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-
-	/*public void eliminar_____PorId( )
-    {
-    	try 
-    	{
-    		String idTipoStr = JOptionPane.showInputDialog (this, "Id del ServiciosIPS?", "Borrar ServiciosIPS por Id", JOptionPane.QUESTION_MESSAGE);
-    		if (idTipoStr != null)
-    		{
-    			long idTipo = Long.valueOf (idTipoStr);
-    			long tbEliminados = EPSAndes.eliminarServiciosIPSPorId (idTipo);
-
-    			String resultado = "En eliminar ServiciosIPS\n\n";
-    			resultado += tbEliminados + " ServiciosIPS eliminados\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
-    		}
-    		else
-    		{
-    			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-    		}
-		} 
-    	catch (Exception e) 
-    	{
-			// e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
-    }*/
 
 	/* ****************************************************************
 	 * 			CRUD de Receta
@@ -1056,6 +540,28 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }*/
+
+	/* ****************************************************************
+	 * 			CRUD de Medicamento
+	 *****************************************************************/
+	public void listarMedicamento( )
+	{
+		try 
+		{
+			List <VOMedicamento> lista = EPSAndes.darVOMedicamento();
+
+			String resultado = "En listarMedicamento";
+			resultado +=  "\n" + listarMedicamento (lista);
+			panelDatos.actualizarInterfaz(resultado);
+			resultado += "\n Operación terminada";
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
 
 	/* ****************************************************************
@@ -1578,7 +1084,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 	private String listarServiciosMasSolicitados(List<Object[]> lista) {
 		String resp = "Los servicios más solicitados se muestran en seguida: \n";
-		int i = 1;
+		//int i = 1;
 		for (Object [] tupla : lista)
 		{
 			Servicio ser = (Servicio) tupla[0];
@@ -1702,6 +1208,22 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	private String listarUtilizacionServicios(List<Object[]> lista) {
+		String resp = "La IPS y el número de servicios prestados son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String nombreIPS= (String) tupla [0];
+			int numServicios= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre IPS: " + nombreIPS;
+			resp1 += "numServicios: " + numServicios;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
 	public void requerimientoFuncional6( )
 	{
 		try 
@@ -1763,22 +1285,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
-
-	private String listarUtilizacionServicios(List<Object[]> lista) {
-		String resp = "La IPS y el número de servicios prestados son:\n";
-		int i = 1;
-		for (Object [] tupla : lista)
-		{
-			String nombreIPS= (String) tupla [0];
-			int numServicios= (int) tupla [1];
-			String resp1 = i++ + ". " + "[";
-			resp1 += "nombre IPS: " + nombreIPS;
-			resp1 += "numServicios: " + numServicios;
-			resp1 += "]";
-			resp += resp1 + "\n";
-		}
-		return resp;
-	}
 
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
@@ -1865,6 +1371,17 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		String resp = "Los Receta existentes son:\n";
 		int i = 1;
 		for (VOReceta tb : lista)
+		{
+			resp += i++ + ". " + tb.toString() + "\n";
+		}
+		return resp;
+	}
+
+	private String listarMedicamento(List<VOMedicamento> lista) 
+	{
+		String resp = "Los Medicamento existentes son:\n";
+		int i = 1;
+		for (VOMedicamento tb : lista)
 		{
 			resp += i++ + ". " + tb.toString() + "\n";
 		}
@@ -1996,21 +1513,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	/* ****************************************************************
 	 * 			Métodos administrativos
 	 *****************************************************************/
-	/**
-	 * Muestra el log de EPSAndes
-	 */
-	public void mostrarLogEPSAndes ()
-	{
-		mostrarArchivo ("EPSAndes.log");
-	}
-
-	/**
-	 * Muestra el log de datanucleus
-	 */
-	public void mostrarLogDatanuecleus ()
-	{
-		mostrarArchivo ("datanucleus.log");
-	}
 
 	/**
 	 * Limpia el contenido del log de EPSAndes
@@ -2076,54 +1578,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
-	}
-
-	/**
-	 * Muestra la presentación general del proyecto
-	 */
-	public void mostrarPresentacionGeneral ()
-	{
-		mostrarArchivo ("data/00-ST-EPSAndesJDO.pdf");
-	}
-
-	/**
-	 * Muestra el modelo conceptual de EPSAndes
-	 */
-	public void mostrarModeloConceptual ()
-	{
-		mostrarArchivo ("data/Modelo Conceptual EPSAndes.pdf");
-	}
-
-	/**
-	 * Muestra el esquema de la base de datos de EPSAndes
-	 */
-	public void mostrarEsquemaBD ()
-	{
-		mostrarArchivo ("data/Esquema BD EPSAndes.pdf");
-	}
-
-	/**
-	 * Muestra el script de creación de la base de datos
-	 */
-	public void mostrarScriptBD ()
-	{
-		mostrarArchivo ("data/EsquemaEPSAndes.sql");
-	}
-
-	/**
-	 * Muestra la arquitectura de referencia para EPSAndes
-	 */
-	public void mostrarArqRef ()
-	{
-		mostrarArchivo ("data/ArquitecturaReferencia.pdf");
-	}
-
-	/**
-	 * Muestra la documentación Javadoc del proyectp
-	 */
-	public void mostrarJavadoc ()
-	{
-		mostrarArchivo ("doc/index.html");
 	}
 
 	/**
