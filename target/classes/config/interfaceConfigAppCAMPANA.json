@@ -1,0 +1,24 @@
+{
+	"title": "Aplicación transaccional de EPSAndes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logotipo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Prestaciones de servicios",
+		  "options":
+			[
+				{
+					"label": "Registrar prestación de servicio",
+					"event": "adicionarPrestacionServicio"
+				},
+				{
+					"label": "Ver prestaciones de servicio",
+					"event": "listarPrestacionServicio"
+				}
+			]
+		}
+		
+	]
+}
+	
