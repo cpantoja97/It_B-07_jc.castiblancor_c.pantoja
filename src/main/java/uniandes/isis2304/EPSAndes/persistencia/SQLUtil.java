@@ -1,7 +1,11 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import java.util.List;
+
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+
+import uniandes.isis2304.EPSAndes.negocio.RolUsuario;
 
 @SuppressWarnings("rawtypes")
 class SQLUtil {
@@ -62,4 +66,10 @@ class SQLUtil {
 				itemREliminados,ordenesEliminados,reservasEliminados, prestacionesEliminados};
 	}
 
+	public List<RolUsuario> darRolPorNumDoc( PersistenceManager pm, int id) {
+		Query q = pm.newQuery(SQL, "SELECT R.id_rol, R.nombre FROM " + peps.darTablaRolUsuario() + " R, "+peps.darTablaUsuario()+" U WHERE R.id_rol = U.id_rol and U.numdoc = ?");
+		q.setResultClass(RolUsuario.class);
+		q.setParameters(id);
+		return (List<RolUsuario>) q.executeList();
+	}
 }
