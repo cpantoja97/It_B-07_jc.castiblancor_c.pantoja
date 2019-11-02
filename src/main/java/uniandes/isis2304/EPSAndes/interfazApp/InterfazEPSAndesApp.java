@@ -1669,9 +1669,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 			if (option == JOptionPane.OK_OPTION)
 			{
-				int diaInicio = Integer.parseInt(textField4.getText());
-				int mesInicio = Integer.parseInt(textField5.getText());
-				int anioInicio =  Integer.parseInt(textField6.getText());
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				int anioInicio =  Integer.parseInt(textField3.getText());
 				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
 
 				int diaFin= Integer.parseInt(textField4.getText());
@@ -1679,7 +1679,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				int anioFin=  Integer.parseInt(textField6.getText());
 				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
 
-				int numdoc = Integer.parseInt(textField6.getText());
+				int numdoc = Integer.parseInt(textField7.getText());
 
 				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
 
