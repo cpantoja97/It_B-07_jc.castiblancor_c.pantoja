@@ -94,10 +94,10 @@ class SQLConsultas {
 		sql+= peps.darTablaServicio() + " servicio ";
 		sql+= "INNER JOIN ";
 		sql+= peps.darTablaPrestacionServicio() + " prestacion ";
-		sql+= "ON servicio.ID_SERVICIO = prestacion.ID_SERVICIO";
+		sql+= "ON servicio.ID_SERVICIO = prestacion.ID_SERVICIO ";
 		sql+= "WHERE prestacion.NUMDOC = ? ";
-		sql+= "AND prestacion.FECHAHORA BETWEEN ? AND ?";
-		sql+= "GROUP BY servicio.NOMBRE";
+		sql+= "AND prestacion.FECHAHORA BETWEEN ? AND ? ";
+		sql+= "GROUP BY servicio.NOMBRE ";
 		Query q = pm.newQuery(SQL, sql);
 		q.setParameters(numDoc, f1,f2);
 		return q.executeList(); 
