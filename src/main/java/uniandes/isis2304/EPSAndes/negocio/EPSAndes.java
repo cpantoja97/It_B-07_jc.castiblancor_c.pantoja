@@ -470,7 +470,7 @@ public class EPSAndes
 	/* ****************************************************************
 	 * 			Metodos útiles
 	 *****************************************************************/
-	
+
 	public RolUsuario darRolDeUsuarioPorNumDoc( int numDoc) {
 		log.info("Consultando Rol del usuario ingresado");
 		System.out.println("aqui");
@@ -481,8 +481,8 @@ public class EPSAndes
 		return rol;
 	}
 
-	
-	
+
+
 	/* ****************************************************************
 	 * 			Metodos para requerimientos funcionales
 	 *****************************************************************/

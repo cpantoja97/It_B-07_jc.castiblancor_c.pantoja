@@ -11,20 +11,20 @@ class SQLOrdenDeServicio {
 	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	private PersistenciaEPSAndes peps;
-	
+
 	public SQLOrdenDeServicio(PersistenciaEPSAndes persistenciaEPSAndes) {
 		this.peps = persistenciaEPSAndes;
 	}
-	
-	public long adicionarOrdenDeServicio(PersistenceManager pm, int numdocMedico, int numdocAfiliado, long idServicio) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaOrdenDeServicio() + "(id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?)" );
-		q.setParameters(numdocMedico, numdocAfiliado, idServicio);
+
+	public long adicionarOrdenDeServicio(PersistenceManager pm, int numdocMedico, int numdocAfiliado, long idServicio, long id) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaOrdenDeServicio() + "(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)" );
+		q.setParameters(id, numdocMedico, numdocAfiliado, idServicio);
 		return (long) q.executeUnique();
 	}
 
-	public long eliminarOrdenDeServicioPorId(PersistenceManager pm,int numdocMedico, int numdocAfiliado, long idServicio) {
-		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaOrdenDeServicio() + " WHERE id_Medico = ? AND id_Afiliado = ? AND id_Servicio = ?");
-		q.setParameters(numdocMedico, numdocAfiliado, idServicio);
+	public long eliminarOrdenDeServicioPorId(PersistenceManager pm,long id) {
+		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaOrdenDeServicio() + " WHERE id = ?");
+		q.setParameters(id);
 		return (long) q.executeUnique();  
 	}
 

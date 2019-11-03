@@ -6,8 +6,9 @@ public class Servicio implements VOServicio{
 
 	private String nombre;
 
+	private long tipo;
+
 	public Servicio() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Servicio(long idServicio2, String nombre2) {
@@ -23,6 +24,14 @@ public class Servicio implements VOServicio{
 		return this.nombre;
 	}
 
+	public long getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(long tipo) {
+		this.tipo = tipo;
+	}
+
 	public void setIdServicio(int idServicio) {
 		this.idServicio = idServicio;
 	}
@@ -30,7 +39,7 @@ public class Servicio implements VOServicio{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos de la clase
