@@ -1428,10 +1428,10 @@ public class PersistenciaEPSAndes
 			long id = nextval();
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
 			log.trace ("Inserción Campaña: " +  nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-			
-			int dias = 
-			
-			
+
+			int dias = 1;
+
+
 			// Insertar reservas de servicios
 			for(int i = 0; i < servicios.size(); i++) {
 				// Servicio:
@@ -1442,7 +1442,7 @@ public class PersistenciaEPSAndes
 
 				// Hallar las IPS para recorrerlas
 				List<IPS> IPSs = sqlIPS.darIPSs(pm);
-				
+
 				for(IPS ips : IPSs) {
 					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getIdIPS(), servicioAct.getIdServicio());
 					if(respConsulta.size() > 0) {
@@ -1450,7 +1450,7 @@ public class PersistenciaEPSAndes
 						int capacidad = servIPS.getCapacidad();
 						long horaAct = servIPS.getHorarioInicio().getTime();
 						int deltaTiempo = (int) ((pFechaInicio.getTime() - pFechaFin.getTime())/capacidad);
-						
+
 						int citas = 0;
 						while(citas < (int)(servIPS.getCapacidad()*0.9) ) {
 							long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
@@ -1458,21 +1458,21 @@ public class PersistenciaEPSAndes
 							horaAct = horaAct + deltaTiempo;
 						}
 					}
-					
+
 					if(cantidad >= contador) break;
 				}
-						//Revisar si capacidad es suficiente
+				//Revisar si capacidad es suficiente
 
-						//Hacer un select for update
+				//Hacer un select for update
 
-						//Asignar reservas
+				//Asignar reservas
 
 
-						if(contador < cantidad) {
-							tx.rollback();
-						} else {
-							tx.commit();
-						}
+				if(contador < cantidad) {
+					tx.rollback();
+				} else {
+					tx.commit();
+				}
 			}
 
 			tx.commit();
@@ -1599,17 +1599,65 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC6 ()
+	public List<Object []> RFC6 (String tiempo, String servicio)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager());
+		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager(), tiempo,servicio);
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
 
 			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC62 (String tiempo, String servicio)
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF62(pmf.getPersistenceManager(), tiempo,servicio);
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
+
+			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC63 (String tiempo, String servicio)
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF63(pmf.getPersistenceManager(), tiempo,servicio);
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
+
+			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
 
 			respuesta.add(resp);
 		}
@@ -1626,8 +1674,14 @@ public class PersistenciaEPSAndes
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
 
-			Object [] resp = new Object [2];
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
 
 			respuesta.add(resp);
 		}
@@ -1635,19 +1689,16 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC8 ()
+	public List<String> RFC8 ()
 	{
-		List<Object []> respuesta = new LinkedList <Object []> ();
+		List<String> respuesta = new LinkedList <String > ();
 		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF8(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
-			Object [] datos = (Object []) tupla;
-
-			Object [] resp = new Object [2];
-
-			respuesta.add(resp);
+			String nombre = (String)tupla;
+			respuesta.add(nombre);
 		}
 
 		return respuesta;

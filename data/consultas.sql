@@ -70,10 +70,13 @@ GROUP BY SERVICIOS.NOMBRE
 SELECT *
 FROM
     (
-    select TRUNC( reservaServicio.fechaHora,'IW' ), count(*) as cuenta
-    from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio
-    Group by TRUNC( reservaServicio.fechaHora, 'IW' )
+    select TRUNC( reservaServicio.fechaHora,'DD' ), count(*) as cuenta
+    from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio  
+    where SERVICIOS.NOMBRE = 'Oftalmologia'
+    Group by TRUNC( reservaServicio.fechaHora, 'DD' )
+    
     Order by cuenta desc 
+    
     )
     
 WHERE ROWNUM <3
@@ -85,7 +88,7 @@ FROM
     select TRUNC( reservaServicio.fechaHora,'IW' ), count(*) as cuenta
     from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio
     Group by TRUNC( reservaServicio.fechaHora, 'IW' )
-    Order by cuenta 
+    Order by cuenta asc
     )
     
 WHERE ROWNUM <3
@@ -120,8 +123,9 @@ from
     group by prestacionServicio.numdoc , servicios.tipo
     ) aux 
     group by aux.numdoc
-    having sum(cuenta)  >1 and count(*)>1;
+    having count(*)>1 and sum(cuenta)>1;
     
+    commit;
 --RFC 8 Servicios con poca demanda
 select servicios.nombre 
 from servicios left outer join

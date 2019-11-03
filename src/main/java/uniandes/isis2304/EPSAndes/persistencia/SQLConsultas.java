@@ -104,30 +104,95 @@ class SQLConsultas {
 	}
 
 	// RFC6 -ANALIZAR LA OPERACIÓN DE EPSANDES.
-	public List<Object> RF6(PersistenceManager pm) {
+	public List<Object> RF6(PersistenceManager pm, String tiempo, String servicio) {
 		String sql = " SELECT * ";
+		sql+= "FROM ( ";
+		sql+= " select TRUNC ( reservaServicio.fechaHora, 'IW' ), count(*) as cuenta ";
 		sql+= "FROM ";
-		sql+= peps.darTablaServicio() + " servicio ";
+		sql+= peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= "on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql += "where servicios.nombre = 'Oftalmologia' ";
+		sql+= "Group by TRUNC ( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "Order by cuenta desc ";
+		sql+= " ) WHERE ROWNUM < 3 ";
 		Query q = pm.newQuery(SQL, sql);
-		return q.executeList(); 
+		//q.setParameters(tiempo, servicio, tiempo);
+		return q.executeList(); 		
+
+	}
+
+	public List<Object> RF62(PersistenceManager pm, String tiempo, String servicio) {
+		String sql = " SELECT * ";
+		sql+= "FROM ( ";
+		sql+= " select TRUNC ( reservaServicio.fechaHora, 'IW' ), count(*) as cuenta ";
+		sql+= "FROM ";
+		sql+= peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= "on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql += "where servicios.nombre = 'Oftalmologia' ";
+		sql+= "Group by TRUNC ( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "Order by cuenta asc ";
+		sql+= " ) WHERE ROWNUM < 3 ";
+		Query q = pm.newQuery(SQL, sql);
+		//q.setParameters(tiempo, servicio,tiempo);
+		return q.executeList(); 		
+
+	}
+
+	public List<Object> RF63(PersistenceManager pm, String tiempo, String servicio) {
+		String sql = " SELECT * ";
+		sql+= "FROM ( ";
+		sql+= " select TRUNC ( prestacionServicio.fechaHora, 'IW' ), count(*) as cuenta ";
+		sql+= "FROM ";
+		sql+= peps.darTablaPrestacionServicio() + " prestacionServicio ";
+		sql+= "inner join " + peps.darTablaServicio() + " servicios ";
+		sql+= "on servicios.id_servicio = prestacionServicio.id_servicio ";
+		sql += "where servicios.nombre = 'Oftalmologia' ";
+		sql+= "Group by TRUNC ( prestacionServicio.fechaHora, 'IW' ) ";
+		sql+= "Order by cuenta desc ";
+		sql+= " ) WHERE ROWNUM < 3 ";
+		Query q = pm.newQuery(SQL, sql);
+		//q.setParameters(tiempo, servicio, tiempo);
+		return q.executeList(); 		
+
 	}
 
 	// RFC7 - ENCONTRAR LOS AFILIADOS EXIGENTES.
 	public List<Object> RF7(PersistenceManager pm) {
-		String sql = " SELECT * ";
-		sql+= "FROM ";
-		sql+= peps.darTablaServicio() + " servicio ";
+		String sql = " SELECT aux.numdoc, count(*), sum(cuenta) as suma ";
+		sql+= "FROM ( ";
+		sql+= "select prestacionServicio.numdoc, servicios.tipo, count(*) as cuenta ";
+		sql+= "from ";
+		sql+= peps.darTablaPrestacionServicio();
+		sql+= " inner join "+peps.darTablaServicio() + " servicios ";
+		sql+= "on servicios.id_servicio = prestacionservicio.id_servicio ";
+		sql+= "group by prestacionServicio.numdoc , servicios.tipo ";
+		sql+= ") aux ";
+		sql+= "group by aux.numdoc ";
+		sql+= "having count(*)>1 and sum(cuenta)>1 ";
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
 
 	// RFC8 - ENCONTRAR LOS SERVICIOS QUE NO TIENEN MUCHA DEMANDA.
 	public List<Object> RF8(PersistenceManager pm) {
-		String sql = " SELECT * ";
-		sql+= "FROM ";
-		sql+= peps.darTablaServicio() + " servicio ";
+		String sql = " SELECT servicios.nombre ";
+		sql+= "FROM servicios left outer join ( ";
+		sql+= "select aux.nombre ";
+		sql+= "from ( ";
+		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
+		sql+= "from " + peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "having count(*) >2 ) aux ";
+		sql+= "group by aux.nombre ";
+		sql+= "having count(*)=1 ";
+		sql+= ") aux2 ";
+		sql+= "on servicios.nombre = aux2.nombre ";
+		sql+= "where aux2.nombre is null ";
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
-
 }

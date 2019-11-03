@@ -1228,13 +1228,52 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	{
 		try 
 		{
-			List <Object []> lista = EPSAndes.darRFC6();
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
 
-			String resultado = "En requerimientoFuncional6\n\n";
-			resultado += "\n\n************ Ejecutando RF6 ************ \n";
-			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
-			resultado += "\n Operación terminada";
-			panelDatos.actualizarInterfaz(resultado);
+			Object[] inputFields = {
+					"Unidad de tiempo", textField1,
+					"Servicio", textField2,
+
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				String tiempo = textField1.getText();
+				String servicio = textField2.getText();
+				String parametro = "";
+				if(tiempo.equals("semana")) {
+					parametro = "IW";
+				} else if (tiempo.equals("mes")) {
+					parametro = "MM";
+				} else if (tiempo.equals("anio")) {
+					parametro = "YYYY";
+				} else if (tiempo.equals("dia")) {
+					parametro = "DD";
+				}
+
+				List <Object []> lista = EPSAndes.darRFC6(parametro,servicio);
+
+				List <Object []> listaMenorDemanda = EPSAndes.darRFC62(parametro,servicio);
+
+				List <Object []> listaMayorActividad = EPSAndes.darRFC63(parametro,servicio);
+
+				String resultado = "En requerimientoFuncional6\n\n";
+				resultado += "\n\n************ Ejecutando RF6 ************ \n";
+				resultado += "Para el servicio " +servicio + " en un periodo de tiempo "+ tiempo;
+				resultado +=  "\n" + listarfechasMayorDemanda (lista);
+				resultado +=  "\n" + listarfechasMenorDemanda (listaMenorDemanda);
+				resultado +=  "\n" + listarfechasMayorDemanda (listaMayorActividad);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+
 		} 
 		catch (Exception e) 
 		{
@@ -1244,6 +1283,37 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	private String listarfechasMayorDemanda(List<Object[]> lista) {
+		String resp = " las fechas con mayor demanda son:\n"; 
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			Timestamp fecha= (Timestamp) tupla [0];
+			int cantidad= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "fecha: " + fecha;
+			resp1 += ", cantidad: " + cantidad;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
+	private String listarfechasMenorDemanda(List<Object[]> lista) {
+		String resp = " las fechas con menor demanda son:\n"; 
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			Timestamp fecha= (Timestamp) tupla [0];
+			int cantidad= (int) tupla [1];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "fecha: " + fecha;
+			resp1 += ", cantidad: " + cantidad;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
 
 	public void requerimientoFuncional7( )
 	{
@@ -1253,7 +1323,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 			String resultado = "En requerimientoFuncional7\n\n";
 			resultado += "\n\n************ Ejecutando RF7 ************ \n";
-			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
+			resultado +=  "\n" + listarAfiliadosExigentes (lista);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
 		} 
@@ -1265,15 +1335,33 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 	}
 
+	private String listarAfiliadosExigentes(List<Object[]> lista) {
+		String resp = " Los afiliados exigentes son:\n"; 
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			int d1= (int) tupla [0];
+			int d2= (int) tupla [1];
+			int d3= (int) tupla [2];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "documento afiliado: " + d1;
+			resp1 += ", cantidad tipos de servicio: " + d2;
+			resp1 += ", cantidad servicios usados: " + d3;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
 	public void requerimientoFuncional8( )
 	{
 		try
 		{
-			List <Object []> lista = EPSAndes.darRFC8();
+			List <String> lista = EPSAndes.darRFC8();
 
 			String resultado = "En requerimientoFuncional8\n\n";
 			resultado += "\n\n************ Ejecutando RF8 ************ \n";
-			//resultado +=  "\n" + listarServiciosMasSolicitados (lista);
+			resultado +=  "\n" + listarServiciosConPocaDemanda(lista);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
 		} 
@@ -1283,6 +1371,19 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
+	}
+
+	private String listarServiciosConPocaDemanda(List<String> lista) {
+		String resp = " Los servicios con poca demanda son:\n"; 
+		int i = 1;
+		for (String tupla : lista)
+		{
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre servicio: " + tupla;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
 	}
 
 

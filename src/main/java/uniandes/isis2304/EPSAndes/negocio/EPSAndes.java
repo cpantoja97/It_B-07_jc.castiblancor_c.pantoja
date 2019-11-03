@@ -475,9 +475,9 @@ public class EPSAndes
 		log.info("Consultando Rol del usuario ingresado");
 		System.out.println("aqui");
 		List<RolUsuario> roles = peps.darRolPorNumDoc(numDoc);
-		
+
 		RolUsuario rol = null;
-		
+
 		if (roles.size() == 1) {
 			rol = roles.get(0);
 			System.out.println(roles.get(0));
@@ -525,10 +525,26 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC6 ()
+	public List<Object []> darRFC6 (String tiempo, String servicio)
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC6();
+		List<Object []> tuplas = peps.RFC6(tiempo, servicio);
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC62 (String tiempo, String servicio)
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC62(tiempo, servicio);
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC63 (String tiempo, String servicio)
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC63(tiempo, servicio);
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
@@ -541,10 +557,10 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC8 ()
+	public List<String> darRFC8 ()
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC8();
+		List<String> tuplas = peps.RFC8();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
