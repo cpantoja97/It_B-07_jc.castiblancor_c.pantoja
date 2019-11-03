@@ -4,15 +4,22 @@ import java.sql.Timestamp;
 
 public class ServiciosIPS implements VOServiciosIPS{
 
-	private int capacidad;
+	int capacidad;
 	
-	private Timestamp horarioInicio;
-	private Timestamp horarioFin;
+	Timestamp horarioInicio;
+	Timestamp horarioFin;
 	
 	private long idServicio;
 	
 	private long idIPS;
 	
+	public ServiciosIPS() {
+		this.idIPS = -1;
+		this.idServicio = -1;
+		this.capacidad = -1;
+		this.horarioInicio = null;
+		this.horarioFin = null;
+	}
 	
 	public ServiciosIPS(long idIPS, long idServicio, int capacidad, Timestamp horarioInicio, Timestamp horarioFin) {
 		this.idIPS = idIPS;
@@ -41,7 +48,7 @@ public class ServiciosIPS implements VOServiciosIPS{
 		return this.idIPS;
 	}
 
-	public void setIdServicio(int idServicio) {
+	public void setID_SERVICIO(int idServicio) {
 		this.idServicio = idServicio;
 	}
 	
@@ -49,15 +56,15 @@ public class ServiciosIPS implements VOServiciosIPS{
 		this.capacidad = capacidad;
 	}
 	
-	public void setHORARIOINICIO(Timestamp horario) {
+	public void setHorarioInicio(Timestamp horario) {
 		this.horarioInicio = horario;
 	}
 	
-	public void setHORARIOFIN(Timestamp horario) {
+	public void setHorarioFin(Timestamp horario) {
 		this.horarioFin = horario;
 	}
 	
-	public void setIdIPS(int idIPS) {
+	public void setID_IPS(int idIPS) {
 		this.idIPS = idIPS;
 	}
 	

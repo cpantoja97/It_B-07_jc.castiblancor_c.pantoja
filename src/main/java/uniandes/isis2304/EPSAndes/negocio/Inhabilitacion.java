@@ -4,13 +4,20 @@ import java.sql.Timestamp;
 
 public class Inhabilitacion implements VOInhabilitacion{
 
-	private Timestamp fechaInicio;
+	Timestamp fechaInicio;
 
-	private Timestamp fechaFin;
+	Timestamp fechaFin;
 
-	private long IPS;
+	long IPS;
 
-	private long servicio;
+	long servicio;
+	
+	public Inhabilitacion() {
+		this.fechaInicio = null;
+		this.fechaFin = null;
+		this.IPS = -1;
+		this.servicio = -1;
+	}
 
 	public Inhabilitacion(Timestamp pFechaInicio, Timestamp pFechaFin,long pIPS,long pServicio) {
 		this.fechaInicio = pFechaInicio;
@@ -49,5 +56,14 @@ public class Inhabilitacion implements VOInhabilitacion{
 
 	public void setServicio(long servicio) {
 		this.servicio = servicio;
+	}
+	
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "Servicio = " + servicio + ", IPS = " + IPS + ", fechaInicio = " + fechaInicio + ", fechaFin = "+ fechaFin+"]";
 	}
 }

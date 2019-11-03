@@ -4,44 +4,44 @@ import java.sql.Timestamp;
 
 public class ReservaServicio implements VOReservaServicio{
 
-	private int numDocAfiliado;
-	private long idServicio;
-	private long idIPS;
-	private Timestamp fechaHora;
-	private long campania;
+	int numDoc;
+	long id_Servicio;
+	long id_IPS;
+	Timestamp fechaHora;
+	long campania;
 
 	public ReservaServicio() {
-		numDocAfiliado = -1;
-		this.idServicio = 0;
-		this.idIPS = 0;
+		numDoc = -1;
+		this.id_Servicio = 0;
+		this.id_IPS = 0;
 		this.fechaHora = new Timestamp(System.currentTimeMillis());
 		this.campania = -1;
 	}
 
 	public ReservaServicio(int numdocAf, long idServicio, long idIPS, Timestamp fechaHora, long campania) {
-		numDocAfiliado = numdocAf;
-		this.idServicio = idServicio;
-		this.idIPS = idIPS;
+		numDoc = numdocAf;
+		this.id_Servicio = idServicio;
+		this.id_IPS = idIPS;
 		this.fechaHora = fechaHora;
 		this.campania = campania;
 	}
-	public void setNUMDOC(int p) {
-		numDocAfiliado = p;
+	public void setNumDoc(int p) {
+		numDoc = p;
 	}
-	public void setID_SERVICIO(long p) {
-		idServicio = p;
+	public void setId_Servicio(long p) {
+		id_Servicio = p;
 	}
-	public void setID_IPS(long p) {
-		idIPS = p;
+	public void setId_IPS(long p) {
+		id_IPS = p;
 	}
-	public void setFECHAHORA(Timestamp p) {
+	public void setFechaHora(Timestamp p) {
 		fechaHora = p;
 	}
-	public void setCAMPANIA(long p) {
+	public void setCampania(long p) {
 		campania = p;
 	}
 	public int getnumDocAfiliado() {
-		return this.numDocAfiliado;
+		return this.numDoc;
 	}
 
 	public Timestamp getFechaHora() {
@@ -49,11 +49,11 @@ public class ReservaServicio implements VOReservaServicio{
 	}
 
 	public long getIdServicio() {
-		return idServicio;
+		return id_Servicio;
 	}
 
 	public long getIdIPS() {
-		return idIPS;
+		return id_IPS;
 	}
 	
 	public long getCampania() {
@@ -66,7 +66,7 @@ public class ReservaServicio implements VOReservaServicio{
 	 */
 	public String toString() 
 	{
-		return "numero Documento Afiliado =" + numDocAfiliado + ", IdIPS =" + idIPS+
-				", IdServicio =" + idServicio+ "]";
+		return "numero Documento Afiliado =" + numDoc + ", IdIPS =" + id_IPS+
+				", IdServicio =" + id_Servicio+ "]";
 	}
 }

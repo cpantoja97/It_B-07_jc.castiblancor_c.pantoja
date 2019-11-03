@@ -45,5 +45,13 @@ public class SQLInhabilitacion {
 		q.setResultClass(Inhabilitacion.class);
 		return (List<Inhabilitacion>) q.executeList();
 	}
+	
+	public List<Inhabilitacion> darInhabilitacionesServicio(PersistenceManager pm, Long IPS, Long Servicio, Timestamp fechaMin, Timestamp fechaMax)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaInhabilitacion()+ " WHERE IPS = ? AND Servicio = ? AND fechainicio <= ? AND fechafin >= ?");
+		q.setParameters(IPS, Servicio, fechaMin, fechaMax);
+		q.setResultClass(Inhabilitacion.class);
+		return (List<Inhabilitacion>) q.executeList();
+	}
 
 }

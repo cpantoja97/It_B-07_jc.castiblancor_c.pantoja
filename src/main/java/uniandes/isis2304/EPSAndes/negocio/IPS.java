@@ -8,6 +8,11 @@ public class IPS implements VOIPS{
 
 	long idIPS;
 
+	public IPS() {
+		this.idIPS = -1;
+		this.nombre = null;
+		this.localizacion=null;
+	}
 	public IPS(long idIPS2, String pLocalizacion, String pNombre) {
 		this.idIPS = idIPS2;
 		this.nombre = pNombre;
@@ -22,7 +27,7 @@ public class IPS implements VOIPS{
 		this.nombre = nombre;
 	}
 
-	public void setIdIPS(int id) {
+	public void setID_IPS(int id) {
 		this.idIPS = id;
 	}
 

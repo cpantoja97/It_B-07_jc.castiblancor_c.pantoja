@@ -27,6 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -123,7 +124,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	{
 
 		String config = null;
-		//TODO cambiar a documento en vez de rol
 		JTextField textField = new JTextField();
 		Object[] inputFields = {"Ingrese su número de documento", textField};
 		int option = JOptionPane.showConfirmDialog(this, inputFields, "INGRESO USUARIO", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
@@ -765,8 +765,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				long idServicio = Long.parseLong(textField2.getText());
 				long idIPS = Long.parseLong(textField3.getText());
 				int dia = Integer.parseInt(textField4.getText());
-				int mes = Integer.parseInt(textField5.getText());
-				int anio =  Integer.parseInt(textField6.getText());
+				int mes = Integer.parseInt(textField5.getText())-1;
+				int anio =  Integer.parseInt(textField6.getText()) -1900;
 				int HH = Integer.parseInt(textField7.getText().split(":")[0]);
 				int MM = Integer.parseInt(textField7.getText().split(":")[1]);
 				Timestamp fechaHora = new Timestamp(anio, mes, dia , HH, MM, 0, 0);
@@ -989,6 +989,112 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }*/
+
+	/* ****************************************************************
+	 * 			CRUD de Campania
+	 *****************************************************************/
+	public void adicionarCampania() {
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+
+			//TODO Listas para servicio e ips
+			Object[] inputFields = {"Nombre de la campaña", textField1,
+					"Afiliados esperados", textField2,
+					"Fecha inicio (DD/MM/AAAA)", textField3,
+					"Fecha fin (DD/MM/AAAA)", textField4
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información de campaña", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				JTextField textField5 = new JTextField();
+				JTextField textField6 = new JTextField();
+				JTextField textField7 = new JTextField();
+				JTextField textField8 = new JTextField();
+				JTextField textField9 = new JTextField();
+				JTextField textField10 = new JTextField();
+
+				//TODO Listas para servicio e ips
+				Object[] inputFields2 = {"Servicio 1", textField5,
+						"Cantidad 1", textField6,
+						"Servicio 2", textField7,
+						"Cantidad 2", textField8,
+						"Servicio 3", textField9,
+						"Cantidad 3", textField10
+				};
+				
+				option = JOptionPane.showConfirmDialog(this, inputFields2, "Información de servicios", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				
+				if (option == JOptionPane.OK_OPTION)
+				{
+					String nombre = textField1.getText();
+					int afiliados = Integer.parseInt(textField2.getText());
+					String[] fi = textField3.getText().split("/");
+					String[] ff = textField4.getText().split("/");
+					Timestamp fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
+					Timestamp fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+										
+					
+					List<Long> servicios = new ArrayList<Long>();
+					List<Integer> cantidades = new ArrayList<Integer>();
+					if(!textField5.getText().equals("") && textField5.getText()!=null) servicios.add(Long.parseLong(textField5.getText()));
+					if(!textField7.getText().equals("") && textField7.getText()!=null) servicios.add(Long.parseLong(textField7.getText()));
+					if(!textField9.getText().equals("") && textField9.getText()!=null) servicios.add(Long.parseLong(textField9.getText()));
+					if(!textField6.getText().equals("") && textField6.getText()!=null) cantidades.add(Integer.parseInt(textField6.getText()));
+					if(!textField8.getText().equals("") && textField8.getText()!=null) cantidades.add(Integer.parseInt(textField8.getText()));
+					if(!textField10.getText().equals("") && textField10.getText()!=null) cantidades.add(Integer.parseInt(textField10.getText()));
+
+					VOCampania tb = EPSAndes.agregarCampaniaRF10(nombre, afiliados, fechaInicio, fechaFin, servicios, cantidades);
+					if (tb == null)
+					{
+						String m = "No se pudo crear una Campaña con nombre " + nombre + " y servicios:";
+						for(Long s : servicios) {
+							m += " " + s;
+						}
+						throw new Exception (m);
+					}
+					String resultado = "En adicionarCampania\n\n";
+					resultado += "Campaña adicionada exitosamente: " + tb;
+					resultado += "\n Operación terminada";
+					panelDatos.actualizarInterfaz(resultado);
+				}
+				else
+				{
+					panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+				}
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void eliminarServicioCampania() {
+
+	}
+
+	/* ****************************************************************
+	 * 			CRUD de Inhabilitación
+	 *****************************************************************/
+
+	public void deshabilitarServicio() {
+
+	}
+	public void habilitarServicio() {
+
+	}
 
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones

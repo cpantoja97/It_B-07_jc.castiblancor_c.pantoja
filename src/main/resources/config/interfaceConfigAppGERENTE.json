@@ -5,7 +5,19 @@
 	"bannerPath": "./src/main/resources/config/logotipo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Consultas",
+		{ "menuTitle": "Servicios",
+		  "options":
+			[
+				{
+					"label": "Deshabilitar Servicios",
+					"event": "deshabilitarServicio"
+				},
+				{
+					"label": "Habilitar Servicios",
+					"event": "habilitarServicio"
+				}
+			]
+		},{ "menuTitle": "Consultas",
 		  "options":
 			[
 				{

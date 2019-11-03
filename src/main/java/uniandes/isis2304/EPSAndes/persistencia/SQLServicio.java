@@ -35,5 +35,12 @@ class SQLServicio {
 		q.setResultClass(Servicio.class);
 		return (List<Servicio>) q.executeList();
 	}
+	
+	public Servicio buscarServicioPorID(PersistenceManager pm, long id) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaServicio() + " WHERE id_servicio = ?" );
+		q.setParameters(id);
+		q.setResultClass(Servicio.class);
+		return (Servicio) q.executeUnique();
+	}
 
 }

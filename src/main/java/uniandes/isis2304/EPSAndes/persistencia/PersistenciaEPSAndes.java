@@ -312,7 +312,7 @@ public class PersistenciaEPSAndes
 	}
 
 	public String darTablaInhabilitacion() {
-		return tablas.get(17);
+		return tablas.get(18);
 	}
 
 	/**
@@ -1287,13 +1287,30 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar la relación ReservaServicio
 	 *****************************************************************/
 
-	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) 
+	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) throws Exception
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
+			// La IPS Presta el servicio?
+			List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, idIPS, idServicio);
+			if(respConsulta.size() == 0) {
+				throw new Exception("NO PRESTA - La IPS de código " + idIPS + " no presta el servicio " + idServicio);
+			}
+
+			ServiciosIPS servIPS = respConsulta.get(0);
+			int capacidad = servIPS.getCapacidad();
+			int deltaTiempo = (int) ((servIPS.getHorarioFin().getTime() - servIPS.getHorarioInicio().getTime())/capacidad);
+			Timestamp finReserva = new Timestamp(fechaHora.getTime() + deltaTiempo);
+
+			// El servicio está habilitado?
+			List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, idIPS, idServicio, fechaHora, finReserva);
+			if(inhabilitaciones.size() > 0) {
+				throw new Exception("INHABILITADO - El servicio "+idIPS+" está inhabilitado en la IPS "+idIPS+" temporalmente.");
+			}
+
 			long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicioAfiliado(pm, numdocAf,  idServicio,  idIPS,  fechaHora);
 			tx.commit();
 
@@ -1303,7 +1320,14 @@ public class PersistenciaEPSAndes
 		catch (Exception e)
 		{
 			//        	e.printStackTrace();
+
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+
+			if(e.getMessage().startsWith("INHABILITADO")) {
+				throw new Exception(e.getMessage());
+			} else if(e.getMessage().startsWith("NO PRESTA")) {
+				throw new Exception(e.getMessage());
+			}
 			return null;
 		}
 		finally
@@ -1418,13 +1442,13 @@ public class PersistenciaEPSAndes
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación Campania
 	 *****************************************************************/
-	public Campania agregarCampaniaRF10(String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin, List<Servicio> servicios, List<Integer> cantidades) {
+	public Campania agregarCampaniaRF10(String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin, List<Long> serviciosID, List<Integer> cantidades) throws Exception {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			tx.setIsolationLevel("serializable");
+			//tx.setIsolationLevel("serializable");
 
 			// Insertar tupla de Campaña
 			long id = nextval();
@@ -1433,14 +1457,14 @@ public class PersistenciaEPSAndes
 
 			@SuppressWarnings("deprecation")
 			int dias = pFechaFin.getDate()-pFechaInicio.getDate();
-
+			
 			List<ReservaServicio> reservas = new ArrayList<ReservaServicio>();
 			boolean campanaValida = true;
 
 			// Insertar reservas de servicios
-			for(int i = 0; i < servicios.size(); i++) {
+			for(int i = 0; i < serviciosID.size(); i++) {
 				// Servicio:
-				Servicio servicioAct = servicios.get(i);
+				Servicio servicioAct = sqlServicio.buscarServicioPorID(pm, serviciosID.get(i));
 				// Cantidad necesaria:
 				int cantidad = cantidades.get(i);
 				int contador = 0;
@@ -1452,47 +1476,67 @@ public class PersistenciaEPSAndes
 					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getIdIPS(), servicioAct.getIdServicio());
 					// Si sí, se reserva hasta copar el 90% de su capacidad diaría. De lo contratio, no sucede nada
 					if(respConsulta.size() > 0) {
+
 						ServiciosIPS servIPS = respConsulta.get(0);
 						int capacidad = servIPS.getCapacidad();
-						int deltaTiempo = (int) ((pFechaInicio.getTime() - pFechaFin.getTime())/capacidad);
+						int deltaTiempo = (int) ((servIPS.getHorarioFin().getTime() - servIPS.getHorarioInicio().getTime())/capacidad);
+						System.out.println("dT en IPS " + ips.getIdIPS() + " es " + deltaTiempo);
 						int numDia = 0;
 						// Se copa el 90% de la capacidad para CADA día
 						while(numDia <= dias) {
 							// Se inicializa las citas del día en 0, la hora inicial en el primer horario de atencion del día correspondiente y se calcula la disponibilidad del día
 							int citasDia = 0;
-							long horaAct = servIPS.getHorarioInicio().getTime() + pFechaInicio.getTime() + numDia*86400000;
-							int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(pFechaInicio.getTime() + numDia*86400000)).size();
-							int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
+							long hoy = pFechaInicio.getTime() + numDia*86400000;
+							long horarioInicio = servIPS.getHorarioInicio().getHours()*3600000 + servIPS.getHorarioInicio().getMinutes()*60000;
+							long horarioFinal = servIPS.getHorarioFin().getHours()*3600000 + servIPS.getHorarioFin().getMinutes()*60000;
+							long horaAct =  hoy + horarioInicio;
+							long horaFinal = hoy + horarioFinal;
 
-							// Se copa la disponibilidad del día o se alcanzan las citas necesitadas
-							while(citasDia < disponibilidad && contador + citasDia < cantidad) {
-								try {
-									// Se intenta agregar 
-									long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
-									log.trace ("Inserción Reserva: " +  servicioAct.getIdServicio() +" en "+ ips.getIdIPS() + ""+(new Timestamp(horaAct)).toString() + ": " + reservaInsertada + " tuplas insertadas");
-									citasDia++;
-									reservas.add(new ReservaServicio(-1, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(horaAct), id));
-								} catch(JDOException e) {
-									// Si no se pudo agregar, se continua con el siguiente
-								} finally {
-									// Se actualiza la hora
-									horaAct = horaAct + deltaTiempo;
-									// Si se pasa el final del horario de atención se cambia de día
-									if(horaAct > servIPS.getHorarioFin().getTime() + pFechaInicio.getTime() + numDia*86400000) break;
+							System.out.println("Día: " + new Timestamp(hoy));
+							System.out.println("llevo " + contador + " reservas de "+ cantidad);
+							System.out.println("Hora inicial " + new Timestamp(horaAct));
+							System.out.println("Hora final " + new Timestamp(horaFinal));
+
+							// El servicio está habilitado? Si no lo está, no hace nada
+							List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, ips.getIdIPS(), servicioAct.getIdServicio(), new Timestamp(horaAct), new Timestamp(horaFinal));
+							if(inhabilitaciones.size() == 0) {
+								
+								int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(hoy)).size();
+								System.out.println("ReservasDia: " + reservasDelDia);
+								int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
+								System.out.println("Disponibilidad del día: " + disponibilidad);
+								// Se copa la disponibilidad del día o se alcanzan las citas necesitadas
+								while(citasDia < disponibilidad && contador + citasDia < cantidad) {
+									try {
+										// Se intenta agregar 
+										long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
+										log.trace ("Inserción Reserva: " +  servicioAct.getIdServicio() +" en "+ ips.getIdIPS() + ""+(new Timestamp(horaAct)).toString() + ": " + reservaInsertada + " tuplas insertadas");
+										citasDia++;
+										reservas.add(new ReservaServicio(-1, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(horaAct), id));
+									} catch(JDOException e) {
+										// Si no se pudo agregar, se continua con el siguiente
+									} finally {
+										// En cualquier caso, se actualiza la hora
+										horaAct += deltaTiempo;
+										// Si se pasa el final del horario de atención se cambia de día
+										if(horaAct > horaFinal) break;
+									}
 								}
+								// Se actualiza el contador
+								contador += citasDia;
 							}
-							// Se actualiza el contador
-							contador += citasDia;
+							numDia++;
 						}
 					}
 					// Si ya se alcanzó la cantidad necesaria, se sale del ciclo
-					if(cantidad >= contador) break;
+					System.out.println("Finalmente alcancé a hacer " + contador + " de " + cantidad);
+					if(contador >= cantidad) break;
 				}
 				// Si terminó de revisar IPS y no alcanzó a hacer reservas suficientes, se debe hacer Rollback
 				if(contador < cantidad) {
 					campanaValida = false;
 					tx.rollback();
-					break;
+					throw new Exception("INVIABLE -No hay disponibilidad para alguno de los servicios.");
 				}
 			}
 			// Si nunca hizo rollback, debo hacer commit
@@ -1503,6 +1547,10 @@ public class PersistenciaEPSAndes
 		{
 			//        	e.printStackTrace();
 			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			if(e.getMessage().startsWith("INVIABLE")) {
+				String n = e.getMessage().split("-")[1];
+				throw new Exception(n);
+			}
 			return null;
 		}
 		finally

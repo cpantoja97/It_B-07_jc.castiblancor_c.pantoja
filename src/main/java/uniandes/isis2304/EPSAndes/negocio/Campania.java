@@ -65,4 +65,12 @@ public class Campania implements VOCampania{
 		return fechaFin;
 	}
 
+	@Override
+	/**
+	 * @return Una cadena de caracteres con todos los atributos de la clase
+	 */
+	public String toString() 
+	{
+		return "id = " + id + ", nombre = " + nombre + ", Afiliados esperados = " + afiliadosEsperados + ", fechaInicio = " + fechaInicio + ", fechaFin = "+ fechaFin+"]";
+	}
 }

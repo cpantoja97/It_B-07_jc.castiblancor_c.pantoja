@@ -43,8 +43,8 @@ class SQLReservaServicio {
 	}
 	
 	public List<ReservaServicio> darReservasDia(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio){
-		Timestamp fechaFin = new Timestamp( fechaInicio.getTime() + 86400000);
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora >= ? AND fechaHora <= ?" );
+		Timestamp fechaFin = new Timestamp( fechaInicio.getTime() + 86399999);
+		Query q = pm.newQuery(SQL, "SELECT numDoc, id_servicio, id_IPS, fechaHora FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora >= ? AND fechaHora <= ?" );
 		q.setParameters( idServicio, idIPS, fechaInicio, fechaFin);
 		q.setResultClass(ReservaServicio.class);
 		return (List<ReservaServicio>) q.executeList();

@@ -403,7 +403,7 @@ public class EPSAndes
 	 * 			Métodos para manejar la relación RESERVASERVICIO
 	 *****************************************************************/
 
-	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora)   {
+	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) throws Exception  {
 		log.info ("Adicionando ReservaServicio: numdocAf-" + numdocAf + ", idServicio- "+ idServicio);
 		ReservaServicio rs= peps.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);	
 		log.info ("Adicionando ReservaServicio: " + rs);
@@ -466,6 +466,24 @@ public class EPSAndes
 		log.info("Generando los VO de Prestacion de Servicios: " + voPrestaciones.size() + " existentes");
 		return voPrestaciones;
 	}
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Campania
+	 *****************************************************************/
+
+	public Campania agregarCampaniaRF10(String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin, List<Long> servicios, List<Integer> cantidades) throws Exception {
+		log.info ("Adicionando Campania: " + nombre );
+		Campania campania= peps.agregarCampaniaRF10(nombre, pAfiliados, pFechaInicio, pFechaFin, servicios, cantidades);	
+		log.info ("Adicionando Campania: " + campania);
+		return campania;
+	}
+
+	public long cancelarServicioCampaniaRF11(long idServicio, long idCampania) {
+		log.info ("Eliminando Servicio "+ idServicio + " de Campania: " + idCampania );
+		long numReservasEliminadas= peps.cancelarServicioCampaniaRF11(idServicio, idCampania);	
+		log.info ("Se eliminaron: " + numReservasEliminadas + " reservas");
+		return numReservasEliminadas;
+	}
+
 
 	/* ****************************************************************
 	 * 			Metodos útiles
@@ -473,14 +491,12 @@ public class EPSAndes
 
 	public RolUsuario darRolDeUsuarioPorNumDoc( int numDoc) {
 		log.info("Consultando Rol del usuario ingresado");
-		System.out.println("aqui");
 		List<RolUsuario> roles = peps.darRolPorNumDoc(numDoc);
 
 		RolUsuario rol = null;
 
 		if (roles.size() == 1) {
 			rol = roles.get(0);
-			System.out.println(roles.get(0));
 			log.info("Rol consultado: " + rol.getNombre() + " existente");
 		}
 
