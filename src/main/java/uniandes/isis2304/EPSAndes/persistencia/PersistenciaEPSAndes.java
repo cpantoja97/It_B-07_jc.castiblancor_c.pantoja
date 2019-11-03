@@ -1428,7 +1428,10 @@ public class PersistenciaEPSAndes
 			long id = nextval();
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
 			log.trace ("Inserción Campaña: " +  nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-
+			
+			int dias = 
+			
+			
 			// Insertar reservas de servicios
 			for(int i = 0; i < servicios.size(); i++) {
 				// Servicio:
@@ -1445,8 +1448,15 @@ public class PersistenciaEPSAndes
 					if(respConsulta.size() > 0) {
 						ServiciosIPS servIPS = respConsulta.get(0);
 						int capacidad = servIPS.getCapacidad();
-						double minutos = (pFechaInicio.getTime() - pFechaFin.getTime())/60000.0;
-						int deltaTiempo = (int) (minutos/capacidad);
+						long horaAct = servIPS.getHorarioInicio().getTime();
+						int deltaTiempo = (int) ((pFechaInicio.getTime() - pFechaFin.getTime())/capacidad);
+						
+						int citas = 0;
+						while(citas < (int)(servIPS.getCapacidad()*0.9) ) {
+							long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
+
+							horaAct = horaAct + deltaTiempo;
+						}
 					}
 					
 					if(cantidad >= contador) break;
