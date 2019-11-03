@@ -1,11 +1,11 @@
---RFC 1 MOSTRAR LA CANTIDAD DE SERVICIOS PRESTADOS POR CADA IPS DURANTE UN PERIODO DE TIEMPO Y EN EL AÑO CORRIDO
+--RFC 1 MOSTRAR LA CANTIDAD DE SERVICIOS PRESTADOS POR CADA IPS DURANTE UN PERIODO DE TIEMPO Y EN EL Aï¿½O CORRIDO
 SELECT PRESTACIONSERVICIO.ID_IPS, COUNT(*)
 FROM IPS NATURAL INNER JOIN PRESTACIONSERVICIO
-WHERE FECHAHORA > año AND FECHAHORA BETWEEN fMin AND fMax
+WHERE FECHAHORA > aï¿½o AND FECHAHORA BETWEEN fMin AND fMax
 GROUP BY IPS.ID_IPS
 ;
 
---RFC2 - MOSTRAR LOS 20 SERVICIOS MÁS SOLICITADOS. Los que fueron más solicitados en un período de tiempo dado.
+--RFC2 - MOSTRAR LOS 20 SERVICIOS Mï¿½S SOLICITADOS. Los que fueron mï¿½s solicitados en un perï¿½odo de tiempo dado.
 SELECT *
 FROM
     (
@@ -17,7 +17,7 @@ FROM
 WHERE ROWNUM <20
 ;
 
---RFC3 - MOSTRAR EL ÍNDICE DE USO DE CADA UNO DE LOS SERVICIOS PROVISTOS
+--RFC3 - MOSTRAR EL ï¿½NDICE DE USO DE CADA UNO DE LOS SERVICIOS PROVISTOS
 SELECT SERVICIOS.NOMBRE, uso/capacidad
 FROM SERVICIOS 
     INNER JOIN
@@ -34,10 +34,10 @@ FROM SERVICIOS
     ) aux2 ON aux1.id = aux2.id
 ;
 
---RFC4 - MOSTRAR LOS SERVICIOS QUE CUMPLEN CON CIERTA CARACTERÍSTICA Toda la información del servicio.
---Las características son, por ejemplo, fecha de prestación en un rango de tiempo, registrados por 
---cierto recepcionista, son de cierto tipo, han sido solicitados más de X veces en un rango de fechas. 
---Consulte cualquier combinación de características en la consulta.
+--RFC4 - MOSTRAR LOS SERVICIOS QUE CUMPLEN CON CIERTA CARACTERï¿½STICA Toda la informaciï¿½n del servicio.
+--Las caracterï¿½sticas son, por ejemplo, fecha de prestaciï¿½n en un rango de tiempo, registrados por 
+--cierto recepcionista, son de cierto tipo, han sido solicitados mï¿½s de X veces en un rango de fechas. 
+--Consulte cualquier combinaciï¿½n de caracterï¿½sticas en la consulta.
 
 SELECT SERVICIOS.*
 FROM SERVICIOS
@@ -55,7 +55,7 @@ FROM SERVICIOS INNER JOIN PRESTACIONSERVICIO ON SERVICIOS.ID_SERVICIO = PRESTACI
 WHERE PRESTACIONSERVICIO.ID_RECEPCIONISTA = ? 
 ;
 
--- RFC5 - MOSTRAR LA UTILIZACIÓN DE SERVICIOS DE EPSANDES POR UN AFILIADO DADO, EN UN RANGO DE FECHAS INDICADO.
+-- RFC5 - MOSTRAR LA UTILIZACIï¿½N DE SERVICIOS DE EPSANDES POR UN AFILIADO DADO, EN UN RANGO DE FECHAS INDICADO.
 --Recuerde que un afiliado puede solicitar servicios de salud cuantas veces lo requiera. Considere tanto la 
 --reserva como el uso efectivo de los servicios de salud.
 
@@ -65,6 +65,80 @@ WHERE PRESTACIONSERVICIO.NUMDOC = ? AND PRESTACIONSERVICIO.FECHAHORA BETWEEN 'XX
 GROUP BY SERVICIOS.NOMBRE
 ;
 
+--RFC 6 Analisar operacion EPSAndes
+-- iw WEEK dd DAY MM MONTH YYYY YEAR
+SELECT *
+FROM
+    (
+    select TRUNC( reservaServicio.fechaHora,'IW' ), count(*) as cuenta
+    from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio
+    Group by TRUNC( reservaServicio.fechaHora, 'IW' )
+    Order by cuenta desc 
+    )
+    
+WHERE ROWNUM <3
+;
+
+SELECT *
+FROM
+    (
+    select TRUNC( reservaServicio.fechaHora,'IW' ), count(*) as cuenta
+    from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio
+    Group by TRUNC( reservaServicio.fechaHora, 'IW' )
+    Order by cuenta 
+    )
+    
+WHERE ROWNUM <3
+;
+
+SELECT *
+FROM
+    (
+    select TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) as cuenta
+    from SERVICIOS inner join prestacionServicio on servicios.id_servicio = prestacionServicio.id_servicio
+    Group by TRUNC( prestacionServicio.fechaHora, 'IW' )
+    Order by cuenta desc
+    )
+    
+WHERE ROWNUM <3
+;
+
+--RFC 7 Afiliados exigentes
+
+select afiliados.numdoc, count(*) as cuenta, sum(*)
+from (afiliados inner join 
+    (
+    select *prestacionServicio )
+inner join servicio on afiliados.numdoc = prestacionservicio.numdoc
+group by afiliados.numdoc;
+
+select aux.numdoc, count(*), sum(cuenta) as suma
+from 
+    (
+    select prestacionServicio.numdoc, servicios.tipo, count(*) as cuenta
+    from prestacionServicio inner join servicios on servicios.id_servicio = prestacionservicio.id_servicio
+    group by prestacionServicio.numdoc , servicios.tipo
+    ) aux 
+    group by aux.numdoc
+    having sum(cuenta)  >1 and count(*)>1;
+    
+--RFC 8 Servicios con poca demanda
+select servicios.nombre 
+from servicios left outer join
+    (
+    select aux.nombre
+    from
+        (
+        select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' )
+        from SERVICIOS inner join reservaServicio on servicios.id_servicio = reservaServicio.id_servicio
+        Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' )
+        having count(*) >2
+        ) aux
+    group by aux.nombre
+    having count(*)=1
+    ) aux2 
+on servicios.nombre = aux2.nombre
+where aux2.nombre is null;
 -- Tabla 1
 SELECT *
 FROM ROLUSUARIO
