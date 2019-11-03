@@ -1082,7 +1082,40 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	}
 
 	public void eliminarServicioCampania() {
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
 
+			//TODO Listas para servicio e ips
+			Object[] inputFields = {"ID de la campaña", textField1,
+					"ID del servicio", textField2
+			};
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Cancelación de servicio", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				
+				long idCampania = Long.parseLong(textField1.getText());
+				long idServicio = Long.parseLong(textField2.getText());
+				long resp = EPSAndes.cancelarServicioCampaniaRF11(idServicio, idCampania);
+				
+	  			String resultado = "En eliminar Servicio de Campaña\n\n";
+    			resultado += resp + " reservas del servicio eliminadas\n";
+    			resultado += "\n Operación terminada";
+    			panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	/* ****************************************************************

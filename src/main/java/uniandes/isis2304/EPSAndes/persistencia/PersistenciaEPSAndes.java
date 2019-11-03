@@ -1599,6 +1599,21 @@ public class PersistenciaEPSAndes
 		try
 		{
 			tx.begin();
+			// Obtener reservas en estas fechas
+			List<ReservaServicio> reservas = sqlReservaServicio.darReservasParaCambiar(pm, idServicio, idIPS, fechaInicio, fechaFin);
+			List<ReservaServicio> reservasCambiadas = new ArrayList<ReservaServicio>();
+			List<ReservaServicio> reservasCanceladas = new ArrayList<ReservaServicio>();
+			// Cambiar las reservas
+			for( ReservaServicio reserva : reservas) {
+				if() {
+					
+				}
+				boolean hayDisponibilidad = false;
+				
+				if
+			}
+			
+			
 			long resp = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, idIPS, idServicio);
 			tx.commit();
 			log.trace ("Inserción Inhabilitación: " +  idServicio + " - " + idIPS + " - " +  fechaInicio + " hasta " +  fechaFin + ": " + resp + " tuplas insertadas");

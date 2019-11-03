@@ -54,6 +54,15 @@ class SQLReservaServicio {
 	public long eliminarReservasCampaniaPorServicio(PersistenceManager pm, long idServicio, long idCampania) {
 		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaReservaServicio() + " WHERE id_Servicio = ? AND campania = ?");
 		q.setParameters(idServicio,idCampania);
-		return (long) q.execute();  
+		return (long) q.executeUnique();  
 	}
+	
+	public List<ReservaServicio> darReservasParaCambiar(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin){
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora BETWEEN ? AND ?");
+		q.setParameters( idServicio, idIPS, fechaInicio, fechaFin);
+		q.setResultClass(ReservaServicio.class);
+		return (List<ReservaServicio>) q.executeList();
+		
+	}
+
 }

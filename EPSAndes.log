@@ -126,3 +126,28 @@ ORA-00904: "ID": invalid identifier
 14:31:19,128 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
 14:32:12,986 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba2
 14:32:14,721 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 53, nombre = Prueba2, Afiliados esperados = 10, fechaInicio = 2018-11-16 00:00:00.0, fechaFin = 2018-11-17 00:00:00.0]
+15:07:58,757 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:08:01,209 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+15:08:01,522 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
+15:08:01,524 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:08:01,524 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:08:49,715 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba 3
+15:08:53,352 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 56, nombre = Prueba 3, Afiliados esperados = 20, fechaInicio = 2019-11-11 00:00:00.0, fechaFin = 2019-11-13 00:00:00.0]
+15:12:13,049 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - NO se encontró un archivo de configuración válido
+15:12:14,380 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración por defecto
+15:25:37,012 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:25:39,388 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+15:25:39,728 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
+15:25:39,730 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:25:39,730 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:25:59,211 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Eliminando Servicio 1 de Campania: 56
+15:25:59,231 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : SQL query "DELETE FROM RESERVASERVICIO WHERE id_Servicio = ? AND campania = ?" requires 2 parameters yet none have been supplied
+
+15:25:59,233 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Se eliminaron: -1 reservas
+15:31:08,404 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+15:31:11,110 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+15:31:11,407 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
+15:31:11,408 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+15:31:11,408 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+15:31:19,403 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Eliminando Servicio 1 de Campania: 56
+15:31:20,120 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Se eliminaron: 6 reservas

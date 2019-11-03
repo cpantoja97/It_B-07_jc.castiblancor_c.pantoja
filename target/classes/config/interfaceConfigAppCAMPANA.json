@@ -5,16 +5,20 @@
 	"bannerPath": "./src/main/resources/config/logotipo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "Prestaciones de servicios",
+		{ "menuTitle": "Campaña",
 		  "options":
 			[
 				{
-					"label": "Registrar prestación de servicio",
-					"event": "adicionarPrestacionServicio"
+					"label": "Crear campaña",
+					"event": "adicionarCampania"
 				},
 				{
-					"label": "Ver prestaciones de servicio",
-					"event": "listarPrestacionServicio"
+					"label": "Cancelar servicio",
+					"event": "eliminarServicioCampania"
+				},
+				{
+					"label": "Cancelar campaña",
+					"event": ""
 				}
 			]
 		}
