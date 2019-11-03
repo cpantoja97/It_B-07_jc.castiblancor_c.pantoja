@@ -39,6 +39,7 @@ class SQLServiciosIPS {
 	public List<ServiciosIPS> buscarServicioIPS(PersistenceManager pm, long idIPS, long idServicio){
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaServiciosIPS()+ " WHERE id_IPS = ? AND id_Servicio = ?");
 		q.setParameters(idIPS, idServicio);
+		q.setResultClass(ServiciosIPS.class);
 		return (List<ServiciosIPS>) q.executeList();
 	}
 }

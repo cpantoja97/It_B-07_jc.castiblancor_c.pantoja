@@ -18,10 +18,12 @@ package uniandes.isis2304.EPSAndes.persistencia;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
+import javax.jdo.JDOException;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -1414,7 +1416,7 @@ public class PersistenciaEPSAndes
 	}
 
 	/* ****************************************************************
-	 * 			Métodos para manejar la relación PrestacionServicio
+	 * 			Métodos para manejar la relación Campania
 	 *****************************************************************/
 	public Campania agregarCampaniaRF10(String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin, List<Servicio> servicios, List<Integer> cantidades) {
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -1429,8 +1431,11 @@ public class PersistenciaEPSAndes
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
 			log.trace ("Inserción Campaña: " +  nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			int dias = 1;
+			@SuppressWarnings("deprecation")
+			int dias = pFechaFin.getDate()-pFechaInicio.getDate();
 
+			List<ReservaServicio> reservas = new ArrayList<ReservaServicio>();
+			boolean campanaValida = true;
 
 			// Insertar reservas de servicios
 			for(int i = 0; i < servicios.size(); i++) {
@@ -1442,42 +1447,142 @@ public class PersistenciaEPSAndes
 
 				// Hallar las IPS para recorrerlas
 				List<IPS> IPSs = sqlIPS.darIPSs(pm);
-
 				for(IPS ips : IPSs) {
+					// La IPS Presta el servicio?
 					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getIdIPS(), servicioAct.getIdServicio());
+					// Si sí, se reserva hasta copar el 90% de su capacidad diaría. De lo contratio, no sucede nada
 					if(respConsulta.size() > 0) {
 						ServiciosIPS servIPS = respConsulta.get(0);
 						int capacidad = servIPS.getCapacidad();
-						long horaAct = servIPS.getHorarioInicio().getTime();
 						int deltaTiempo = (int) ((pFechaInicio.getTime() - pFechaFin.getTime())/capacidad);
+						int numDia = 0;
+						// Se copa el 90% de la capacidad para CADA día
+						while(numDia <= dias) {
+							// Se inicializa las citas del día en 0, la hora inicial en el primer horario de atencion del día correspondiente y se calcula la disponibilidad del día
+							int citasDia = 0;
+							long horaAct = servIPS.getHorarioInicio().getTime() + pFechaInicio.getTime() + numDia*86400000;
+							int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(pFechaInicio.getTime() + numDia*86400000)).size();
+							int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
 
-						int citas = 0;
-						while(citas < (int)(servIPS.getCapacidad()*0.9) ) {
-							long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
-
-							horaAct = horaAct + deltaTiempo;
+							// Se copa la disponibilidad del día o se alcanzan las citas necesitadas
+							while(citasDia < disponibilidad && contador + citasDia < cantidad) {
+								try {
+									// Se intenta agregar 
+									long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
+									log.trace ("Inserción Reserva: " +  servicioAct.getIdServicio() +" en "+ ips.getIdIPS() + ""+(new Timestamp(horaAct)).toString() + ": " + reservaInsertada + " tuplas insertadas");
+									citasDia++;
+									reservas.add(new ReservaServicio(-1, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(horaAct), id));
+								} catch(JDOException e) {
+									// Si no se pudo agregar, se continua con el siguiente
+								} finally {
+									// Se actualiza la hora
+									horaAct = horaAct + deltaTiempo;
+									// Si se pasa el final del horario de atención se cambia de día
+									if(horaAct > servIPS.getHorarioFin().getTime() + pFechaInicio.getTime() + numDia*86400000) break;
+								}
+							}
+							// Se actualiza el contador
+							contador += citasDia;
 						}
 					}
-
+					// Si ya se alcanzó la cantidad necesaria, se sale del ciclo
 					if(cantidad >= contador) break;
 				}
-				//Revisar si capacidad es suficiente
-
-				//Hacer un select for update
-
-				//Asignar reservas
-
-
+				// Si terminó de revisar IPS y no alcanzó a hacer reservas suficientes, se debe hacer Rollback
 				if(contador < cantidad) {
+					campanaValida = false;
 					tx.rollback();
-				} else {
-					tx.commit();
+					break;
 				}
 			}
-
-			tx.commit();
+			// Si nunca hizo rollback, debo hacer commit
+			if(campanaValida) tx.commit();
 			return new Campania( id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 
+	public long cancelarServicioCampaniaRF11(long idServicio, long idCampania) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlReservaServicio.eliminarReservasCampaniaPorServicio(pm, idServicio,  idCampania);
+			tx.commit();
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Campania
+	 *****************************************************************/
+	
+	public Inhabilitacion deshabilitarServicioRF12(long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, idIPS, idServicio);
+			tx.commit();
+			log.trace ("Inserción Inhabilitación: " +  idServicio + " - " + idIPS + " - " +  fechaInicio + " hasta " +  fechaFin + ": " + resp + " tuplas insertadas");
+
+			return new Inhabilitacion(fechaInicio, fechaFin, idIPS, idIPS);
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	public Inhabilitacion reabrirServicioRF13(Timestamp nuevaFechaFin, Timestamp fechaInicio, long IPS, long Servicio) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlInhabilitacion.updateFechaFinInhabilitacion(pm, nuevaFechaFin, fechaInicio, IPS, Servicio);
+			tx.commit();
+			log.trace ("Actualización Inhabilitación: " +  Servicio + " - " + IPS + " - " +  fechaInicio + " hasta " +  nuevaFechaFin + ": " + resp + " tuplas actualizadas");
+			
+			return new Inhabilitacion(fechaInicio, nuevaFechaFin, IPS, Servicio);
 		}
 		catch (Exception e)
 		{
@@ -1496,12 +1601,9 @@ public class PersistenciaEPSAndes
 	}
 
 
-
 	/* ****************************************************************
 	 * 			Métodos útiles
 	 *****************************************************************/
-
-
 
 	public List<RolUsuario> darRolPorNumDoc(int id){
 		return sqlUtil.darRolPorNumDoc(pmf.getPersistenceManager(), id);
@@ -1599,65 +1701,17 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC6 (String tiempo, String servicio)
+	public List<Object []> RFC6 ()
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager(), tiempo,servicio);
+		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			Timestamp fecha = (Timestamp) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
 
 			Object [] resp = new Object [2];
-			resp [0] = fecha;
-			resp [1] = cuenta;
-
-			respuesta.add(resp);
-		}
-
-		return respuesta;
-	}
-
-	public List<Object []> RFC62 (String tiempo, String servicio)
-	{
-		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF62(pmf.getPersistenceManager(), tiempo,servicio);
-		log.info ("consulta exitosa");
-		for ( Object tupla : tuplas)
-		{
-			Object [] datos = (Object []) tupla;
-			Timestamp fecha = (Timestamp) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
-
-			Object [] resp = new Object [2];
-			resp [0] = fecha;
-			resp [1] = cuenta;
-
-			respuesta.add(resp);
-		}
-
-		return respuesta;
-	}
-
-	public List<Object []> RFC63 (String tiempo, String servicio)
-	{
-		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF63(pmf.getPersistenceManager(), tiempo,servicio);
-		log.info ("consulta exitosa");
-		for ( Object tupla : tuplas)
-		{
-			Object [] datos = (Object []) tupla;
-			Timestamp fecha = (Timestamp) datos [0];
-			int cuenta = ((BigDecimal) datos [1]).intValue ();
-
-			Object [] resp = new Object [2];
-			resp [0] = fecha;
-			resp [1] = cuenta;
 
 			respuesta.add(resp);
 		}
@@ -1674,14 +1728,8 @@ public class PersistenciaEPSAndes
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			int d1 = ((BigDecimal) datos [0]).intValue ();
-			int d2 = ((BigDecimal) datos [1]).intValue ();
-			int d3 = ((BigDecimal) datos [2]).intValue ();
 
-			Object [] resp = new Object [3];
-			resp [0] = d1;
-			resp [1] = d2;
-			resp [2] = d3;
+			Object [] resp = new Object [2];
 
 			respuesta.add(resp);
 		}
@@ -1689,16 +1737,19 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<String> RFC8 ()
+	public List<Object []> RFC8 ()
 	{
-		List<String> respuesta = new LinkedList <String > ();
+		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF8(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
-			String nombre = (String)tupla;
-			respuesta.add(nombre);
+			Object [] datos = (Object []) tupla;
+
+			Object [] resp = new Object [2];
+
+			respuesta.add(resp);
 		}
 
 		return respuesta;

@@ -41,4 +41,19 @@ class SQLReservaServicio {
 		q.setResultClass(ReservaServicio.class);
 		return (List<ReservaServicio>) q.executeList();
 	}
+	
+	public List<ReservaServicio> darReservasDia(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio){
+		Timestamp fechaFin = new Timestamp( fechaInicio.getTime() + 86400000);
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora >= ? AND fechaHora <= ?" );
+		q.setParameters( idServicio, idIPS, fechaInicio, fechaFin);
+		q.setResultClass(ReservaServicio.class);
+		return (List<ReservaServicio>) q.executeList();
+		
+	}
+	
+	public long eliminarReservasCampaniaPorServicio(PersistenceManager pm, long idServicio, long idCampania) {
+		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaReservaServicio() + " WHERE id_Servicio = ? AND campania = ?");
+		q.setParameters(idServicio,idCampania);
+		return (long) q.execute();  
+	}
 }
