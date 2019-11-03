@@ -95,6 +95,9 @@ public class PersistenciaEPSAndes
 	private SQLOrdenDeServicio sqlOrdenDeServicio;
 	private SQLReservaServicio sqlReservaServicio;
 	private SQLPrestacionServicio sqlPrestacionServicio;
+	private SQLCampania sqlCampania;
+	private SQLInhabilitacion sqlInhabilitacion;
+	private SQLTipoServicio sqlTipoServicio;
 	private SQLConsultas sqlConsulta;
 
 	/* ****************************************************************
@@ -128,6 +131,9 @@ public class PersistenciaEPSAndes
 		tablas.add("ORDENES");
 		tablas.add("RESERVASERVICIO");
 		tablas.add("PRESTACIONSERVICIO");
+		tablas.add("CAMPANIA");
+		tablas.add("TIPOSERVICIO");
+		tablas.add("INHABILITACION");
 	}
 
 	/**
@@ -218,6 +224,9 @@ public class PersistenciaEPSAndes
 		sqlOrdenDeServicio = new SQLOrdenDeServicio(this);
 		sqlReservaServicio = new SQLReservaServicio(this);
 		sqlPrestacionServicio = new SQLPrestacionServicio(this);
+		sqlCampania = new SQLCampania(this);
+		sqlInhabilitacion = new SQLInhabilitacion(this);
+		sqlTipoServicio = new SQLTipoServicio(this);
 		sqlUtil = new SQLUtil(this);
 		sqlConsulta = new SQLConsultas(this);
 	}
@@ -290,6 +299,18 @@ public class PersistenciaEPSAndes
 
 	public String darTablaPrestacionServicio() {
 		return tablas.get(15);
+	}
+
+	public String darTablaCampania() {
+		return  tablas.get(16);
+	}
+
+	public String darTablaTipoServicio() {
+		return tablas.get(17);
+	}
+
+	public String darTablaInhabilitacion() {
+		return tablas.get(17);
 	}
 
 	/**
@@ -523,7 +544,7 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar los SERVICIOS
 	 *****************************************************************/
 
-	public Servicio adicionarServicio(String nombre) 
+	public Servicio adicionarServicio(String nombre, long tipo) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -531,7 +552,7 @@ public class PersistenciaEPSAndes
 		{
 			tx.begin();            
 			long idServicio = nextval ();
-			long tuplasInsertadas = sqlServicio.adicionarServicio(pm, idServicio, nombre);
+			long tuplasInsertadas = sqlServicio.adicionarServicio(pm, idServicio, nombre, tipo);
 			tx.commit();
 
 			log.trace ("Inserción Servicio: " + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
@@ -1204,11 +1225,12 @@ public class PersistenciaEPSAndes
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlOrdenDeServicio.adicionarOrdenDeServicio(pm,  numdocMedico,  numdocAfiliado,  idServicio);
+			long id = nextval ();
+			long tuplasInsertadas = sqlOrdenDeServicio.adicionarOrdenDeServicio(pm,  numdocMedico,  numdocAfiliado,  idServicio, id);
 			tx.commit();
 
 			log.trace ("Inserción OrdenDeServicio: " + numdocMedico + "-"+numdocAfiliado +"-" + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new OrdenDeServicio( numdocMedico,  numdocAfiliado,  idServicio);
+			return new OrdenDeServicio( numdocMedico,  numdocAfiliado,  idServicio, id);
 		}
 		catch (Exception e)
 		{
@@ -1226,14 +1248,14 @@ public class PersistenciaEPSAndes
 		}
 	}
 
-	public long eliminarOrdenDeServicioPorId (int numdocMedico, int numdocAfiliado, long idServicio) 
+	public long eliminarOrdenDeServicioPorId (int id) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long resp = sqlOrdenDeServicio.eliminarOrdenDeServicioPorId(pm,  numdocMedico,  numdocAfiliado,  idServicio);
+			long resp = sqlOrdenDeServicio.eliminarOrdenDeServicioPorId(pm, id);
 			tx.commit();
 
 			return resp;
@@ -1395,13 +1417,13 @@ public class PersistenciaEPSAndes
 	 * 			Métodos útiles
 	 *****************************************************************/
 
-	
+
 
 	public List<RolUsuario> darRolPorNumDoc(int id){
 		return sqlUtil.darRolPorNumDoc(pmf.getPersistenceManager(), id);
 	}
-	
-	
+
+
 	/* ****************************************************************
 	 * 			Métodos para manejar los requerimientos funcionales.
 	 *****************************************************************/
@@ -1582,6 +1604,7 @@ public class PersistenciaEPSAndes
 		}
 
 	}
+
 
 
 }

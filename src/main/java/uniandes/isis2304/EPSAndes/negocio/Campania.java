@@ -2,22 +2,26 @@ package uniandes.isis2304.EPSAndes.negocio;
 
 import java.sql.Timestamp;
 
-public class Campana implements VOCampana{
+public class Campania implements VOCampania{
 
 	private long id;
+	private String nombre;
 	private int afiliadosEsperados;
 	private Timestamp fechaInicio;
 	private Timestamp fechaFin;
+
+	public Campania(int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin) {
+		this.afiliadosEsperados = pAfiliados;
+		this.fechaInicio = pFechaInicio;
+		this.fechaFin = pFechaFin;
+	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public Campana(int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin) {
-		this.afiliadosEsperados = pAfiliados;
-		this.fechaInicio = pFechaInicio;
-		this.fechaFin = pFechaFin;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public void setFechaInicio(Timestamp fechaInicio) {
@@ -34,6 +38,10 @@ public class Campana implements VOCampana{
 
 	public long getId() {
 		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	public int getAfiliadosEsperados() {

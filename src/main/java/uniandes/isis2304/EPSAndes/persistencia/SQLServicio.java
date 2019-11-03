@@ -18,9 +18,9 @@ class SQLServicio {
 		this.peps = persistenciaEPSAndes;
 	}
 
-	public long adicionarServicio(PersistenceManager pm, long idServicio, String nombre) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaServicio() + "(idServicio, nombre) values (?, ?)");
-		q.setParameters(idServicio, nombre);
+	public long adicionarServicio(PersistenceManager pm, long idServicio, String nombre, long tipo) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaServicio() + "(idServicio, nombre) values (?, ?, ?)");
+		q.setParameters(idServicio, nombre, tipo);
 		return (long) q.executeUnique();  
 	}
 

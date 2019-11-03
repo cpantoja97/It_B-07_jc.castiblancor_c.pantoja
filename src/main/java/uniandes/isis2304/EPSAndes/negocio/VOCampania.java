@@ -1,12 +1,18 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public interface VOServicio {
+import java.sql.Timestamp;
 
-	long getIdServicio();
+public interface VOCampania {
+
+	public long getId();
 
 	String getNombre();
 
-	long getTipo();
+	int getAfiliadosEsperados();
+
+	Timestamp getFechaInicio();
+
+	Timestamp getFechaFin();
 
 	@Override
 	/**
