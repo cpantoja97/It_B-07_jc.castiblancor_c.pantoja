@@ -1540,11 +1540,11 @@ public class PersistenciaEPSAndes
 			pm.close();
 		}
 	}
-	
+
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación Campania
 	 *****************************************************************/
-	
+
 	public Inhabilitacion deshabilitarServicioRF12(long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
@@ -1581,7 +1581,7 @@ public class PersistenciaEPSAndes
 			long resp = sqlInhabilitacion.updateFechaFinInhabilitacion(pm, nuevaFechaFin, fechaInicio, IPS, Servicio);
 			tx.commit();
 			log.trace ("Actualización Inhabilitación: " +  Servicio + " - " + IPS + " - " +  fechaInicio + " hasta " +  nuevaFechaFin + ": " + resp + " tuplas actualizadas");
-			
+
 			return new Inhabilitacion(fechaInicio, nuevaFechaFin, IPS, Servicio);
 		}
 		catch (Exception e)
@@ -1598,6 +1598,73 @@ public class PersistenciaEPSAndes
 			}
 			pm.close();
 		}
+	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar los Inhabilitacion
+	 *****************************************************************/
+
+	public Inhabilitacion adicionarInhabilitacion(Timestamp fechaInicio, Timestamp fechaFin, long IPS, long servicio) 
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long tuplasInsertadas = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, IPS, servicio);
+			tx.commit();
+
+			log.trace ("Inserción Inhabilitacion: con fecha " + fechaInicio + ", del servicio " + servicio 
+					+". de la IPS " + IPS + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Inhabilitacion(fechaInicio, fechaFin, IPS, servicio);
+		}
+		catch (Exception e)
+		{
+			// e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public long eliminarInhabilotacion(Timestamp fechaInicio, long IPS, long servicio)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			long resp = sqlInhabilitacion.eliminarInhabilitacion(pm, fechaInicio, IPS, servicio);
+			tx.commit();
+
+			return resp;
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+	public List<Inhabilitacion> darInhabilitaciones()
+	{
+		return sqlInhabilitacion.darInhabilitacion(pmf.getPersistenceManager());
 	}
 
 
@@ -1701,17 +1768,65 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC6 ()
+	public List<Object []> RFC6 (String tiempo, String servicio)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager());
+		List<Object> tuplas = sqlConsulta.RF6(pmf.getPersistenceManager(), tiempo,servicio);
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
 
 			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC62 (String tiempo, String servicio)
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF62(pmf.getPersistenceManager(), tiempo,servicio);
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
+
+			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC63 (String tiempo, String servicio)
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF63(pmf.getPersistenceManager(), tiempo,servicio);
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int cuenta = ((BigDecimal) datos [1]).intValue ();
+
+			Object [] resp = new Object [2];
+			resp [0] = fecha;
+			resp [1] = cuenta;
 
 			respuesta.add(resp);
 		}
@@ -1728,8 +1843,14 @@ public class PersistenciaEPSAndes
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
 
-			Object [] resp = new Object [2];
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
 
 			respuesta.add(resp);
 		}
@@ -1737,19 +1858,16 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC8 ()
+	public List<String> RFC8 ()
 	{
-		List<Object []> respuesta = new LinkedList <Object []> ();
+		List<String> respuesta = new LinkedList <String > ();
 		log.info ("iniciando consulta");
 		List<Object> tuplas = sqlConsulta.RF8(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
-			Object [] datos = (Object []) tupla;
-
-			Object [] resp = new Object [2];
-
-			respuesta.add(resp);
+			String nombre = (String)tupla;
+			respuesta.add(nombre);
 		}
 
 		return respuesta;
