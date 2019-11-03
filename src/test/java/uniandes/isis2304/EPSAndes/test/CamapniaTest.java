@@ -86,7 +86,7 @@ public class CamapniaTest {
 			List <VOCampania> lista = EPSAndes.darVoCampania();
 			assertEquals ("No debe haber Reservas creadas!!", 0, lista.size ());
 
-  int numdocAf = 1;
+  			int numdocAf = 1;
 			long idServicio = 1;
 			long idIPS =1;
 			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);

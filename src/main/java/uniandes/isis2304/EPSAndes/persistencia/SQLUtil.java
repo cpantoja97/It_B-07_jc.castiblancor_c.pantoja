@@ -48,13 +48,13 @@ class SQLUtil {
 		Query qCampania = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaCampania());
 		Query qInhabilitacion = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaInhabilitacion());
 
-		long afiliadosEliminados = (long) qRol.executeUnique ();
-		long recepEliminados = (long) qIPS.executeUnique ();
-		long ipsEliminados = (long) qServicio.executeUnique ();
-		long servEliminados = (long) qUsuario.executeUnique ();
-		long usuariosEliminados = (long) qMedico.executeUnique ();
-		long medicosEliminados = (long) qAfiliado.executeUnique ();
-		long rolUEliminados = (long) qRecepcionista.executeUnique ();
+		long rolEliminados = (long) qRol.executeUnique ();
+		long IPSEliminados = (long) qIPS.executeUnique ();
+		long servicioEliminados = (long) qServicio.executeUnique ();
+		long usuarioEliminados = (long) qUsuario.executeUnique ();
+		long medicoEliminados = (long) qMedico.executeUnique ();
+		long afiliadoEliminados = (long) qAfiliado.executeUnique ();
+		long recepcionistaEliminados = (long) qRecepcionista.executeUnique ();
 		long servIPSEliminados = (long) qServiciosIPS.executeUnique ();
 		long medAbsEliminados = (long) qMedicosAbs.executeUnique ();
 		long servMedsEliminados = (long) qServiciosMedicos.executeUnique ();
@@ -68,8 +68,8 @@ class SQLUtil {
 		long campaniaEliminados = (long) qCampania.executeUnique ();
 		long inhabilitacionesEliminados = (long) qInhabilitacion.executeUnique ();
 
-		return new long[] {afiliadosEliminados, recepEliminados,ipsEliminados, servEliminados,usuariosEliminados,medicosEliminados,
-				rolUEliminados,servIPSEliminados,medAbsEliminados,medAbsEliminados,servMedsEliminados,recetasEliminados, medicamEliminados,
+		return new long[] {rolEliminados, IPSEliminados,servicioEliminados, usuarioEliminados,medicoEliminados,afiliadoEliminados,
+				recepcionistaEliminados,servIPSEliminados,medAbsEliminados,medAbsEliminados,servMedsEliminados,recetasEliminados, medicamEliminados,
 				itemREliminados,ordenesEliminados,reservasEliminados, prestacionesEliminados, tiposEliminados, campaniaEliminados, inhabilitacionesEliminados};
 	}
 

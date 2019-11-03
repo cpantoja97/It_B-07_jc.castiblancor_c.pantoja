@@ -78,7 +78,8 @@ public class OrdenTest {
 
 		try
 		{
-
+			EPSAndes.limpiarEPSAndes();
+			
 			List <VOOrdenDeServicio> lista = EPSAndes.darVOOrdenDeServicio();
 			int tamanio = lista.size ();
 			assertEquals ("No debe haber Ordenes creadas!!", tamanio, lista.size ());
