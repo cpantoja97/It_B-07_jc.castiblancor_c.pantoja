@@ -483,7 +483,39 @@ public class EPSAndes
 		log.info ("Se eliminaron: " + numReservasEliminadas + " reservas");
 		return numReservasEliminadas;
 	}
+	public List<Campania> darCampania()
+	{
+		log.info("Consultando Campañas");
+		List<Campania> campanias = peps.darCampania();
+		log.info("Consultando Campañas: " + campanias.size() + " existentes");
+		return campanias;
+	}
 
+	public List<VOCampania> darVOCampania(){
+		log.info("Generando los VO de Campaña");
+		List<VOCampania> voCampanias = new LinkedList<VOCampania>();
+		for(VOCampania item : peps.darCampania()) {
+			voCampanias.add(item);
+		}
+		log.info("Generando los VO de Campaña: " + voCampanias.size() + " existentes");
+		return voCampanias;
+	}
+	
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación Inhabilitación
+	 *****************************************************************/
+	public String deshabilitarServicioRF12(long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin) {
+		log.info ("Adicionando Inhabilitación: servicio " + idServicio + " - IPS " + idIPS );
+		String resultado = peps.deshabilitarServicioRF12(idServicio, idIPS, fechaInicio, fechaFin);
+		log.info ("Adicionando Inhabilitación: " + resultado);
+		return resultado;
+	}
+	public Inhabilitacion reabrirServicioRF13(Timestamp nuevaFechaFin, Timestamp fechaInicio, long IPS, long Servicio) {
+		log.info ("Modificando Inhabilitación: servicio " + Servicio + " - IPS " + IPS );
+		Inhabilitacion resultado = peps.reabrirServicioRF13(nuevaFechaFin, fechaInicio, IPS, Servicio);
+		log.info ("Adicionando Inhabilitación: " + resultado);
+		return resultado;
+	}
 
 	/* ****************************************************************
 	 * 			Metodos útiles

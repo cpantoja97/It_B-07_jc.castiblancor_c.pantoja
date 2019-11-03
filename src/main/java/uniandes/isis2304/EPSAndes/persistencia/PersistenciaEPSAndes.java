@@ -47,6 +47,7 @@ import uniandes.isis2304.EPSAndes.negocio.*;
  * 
  * @author Germán Bravo
  */
+@SuppressWarnings("deprecation")
 public class PersistenciaEPSAndes 
 {
 	/* ****************************************************************
@@ -1347,7 +1348,7 @@ public class PersistenciaEPSAndes
 		try
 		{
 			tx.begin();
-			long resp = sqlReservaServicio.eliminarReservaServicioPorId(pm,  numdocAf,  idServicio,  idIPS,  fechaHora );
+			long resp = sqlReservaServicio.eliminarReservaServicioPorId(pm, idServicio,  idIPS,  fechaHora );
 			tx.commit();
 
 			return resp;
@@ -1455,9 +1456,8 @@ public class PersistenciaEPSAndes
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
 			log.trace ("Inserción Campaña: " +  nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			@SuppressWarnings("deprecation")
 			int dias = pFechaFin.getDate()-pFechaInicio.getDate();
-			
+
 			List<ReservaServicio> reservas = new ArrayList<ReservaServicio>();
 			boolean campanaValida = true;
 
@@ -1500,7 +1500,7 @@ public class PersistenciaEPSAndes
 							// El servicio está habilitado? Si no lo está, no hace nada
 							List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, ips.getId_IPS(), servicioAct.getId_Servicio(), new Timestamp(horaAct), new Timestamp(horaFinal));
 							if(inhabilitaciones.size() == 0) {
-								
+
 								int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getId_Servicio(), ips.getId_IPS(), new Timestamp(hoy)).size();
 								System.out.println("ReservasDia: " + reservasDelDia);
 								int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
@@ -1589,36 +1589,134 @@ public class PersistenciaEPSAndes
 		}
 	}
 
+	public List<Campania> darCampania(){
+		return sqlCampania.darCampania(pmf.getPersistenceManager());
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación Campania
 	 *****************************************************************/
 
-	public Inhabilitacion deshabilitarServicioRF12(long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin) {
+	public String deshabilitarServicioRF12(long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
+			// Generar la inhabilitación
+			long resp = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, idIPS, idServicio);
+
 			// Obtener reservas en estas fechas
 			List<ReservaServicio> reservas = sqlReservaServicio.darReservasParaCambiar(pm, idServicio, idIPS, fechaInicio, fechaFin);
 			List<ReservaServicio> reservasCambiadas = new ArrayList<ReservaServicio>();
 			List<ReservaServicio> reservasCanceladas = new ArrayList<ReservaServicio>();
+
+			Servicio servicioAct = sqlServicio.buscarServicioPorID(pm, idServicio);
+
 			// Cambiar las reservas
 			for( ReservaServicio reserva : reservas) {
-				if() {
-					
+				// Si es de una campaña se cancela
+				if( reserva.getCampania() != -1 ) {
+					sqlReservaServicio.eliminarReservaServicioPorId(pm, idServicio, idIPS, reserva.getFechaHora());
+					reservasCanceladas.add(reserva);
 				}
-				boolean hayDisponibilidad = false;
-				
-				if
+				else {
+					boolean hayDisponibilidad = false;
+
+					// Hallar las IPS para recorrerlas
+					List<IPS> IPSs = sqlIPS.darIPSs(pm);
+					int diasMax = 5;
+					for(IPS ips: IPSs){
+						// La IPS Presta el servicio?
+						List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, reserva.getIdIPS(), reserva.getIdServicio());
+						// Si sí, se busca un espacio vacío para reacomodar la reserva
+						if(respConsulta.size() > 0) {
+							ServiciosIPS servIPS = respConsulta.get(0);
+							int capacidad = servIPS.getCapacidad();
+							int deltaTiempo = (int) ((servIPS.getHorarioFin().getTime() - servIPS.getHorarioInicio().getTime())/capacidad);
+							System.out.println("dT en IPS " + ips.getId_IPS()+ " es " + deltaTiempo);
+							int numDia = 0;
+
+							// Se busca todos los días hasta encontrar 
+							while(!hayDisponibilidad && numDia <= diasMax) {
+								// Se inicializa las citas del día en 0, la hora inicial en el primer horario de atencion del día correspondiente y se calcula la disponibilidad del día
+								long hoy = reserva.getFechaHora().getTime() + numDia*86400000;
+								long horarioInicio = servIPS.getHorarioInicio().getHours()*3600000 + servIPS.getHorarioInicio().getMinutes()*60000;
+								long horarioFinal = servIPS.getHorarioFin().getHours()*3600000 + servIPS.getHorarioFin().getMinutes()*60000;
+								long horaAct =  hoy + horarioInicio;
+								long horaFinal = hoy + horarioFinal;
+
+								System.out.println("Día: " + new Timestamp(hoy));
+								System.out.println("Hora inicial " + new Timestamp(horaAct));
+								System.out.println("Hora final " + new Timestamp(horaFinal));
+
+								// El servicio está habilitado? Si no lo está, no hace nada
+								List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, ips.getId_IPS(), servicioAct.getId_Servicio(), new Timestamp(horaAct), new Timestamp(horaFinal));
+								if(inhabilitaciones.size() == 0) {
+
+									int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getId_Servicio(), ips.getId_IPS(), new Timestamp(hoy)).size();
+									System.out.println("ReservasDia: " + reservasDelDia);
+									int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
+									System.out.println("Disponibilidad del día: " + disponibilidad);
+									// Se copa la disponibilidad del día o se alcanzan las citas necesitadas
+									while(disponibilidad > 0 && !hayDisponibilidad) {
+										try {
+											// Se intenta agregar 
+											sqlReservaServicio.cambiarReserva(pm, reserva.getIdServicio(), reserva.getIdIPS(), reserva.getFechaHora(), ips.getId_IPS(), new Timestamp(horaAct));
+											// RESERVARLA POR EL AFILIADO SI HABIA
+											log.trace ("Actualización Reserva: " +  servicioAct.getId_Servicio() +" en "+ ips.getId_IPS() + ""+(new Timestamp(horaAct)).toString());
+											hayDisponibilidad = true;
+											reserva.setId_IPS(ips.getId_IPS());
+											reserva.setFechaHora(new Timestamp(horaAct));
+										} catch(JDOException e) {
+											// Si no se pudo agregar, se continua con el siguiente
+										} finally {
+											// En cualquier caso, se actualiza la hora
+											horaAct += deltaTiempo;
+											// Si se pasa el final del horario de atención se cambia de día
+											if(horaAct > horaFinal) break;
+										}
+									}
+								}
+								numDia++;
+							}
+							if(hayDisponibilidad) break;
+						}
+					}
+					if(hayDisponibilidad) {
+						reservasCambiadas.add(reserva);
+					} else {
+						sqlReservaServicio.eliminarReservaServicioPorId(pm, idServicio, idIPS, reserva.getFechaHora());
+						reservasCanceladas.add(reserva);
+					}
+				}
+
+
+
 			}
-			
-			
-			long resp = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, idIPS, idServicio);
+
+			System.out.println("Quedaron "+ sqlReservaServicio.darReservasParaCambiar(pm, idServicio, idIPS, fechaInicio, fechaFin).size() + " reservas" );
+
 			tx.commit();
 			log.trace ("Inserción Inhabilitación: " +  idServicio + " - " + idIPS + " - " +  fechaInicio + " hasta " +  fechaFin + ": " + resp + " tuplas insertadas");
+			
+			Inhabilitacion inhab = new Inhabilitacion(fechaInicio, fechaFin, idIPS, idServicio);
+			
+			String mensaje = "En deshabilitar Servicio\n\n";
+			mensaje += "Servicio deshabilitado exitosamente: " + inhab +"\n";
+			
+			mensaje +="Había " + reservas.size() + " reservas\n";
+			mensaje += "Se cancelaron las siguientes reservas: \n";
+			for(ReservaServicio r : reservasCanceladas) {
+				mensaje += "\t" + r.toString() + "\n";
+			}			
+			mensaje += "Se cambiaron las siguientes reservas: \n";
+			for(ReservaServicio r : reservasCambiadas) {
+				mensaje += "\t" + r.toString() + "\n";
+			}
 
-			return new Inhabilitacion(fechaInicio, fechaFin, idIPS, idIPS);
+			mensaje += "Operación terminada\n";
+			
+			return mensaje;
 		}
 		catch (Exception e)
 		{

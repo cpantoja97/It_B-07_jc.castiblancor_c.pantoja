@@ -399,3 +399,58 @@ ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
 16:33:08,699 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
 16:33:08,699 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
 16:33:08,730 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+18:09:15,003 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:09:18,072 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:09:18,492 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:09:18,494 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:09:18,495 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:10:29,396 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:10:30,120 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO CAMPANIA(fechaInicio, fechaFin, IPS, Servicio) values (?, ?, ?, ?)".
+ORA-00904: "SERVICIO": invalid identifier
+
+18:10:30,259 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:17:18,018 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:17:20,815 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:17:21,065 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:17:21,066 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:17:21,066 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:17:43,706 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:17:44,912 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: En deshabilitar Servicio
+
+Servicio deshabilitado exitosamente: Servicio = 1, IPS = 1, fechaInicio = 2018-12-12 00:00:00.0, fechaFin = 2018-12-12 00:00:00.0]
+Había 0 reservas
+Se cancelaron las siguientes reservas: 
+Se cambiaron las siguientes reservas: 
+Operación terminada
+
+18:19:14,456 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:19:14,766 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "NVL(NUMDOC,-1)" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:19:14,909 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:20:22,793 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:20:26,535 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:20:26,781 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:20:26,783 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:20:26,784 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:20:39,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:20:41,277 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.IPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:20:41,406 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:26:49,201 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:26:51,945 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:26:52,195 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:26:52,197 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:26:52,197 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:27:04,159 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:27:05,161 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:27:05,323 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:27:52,620 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:27:54,488 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:27:54,719 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:27:54,720 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:27:54,720 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:28:06,629 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:28:07,846 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:28:07,965 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null

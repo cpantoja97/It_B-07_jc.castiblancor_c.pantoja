@@ -1027,9 +1027,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 						"Servicio 3", textField9,
 						"Cantidad 3", textField10
 				};
-				
+
 				option = JOptionPane.showConfirmDialog(this, inputFields2, "Información de servicios", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-				
+
 				if (option == JOptionPane.OK_OPTION)
 				{
 					String nombre = textField1.getText();
@@ -1038,8 +1038,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 					String[] ff = textField4.getText().split("/");
 					Timestamp fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
 					Timestamp fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
-										
-					
+
+
 					List<Long> servicios = new ArrayList<Long>();
 					List<Integer> cantidades = new ArrayList<Integer>();
 					if(!textField5.getText().equals("") && textField5.getText()!=null) servicios.add(Long.parseLong(textField5.getText()));
@@ -1095,15 +1095,15 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 			if (option == JOptionPane.OK_OPTION)
 			{
-				
+
 				long idCampania = Long.parseLong(textField1.getText());
 				long idServicio = Long.parseLong(textField2.getText());
 				long resp = EPSAndes.cancelarServicioCampaniaRF11(idServicio, idCampania);
-				
-	  			String resultado = "En eliminar Servicio de Campaña\n\n";
-    			resultado += resp + " reservas del servicio eliminadas\n";
-    			resultado += "\n Operación terminada";
-    			panelDatos.actualizarInterfaz(resultado);
+
+				String resultado = "En eliminar Servicio de Campaña\n\n";
+				resultado += resp + " reservas del servicio eliminadas\n";
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
 			}
 			else
 			{
@@ -1123,10 +1123,94 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 *****************************************************************/
 
 	public void deshabilitarServicio() {
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
 
+			//TODO Listas para servicio e ips
+			Object[] inputFields = {"ID del Servicio", textField1,
+					"ID de la IPS", textField2,
+					"Fecha inicio (DD/MM/AAAA)", textField3,
+					"Fecha final (DD/MM/AAAA)", textField4
+			};
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Inhabilitar servicio", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+
+				long idServicio = Long.parseLong(textField1.getText());
+				long idIPS = Long.parseLong(textField2.getText());
+				String[] fi = textField3.getText().split("/");
+				String[] ff = textField4.getText().split("/");
+				Timestamp fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
+				Timestamp fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+
+				String resultado = EPSAndes.deshabilitarServicioRF12(idServicio, idIPS, fechaInicio, fechaFin);
+				if (resultado == null)
+				{
+					throw new Exception ("No se pudo deshabilitar el servicio: " +idServicio+" de la IPS "+idIPS);
+				}
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 	public void habilitarServicio() {
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
 
+			//TODO Listas para servicio e ips
+			Object[] inputFields = {"ID del Servicio", textField1,
+					"ID de la IPS", textField2,
+					"Fecha inicio (DD/MM/AAAA)", textField3,
+					"Nuevo fin (DD/MM/AAAA)", textField4
+			};
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Reapertura de servicio", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+
+				long idServicio = Long.parseLong(textField1.getText());
+				long idIPS = Long.parseLong(textField2.getText());
+				String[] fi = textField3.getText().split("/");
+				String[] ff = textField4.getText().split("/");
+				Timestamp fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
+				Timestamp nuevoFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+
+				Inhabilitacion resp = EPSAndes.reabrirServicioRF13(nuevoFin, fechaInicio, idIPS, idServicio);
+
+				String resultado = "En eliminar Servicio de Campaña\n\n";
+				resultado += resp + " reservas del servicio eliminadas\n";
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	/* ****************************************************************

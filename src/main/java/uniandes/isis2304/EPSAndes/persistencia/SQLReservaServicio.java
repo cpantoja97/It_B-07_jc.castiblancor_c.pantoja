@@ -30,9 +30,9 @@ class SQLReservaServicio {
 		return (long) q.executeUnique();
 	}
 
-	public long eliminarReservaServicioPorId(PersistenceManager pm, int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
-		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaReservaServicio() + " WHERE numDoc = ? AND id_Servicio = ? AND id_IPS = ? AND fechaHora = ?");
-		q.setParameters(numdocAf, idServicio, idIPS, fechaHora);
+	public long eliminarReservaServicioPorId(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaHora) {
+		Query q = pm.newQuery(SQL, "DELETE FROM " + peps.darTablaReservaServicio() + " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora = ?");
+		q.setParameters( idServicio, idIPS, fechaHora);
 		return (long) q.executeUnique();  
 	}
 
@@ -58,10 +58,17 @@ class SQLReservaServicio {
 	}
 	
 	public List<ReservaServicio> darReservasParaCambiar(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio, Timestamp fechaFin){
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora BETWEEN ? AND ?");
+		Query q = pm.newQuery(SQL, "SELECT NVL(numdoc, -1) AS NUMDOC, ID_SERVICIO, id_IPS, fechaHora, NVL(campania, -1) AS CAMPANIA FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora BETWEEN ? AND ?");
 		q.setParameters( idServicio, idIPS, fechaInicio, fechaFin);
 		q.setResultClass(ReservaServicio.class);
-		return (List<ReservaServicio>) q.executeList();
+		return (List<ReservaServicio>) q.executeList();	
+	}
+	
+	public ReservaServicio cambiarReserva(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio, long nuevoIPS, Timestamp nuevaFecha){
+		Query q = pm.newQuery(SQL, "UPDATE " + peps.darTablaReservaServicio()+ " SET id_IPS=?, fechaHora=?  WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora = ?" );
+		q.setParameters( nuevoIPS, nuevaFecha, idServicio, idIPS, fechaInicio);
+		q.setResultClass(ReservaServicio.class);
+		return (ReservaServicio) q.executeUnique();
 		
 	}
 

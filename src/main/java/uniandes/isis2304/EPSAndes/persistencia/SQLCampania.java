@@ -38,5 +38,11 @@ public class SQLCampania {
 		q.setResultClass(Campania.class);
 		return (List<Campania>) q.executeList();
 	}
-	
+	public Campania buscarCampaniaPorID(PersistenceManager pm, long id)
+	{
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + peps.darTablaCampania() + " WHERE id = ?");
+		q.setParameters( id);
+		q.setResultClass(Campania.class);
+		return (Campania) q.executeUnique();
+	}
 }

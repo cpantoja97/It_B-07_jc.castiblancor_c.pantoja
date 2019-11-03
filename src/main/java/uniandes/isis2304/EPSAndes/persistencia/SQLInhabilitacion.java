@@ -21,7 +21,7 @@ public class SQLInhabilitacion {
 
 	public long adicionarInhabilitacion(PersistenceManager pm, Timestamp fechaInicio, Timestamp fechaFin, Long IPS, Long Servicio) 
 	{
-		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaCampania() + "(fechaInicio, fechaFin, IPS, Servicio) values (?, ?, ?, ?)");
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaInhabilitacion() + "(fechaInicio, fechaFin, IPS, Servicio) values (?, ?, ?, ?)");
 		q.setParameters(fechaInicio, fechaFin, IPS, Servicio);
 		return (long) q.executeUnique();
 	}

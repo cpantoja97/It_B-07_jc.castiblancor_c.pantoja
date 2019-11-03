@@ -27,7 +27,7 @@ public class IPS implements VOIPS{
 		this.nombre = nombre;
 	}
 
-	public void setID_IPS(int id) {
+	public void setId_IPS(long id) {
 		this.id_IPS = id;
 	}
 
