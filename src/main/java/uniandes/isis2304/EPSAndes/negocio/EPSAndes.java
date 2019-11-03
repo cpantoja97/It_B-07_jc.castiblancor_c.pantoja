@@ -516,6 +516,24 @@ public class EPSAndes
 		log.info ("Adicionando Inhabilitación: " + resultado);
 		return resultado;
 	}
+	public List<Inhabilitacion> darInhabilitacion()
+	{
+		log.info("Consultando Campañas");
+		List<Inhabilitacion> Inhabilitacions = peps.darInhabilitacion();
+		log.info("Consultando Campañas: " + Inhabilitacions.size() + " existentes");
+		return Inhabilitacions;
+	}
+
+	public List<VOInhabilitacion> darVOInhabilitacion(){
+		log.info("Generando los VO de Campaña");
+		List<VOInhabilitacion> voInhabilitaciones = new LinkedList<VOInhabilitacion>();
+		for(VOInhabilitacion item : peps.darInhabilitacion()) {
+			voInhabilitaciones.add(item);
+		}
+		log.info("Generando los VO de Campaña: " + voInhabilitaciones.size() + " existentes");
+		return voInhabilitaciones;
+	}
+	
 
 	/* ****************************************************************
 	 * 			Metodos útiles

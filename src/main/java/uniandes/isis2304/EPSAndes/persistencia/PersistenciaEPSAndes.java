@@ -1761,6 +1761,9 @@ public class PersistenciaEPSAndes
 		}
 	}
 
+	public List<Inhabilitacion> darInhabilitacion(){
+		return sqlInhabilitacion.darInhabilitacion(pmf.getPersistenceManager());
+	}
 	/* ****************************************************************
 	 * 			Métodos para manejar los Inhabilitacion
 	 *****************************************************************/
