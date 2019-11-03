@@ -454,3 +454,43 @@ Operación terminada
 18:28:07,846 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
 
 18:28:07,965 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:43:22,796 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:43:25,049 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:43:25,304 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
+18:43:25,305 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:43:25,305 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:43:30,070 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de IPS
+18:43:30,270 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de IPS: 2 existentes
+18:43:39,144 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de rol usuario
+18:43:39,346 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Rol Usuario: 6 existentes
+18:43:42,856 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de IPS
+18:43:43,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de IPS: 2 existentes
+18:43:59,800 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:44:02,436 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:44:02,675 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+18:44:02,676 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:44:02,676 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:44:16,939 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: servicio 1 - IPS 1
+18:44:18,370 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:44:18,476 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+18:47:42,261 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:47:44,866 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:47:45,160 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
+18:47:45,162 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:47:45,162 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:47:47,842 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de ServiciosIPS
+18:50:30,238 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:50:32,596 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:50:33,126 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
+18:50:33,127 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:50:33,128 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:52:28,046 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de ServiciosIPS
+18:52:28,328 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de ServiciosIPS: 7 existentes
+18:52:38,726 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:52:41,317 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:52:41,574 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
+18:52:41,576 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:52:41,576 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:53:50,944 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
+18:53:54,967 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 94, nombre = campania 3, Afiliados esperados = 20, fechaInicio = 2018-01-05 00:00:00.0, fechaFin = 2018-01-10 00:00:00.0]

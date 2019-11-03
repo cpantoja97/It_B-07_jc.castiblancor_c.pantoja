@@ -9,9 +9,9 @@ public class ServiciosIPS implements VOServiciosIPS{
 	Timestamp horarioInicio;
 	Timestamp horarioFin;
 	
-	private long id_Servicio;
+	long id_Servicio;
 	
-	private long id_IPS;
+	long id_IPS;
 	
 	public ServiciosIPS() {
 		this.id_IPS = -1;
@@ -48,7 +48,7 @@ public class ServiciosIPS implements VOServiciosIPS{
 		return this.id_IPS;
 	}
 
-	public void setID_SERVICIO(int idServicio) {
+	public void setId_Servicio(int idServicio) {
 		this.id_Servicio = idServicio;
 	}
 	
@@ -64,7 +64,7 @@ public class ServiciosIPS implements VOServiciosIPS{
 		this.horarioFin = horario;
 	}
 	
-	public void setID_IPS(int idIPS) {
+	public void setId_IPS(int idIPS) {
 		this.id_IPS = idIPS;
 	}
 	

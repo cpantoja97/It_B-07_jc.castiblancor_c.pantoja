@@ -13,8 +13,8 @@ public class IPS implements VOIPS{
 		this.nombre = null;
 		this.localizacion=null;
 	}
-	public IPS(long idIPS2, String pLocalizacion, String pNombre) {
-		this.id_IPS = idIPS2;
+	public IPS(long idIPS, String pLocalizacion, String pNombre) {
+		this.id_IPS = idIPS;
 		this.nombre = pNombre;
 		this.localizacion=pLocalizacion;
 	}
