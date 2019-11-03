@@ -470,19 +470,25 @@ public class EPSAndes
 	/* ****************************************************************
 	 * 			Metodos útiles
 	 *****************************************************************/
-	
+
 	public RolUsuario darRolDeUsuarioPorNumDoc( int numDoc) {
 		log.info("Consultando Rol del usuario ingresado");
 		System.out.println("aqui");
 		List<RolUsuario> roles = peps.darRolPorNumDoc(numDoc);
-		RolUsuario rol = roles.get(0);
-		System.out.println(roles.get(0));
-		log.info("Rol consultado: " + rol.getNombre() + " existente");
+		
+		RolUsuario rol = null;
+		
+		if (roles.size() == 1) {
+			rol = roles.get(0);
+			System.out.println(roles.get(0));
+			log.info("Rol consultado: " + rol.getNombre() + " existente");
+		}
+
 		return rol;
 	}
 
-	
-	
+
+
 	/* ****************************************************************
 	 * 			Metodos para requerimientos funcionales
 	 *****************************************************************/

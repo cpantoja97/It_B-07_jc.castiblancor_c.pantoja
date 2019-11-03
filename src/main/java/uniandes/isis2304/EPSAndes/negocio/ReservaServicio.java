@@ -8,19 +8,22 @@ public class ReservaServicio implements VOReservaServicio{
 	private long idServicio;
 	private long idIPS;
 	private Timestamp fechaHora;
-	
+	private long campania;
+
 	public ReservaServicio() {
-		numDocAfiliado = 0;
+		numDocAfiliado = -1;
 		this.idServicio = 0;
 		this.idIPS = 0;
 		this.fechaHora = new Timestamp(System.currentTimeMillis());
+		this.campania = -1;
 	}
-	
-	public ReservaServicio(int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
+
+	public ReservaServicio(int numdocAf, long idServicio, long idIPS, Timestamp fechaHora, long campania) {
 		numDocAfiliado = numdocAf;
 		this.idServicio = idServicio;
 		this.idIPS = idIPS;
 		this.fechaHora = fechaHora;
+		this.campania = campania;
 	}
 	public void setNUMDOC(int p) {
 		numDocAfiliado = p;
@@ -34,7 +37,9 @@ public class ReservaServicio implements VOReservaServicio{
 	public void setFECHAHORA(Timestamp p) {
 		fechaHora = p;
 	}
-	
+	public void setCAMPANIA(long p) {
+		campania = p;
+	}
 	public int getnumDocAfiliado() {
 		return this.numDocAfiliado;
 	}
@@ -51,6 +56,10 @@ public class ReservaServicio implements VOReservaServicio{
 		return idIPS;
 	}
 	
+	public long getCampania() {
+		return campania;
+	}
+
 	@Override
 	/**
 	 * @return Una cadena de caracteres con todos los atributos de la clase

@@ -603,3 +603,9 @@ ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDRECEP) 
 14:24:17,377 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 14:24:17,377 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
 >>>>>>> master
+19:16:01,839 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+19:16:05,051 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+19:19:09,473 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+19:19:11,635 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+19:19:13,776 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - NO se encontró un archivo de configuración válido
+19:19:15,572 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración por defecto

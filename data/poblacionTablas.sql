@@ -11,7 +11,7 @@ insert into ROLUSUARIO (ID_ROL,NOMBRE) values(2,'Medico');
 insert into ROLUSUARIO (ID_ROL,NOMBRE) values(3,'Recepcionista');
 insert into ROLUSUARIO (ID_ROL,NOMBRE) values(4,'Administrador');
 insert into ROLUSUARIO (ID_ROL,NOMBRE) values(5,'Gerente');
-insert into ROLUSUARIO (ID_ROL,NOMBRE) values(6,'Organizador campa�a');
+insert into ROLUSUARIO (ID_ROL,NOMBRE) values(6,'Organizador campania');
 
 ------------------------------------------------------------------------------
 ------------------------------ Poblar Tabla IPS. 2.---------------------------
@@ -27,15 +27,27 @@ insert into IPS (ID_IPS,NOMBRE, LOCALIZACION) values(2,'IPSAndes','Calle 19 # 1-
 ------------------------------------------------------------------------------
 --------------------------- Poblar Tabla SERVICIOS. 3.------------------------
 ------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+--------------------------- Insertar 8 Tipos de servicio.-----------------------------
+------------------------------------------------------------------------------
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(1,'Consulta general');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(2,'Urgencias');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(3,'Consulta especialista');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(4,'Exámenes diagnósticos');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(5,'Hospitalización');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(6,'Terapias');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(7,'Procedimientos médicos especializados');
+INSERT INTO TIPOSERVICIO (ID,NOMBRE) VALUES(8,'Consulta de control');
+
 
 ------------------------------------------------------------------------------
 --------------------------- Insertar 4 servicios.-----------------------------
 ------------------------------------------------------------------------------
 
-insert into SERVICIOS (ID_SERVICIO,NOMBRE) values(1,'Urgencias');
-insert into SERVICIOS (ID_SERVICIO,NOMBRE) values(2,'Consulta General');
-insert into SERVICIOS (ID_SERVICIO,NOMBRE) values(3,'Oftalmologia');
-insert into SERVICIOS (ID_SERVICIO,NOMBRE) values(4,'UCI');
+insert into SERVICIOS (ID_SERVICIO,NOMBRE, TIPO) values(1,'Urgencias', 2);
+insert into SERVICIOS (ID_SERVICIO,NOMBRE, TIPO) values(2,'Consulta General', 1);
+insert into SERVICIOS (ID_SERVICIO,NOMBRE, TIPO) values(3,'Oftalmologia', 4);
+insert into SERVICIOS (ID_SERVICIO,NOMBRE, TIPO) values(4,'UCI', 5);
 
 ------------------------------------------------------------------------------
 --------------------------- Poblar Tabla Usuarios. 4.-------------------------
@@ -195,7 +207,7 @@ insert into USUARIOS (NUMDOC, TIPODOC, CORREO, NOMBRE, ID_ROL) values(127,'CC', 
 insert into USUARIOS (NUMDOC, TIPODOC, CORREO, NOMBRE, ID_ROL) values(128,'CC', 'genesis@hotmail.com', 'Laura Perez',5);
 
 -------------------------------------------------------------------------------
----------------------- Insertar 1 Administrador de datos.----------------------
+---------------------- Insertar 1 Organizador de Campaña.----------------------
 -------------------------------------------------------------------------------
 
 insert into USUARIOS (NUMDOC, TIPODOC, CORREO, NOMBRE, ID_ROL) values(129,'CC', 'k.duque@gmail.com', 'Kevin Duque',6);
@@ -345,13 +357,13 @@ insert into RECEPCIONISTAS (NUMDOC, ID_IPS) values(126,2);
 ------------------------ Poblar Tabla SERVICIOSIPS. 7.------------------------
 ------------------------------------------------------------------------------
 
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,1,300,'2:00-23:59'); -- EPS 1 servicio Urgencias
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,1,400,'0:01-23:59'); -- EPS 2 servicio Urgencias
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,2,75,'6:30-18:00'); -- EPS 1 servicio Consulta general
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,2,50,'8:00-16:00'); -- EPS 2 servicio Consulta general
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,4,50,'2:00-23:59'); -- EPS 1 servicio UCI
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,4,120,'0:01-23:59'); -- EPS 2 servicio UCI
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,3,20,'7:00-17:00'); -- EPS 2 servicio Oftalmologia
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,1,300,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio Urgencias
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,1,400,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio Urgencias
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,2,75,TO_DATE('6:30','HH24:MI'),TO_DATE('18:00','HH24:MI')); -- EPS 1 servicio Consulta general
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,2,50,TO_DATE('8:00','HH24:MI'),TO_DATE('16:00','HH24:MI')); -- EPS 2 servicio Consulta general
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,4,50,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio UCI
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,4,120,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio UCI
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,3,20,TO_DATE('7:00','HH24:MI'),TO_DATE('17:00','HH24:MI')); -- EPS 2 servicio Oftalmologia
 
 ------------------------------------------------------------------------------
 --------------------- Poblar Tabla MEDICOSABSCRITOS. 9------------------------
@@ -425,16 +437,16 @@ insert into ITEMSRECETA (ID_RECETA, ID_MEDICAMENTO, CANTIDAD, INDICACIONES) valu
 ------------------------ Poblar Tabla ORDENES 14. ----------------------------
 ------------------------------------------------------------------------------
 
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 1);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 2);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 3);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 4);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 5);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,119, 6);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,120, 8);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,120, 9);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,120, 2);
-insert into ORDENES (ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(3,120, 1);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1001, 3,119, 1);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1002, 3,119, 2);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1003, 3,119, 3);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1004, 3,119, 4);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1005, 3,119, 5);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1006, 3,119, 6);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1007, 3,120, 8);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1008, 3,120, 9);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1009, 3,120, 2);
+insert into ORDENES (ID, ID_SERVICIO, ID_MEDICO, ID_AFILIADO) values(1010, 3,120, 1);
 
 ------------------------------------------------------------------------------
 -------------------------- RESERVASERVICIO 15. -------------------------------
@@ -462,5 +474,11 @@ insert into PRESTACIONSERVICIO (NUMDOC, ID_SERVICIO, ID_IPS, FECHAHORA, ID_RECEP
 insert into PRESTACIONSERVICIO (NUMDOC, ID_SERVICIO, ID_IPS, FECHAHORA, ID_RECEPCIONISTA) values(9,3,2,TO_DATE('07/07/2018', 'DD/MM/YYYY'),126);
 insert into PRESTACIONSERVICIO (NUMDOC, ID_SERVICIO, ID_IPS, FECHAHORA, ID_RECEPCIONISTA) values(2,3,2,TO_DATE('29/08/2019', 'DD/MM/YYYY'),126);
 insert into PRESTACIONSERVICIO (NUMDOC, ID_SERVICIO, ID_IPS, FECHAHORA, ID_RECEPCIONISTA) values(1,3,2,TO_DATE('05/09/2019', 'DD/MM/YYYY'),126);
+
+------------------------------------------------------------------------------
+------------------------- INHABILITACION 17. -----------------------------
+------------------------------------------------------------------------------
+insert into INHABILITACION (SERVICIO, IPS, FECHAINICIO, FECHAFIN) VALUES(1, 1, TO_DATE('15/11/2018','DD/MM/YYYY'), TO_DATE('18/11/2018','DD/MM/YYYY'));
+
 
 commit;
