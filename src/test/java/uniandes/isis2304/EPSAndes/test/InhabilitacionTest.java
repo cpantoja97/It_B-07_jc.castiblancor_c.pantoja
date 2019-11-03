@@ -1,4 +1,4 @@
-package uniandes.isis2304.parranderos.test;
+package uniandes.isis2304.EPSAndes.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -17,9 +17,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
-import uniandes.isis2304.EPSAndes.negocio.*;
+import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 
-public class RolesUsuarioTest {
+public class InhabilitacionTest {
 
 	/* ****************************************************************
 	 * 			Constantes
@@ -27,7 +27,7 @@ public class RolesUsuarioTest {
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(RolesUsuarioTest.class.getName());
+	private static Logger log = Logger.getLogger(InhabilitacionTest.class.getName());
 
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -56,21 +56,20 @@ public class RolesUsuarioTest {
 	 */
 
 	@Test
-	public void CreateTipoBebidaTest() 
+	public void CreateInhabilitacionTest() 
 	{
-		// Probar primero la conexión a la base de datos
 		try
 		{
-			log.info ("Probando las operaciones Create sobre RolUsuario");
+			log.info ("Probando las operaciones Create sobre Inhabilitacion");
 			EPSAndes = new EPSAndes (openConfig (CONFIG_TABLAS_A));
 		}
 		catch (Exception e)
 		{
 			//			e.printStackTrace();
-			log.info ("Prueba de Create de RolUsuario incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
+			log.info ("Prueba de Create de Inhabilitacion incompleta. No se pudo conectar a la base de datos !!. La excepción generada es: " + e.getClass ().getName ());
 			log.info ("La causa es: " + e.getCause ().toString ());
 
-			String msg = "Prueba de Create de RolUsuario incompleta. No se pudo conectar a la base de datos !!.\n";
+			String msg = "Prueba de Create de Inhabilitacion incompleta. No se pudo conectar a la base de datos !!.\n";
 			msg += "Revise el log de EPSAndes y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 			fail (msg);
@@ -102,8 +101,9 @@ public class RolesUsuarioTest {
 		{
 			//			e.printStackTrace ();
 			log.info ("NO se encontró un archivo de configuración válido");			
-			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "RolesUsuarioTest", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se encontró un archivo de configuración de tablas válido: ", "InhabilitacionTest", JOptionPane.ERROR_MESSAGE);
 		}	
 		return config;
-	}	
+	}
+	
 }
