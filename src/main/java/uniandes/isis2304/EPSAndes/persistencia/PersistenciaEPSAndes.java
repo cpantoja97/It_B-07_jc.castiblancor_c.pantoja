@@ -1473,14 +1473,14 @@ public class PersistenciaEPSAndes
 				List<IPS> IPSs = sqlIPS.darIPSs(pm);
 				for(IPS ips : IPSs) {
 					// La IPS Presta el servicio?
-					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getIdIPS(), servicioAct.getIdServicio());
+					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getId_IPS(), servicioAct.getId_Servicio());
 					// Si sí, se reserva hasta copar el 90% de su capacidad diaría. De lo contratio, no sucede nada
 					if(respConsulta.size() > 0) {
 
 						ServiciosIPS servIPS = respConsulta.get(0);
 						int capacidad = servIPS.getCapacidad();
 						int deltaTiempo = (int) ((servIPS.getHorarioFin().getTime() - servIPS.getHorarioInicio().getTime())/capacidad);
-						System.out.println("dT en IPS " + ips.getIdIPS() + " es " + deltaTiempo);
+						System.out.println("dT en IPS " + ips.getId_IPS() + " es " + deltaTiempo);
 						int numDia = 0;
 						// Se copa el 90% de la capacidad para CADA día
 						while(numDia <= dias) {
@@ -1498,10 +1498,10 @@ public class PersistenciaEPSAndes
 							System.out.println("Hora final " + new Timestamp(horaFinal));
 
 							// El servicio está habilitado? Si no lo está, no hace nada
-							List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, ips.getIdIPS(), servicioAct.getIdServicio(), new Timestamp(horaAct), new Timestamp(horaFinal));
+							List<Inhabilitacion> inhabilitaciones = sqlInhabilitacion.darInhabilitacionesServicio(pm, ips.getId_IPS(), servicioAct.getId_Servicio(), new Timestamp(horaAct), new Timestamp(horaFinal));
 							if(inhabilitaciones.size() == 0) {
 								
-								int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(hoy)).size();
+								int reservasDelDia = sqlReservaServicio.darReservasDia(pm, servicioAct.getId_Servicio(), ips.getId_IPS(), new Timestamp(hoy)).size();
 								System.out.println("ReservasDia: " + reservasDelDia);
 								int disponibilidad = (int)(servIPS.getCapacidad()*0.9 - reservasDelDia);
 								System.out.println("Disponibilidad del día: " + disponibilidad);
@@ -1509,10 +1509,10 @@ public class PersistenciaEPSAndes
 								while(citasDia < disponibilidad && contador + citasDia < cantidad) {
 									try {
 										// Se intenta agregar 
-										long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getIdServicio(),  ips.getIdIPS(), new Timestamp(horaAct), id);
-										log.trace ("Inserción Reserva: " +  servicioAct.getIdServicio() +" en "+ ips.getIdIPS() + ""+(new Timestamp(horaAct)).toString() + ": " + reservaInsertada + " tuplas insertadas");
+										long reservaInsertada = sqlReservaServicio.adicionarReservaServicioCampania(pm,  servicioAct.getId_Servicio(),  ips.getId_IPS(), new Timestamp(horaAct), id);
+										log.trace ("Inserción Reserva: " +  servicioAct.getId_Servicio() +" en "+ ips.getId_IPS() + ""+(new Timestamp(horaAct)).toString() + ": " + reservaInsertada + " tuplas insertadas");
 										citasDia++;
-										reservas.add(new ReservaServicio(-1, servicioAct.getIdServicio(), ips.getIdIPS(), new Timestamp(horaAct), id));
+										reservas.add(new ReservaServicio(-1, servicioAct.getId_Servicio(), ips.getId_IPS(), new Timestamp(horaAct), id));
 									} catch(JDOException e) {
 										// Si no se pudo agregar, se continua con el siguiente
 									} finally {

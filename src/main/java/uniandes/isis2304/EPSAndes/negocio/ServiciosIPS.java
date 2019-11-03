@@ -9,21 +9,21 @@ public class ServiciosIPS implements VOServiciosIPS{
 	Timestamp horarioInicio;
 	Timestamp horarioFin;
 	
-	private long idServicio;
+	private long id_Servicio;
 	
-	private long idIPS;
+	private long id_IPS;
 	
 	public ServiciosIPS() {
-		this.idIPS = -1;
-		this.idServicio = -1;
+		this.id_IPS = -1;
+		this.id_Servicio = -1;
 		this.capacidad = -1;
 		this.horarioInicio = null;
 		this.horarioFin = null;
 	}
 	
 	public ServiciosIPS(long idIPS, long idServicio, int capacidad, Timestamp horarioInicio, Timestamp horarioFin) {
-		this.idIPS = idIPS;
-		this.idServicio = idServicio;
+		this.id_IPS = idIPS;
+		this.id_Servicio = idServicio;
 		this.capacidad = capacidad;
 		this.horarioInicio = horarioInicio;
 		this.horarioFin = horarioFin;
@@ -40,16 +40,16 @@ public class ServiciosIPS implements VOServiciosIPS{
 		return this.horarioFin;
 	}
 
-	public long getIdServicio() {
-		return this.idServicio;
+	public long getId_Servicio() {
+		return this.id_Servicio;
 	}
 
-	public long getIdIPS() {
-		return this.idIPS;
+	public long getId_IPS() {
+		return this.id_IPS;
 	}
 
 	public void setID_SERVICIO(int idServicio) {
-		this.idServicio = idServicio;
+		this.id_Servicio = idServicio;
 	}
 	
 	public void setCapacidad(int capacidad) {
@@ -65,7 +65,7 @@ public class ServiciosIPS implements VOServiciosIPS{
 	}
 	
 	public void setID_IPS(int idIPS) {
-		this.idIPS = idIPS;
+		this.id_IPS = idIPS;
 	}
 	
 	@Override
@@ -75,6 +75,6 @@ public class ServiciosIPS implements VOServiciosIPS{
 	public String toString() 
 	{
 		return "capacidad=" + capacidad + ", horarioAtencion=" + horarioInicio+ 
-				", IdIPS=" + idIPS + ", IdServicio=" + idServicio+ "]";
+				", IdIPS=" + id_IPS + ", IdServicio=" + id_Servicio+ "]";
 	}
 }

@@ -24,7 +24,7 @@ public class PrestacionServicio implements VOPrestacionServicio{
 		this.fechaHora = fechaHora;
 		this.idRecepcionista = idRecepcionista;
 	}
-	
+
 	public void setNUMDOC(int p) {
 		numDocAfiliado = p;
 	}
@@ -44,36 +44,22 @@ public class PrestacionServicio implements VOPrestacionServicio{
 		idRecepcionista = p;
 	}
 
-
-	@Override
-	public int getNumDocAfiliado() {
+	public int getNumDoc() {
 		return numDocAfiliado;
 	}
 
-
-
-	@Override
-	public long getIdServicio() {
+	public long getId_servicio() {
 		return idServicio;
 	}
 
-
-
-	@Override
 	public long getIdIPS() {
 		return idIPSl;
 	}
 
-
-
-	@Override
 	public Timestamp getFechaHora() {
 		return fechaHora;
 	}
 
-
-
-	@Override
 	public long getIdRecepcionista() {
 		return idRecepcionista;
 	}
@@ -88,4 +74,5 @@ public class PrestacionServicio implements VOPrestacionServicio{
 				", idRecepcionista=" + idRecepcionista + ", idServicio=" +
 				idServicio+ "]";
 	}
+
 }

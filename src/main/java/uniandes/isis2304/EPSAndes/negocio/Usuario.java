@@ -14,77 +14,77 @@ public class Usuario implements VOUsuario{
 	/**
 	 * tipo de documento del usuario.
 	 */
-	private TipoDocumento tipoDocumento;
+	private TipoDocumento tipoDoc;
 
 	/**
 	 * número de documento del ususario.
 	 */
-	private long numeroDocumento;
+	private long numDoc;
 
 	/**
 	 * Correo electronico del usuario
 	 */
-	private String correoElectronico;
+	private String correo;
 
 	/**
 	 * Rol del usuaio.
 	 */
-	private long rol;
+	private long id_rol;
 
 	// ***********************************************+
 	// Metodos.
 	// ***********************************************+
 
 	public Usuario() {
-		this.correoElectronico = "";
+		this.correo = "";
 	}
 
 	public Usuario(long numDoc, TipoDocumento tipoDoc, String nombre2, String correo, long rol2) {
-		this.correoElectronico = correo;
+		this.correo = correo;
 		this.nombre = nombre2;
-		this.numeroDocumento= numDoc;
-		this.rol= rol2;
-		this.tipoDocumento = tipoDoc;
+		this.numDoc= numDoc;
+		this.id_rol= rol2;
+		this.tipoDoc = tipoDoc;
 	}
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
-	public TipoDocumento getTipoDocumento() {
-		return this.tipoDocumento;
+	public TipoDocumento getTipoDoc() {
+		return this.tipoDoc;
 	}
 
-	public long getNumeroDocumento() {
-		return this.numeroDocumento;
+	public long getNumDoc() {
+		return this.numDoc;
 	}
 
-	public String getCorreoElectronico() {
-		return this.correoElectronico;
+	public String getCorreo() {
+		return this.correo;
 	}
 
-	public long getRol() {
-		return this.rol;
+	public long getId_Rol() {
+		return this.id_rol;
 	}
 
-	public void setCorreoElectronico(String correoElectronico) {
-		this.correoElectronico = correoElectronico;
+	public void setCorreo(String correoElectronico) {
+		this.correo = correoElectronico;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public void setNumeroDocumento(int numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setNumDoc(int numeroDocumento) {
+		this.numDoc = numeroDocumento;
 	}
 
-	public void setRol(long rol) {
-		this.rol = rol;
+	public void setId_Rol(long rol) {
+		this.id_rol = rol;
 	}
 
-	public void setTipoDocumento(TipoDocumento tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
+	public void setTipoDoc(TipoDocumento tipoDocumento) {
+		this.tipoDoc = tipoDocumento;
 	}
 	
 	@Override
@@ -93,9 +93,9 @@ public class Usuario implements VOUsuario{
 	 */
 	public String toString() 
 	{
-		return "nombre=" + nombre + ", correo=" + correoElectronico+ 
-				", numero documento=" + numeroDocumento
-				+ ", rol=" + rol+ "]";
+		return "nombre=" + nombre + ", correo=" + correo+ 
+				", numero documento=" + numDoc
+				+ ", rol=" + id_rol+ "]";
 	}
 
 }

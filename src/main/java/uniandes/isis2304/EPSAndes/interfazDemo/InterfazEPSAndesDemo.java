@@ -33,11 +33,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
+import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
 import uniandes.isis2304.EPSAndes.negocio.VOCampania;
 import uniandes.isis2304.EPSAndes.negocio.VOInhabilitacion;
+import uniandes.isis2304.EPSAndes.negocio.VOMedico;
 import uniandes.isis2304.EPSAndes.negocio.VOOrdenDeServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOPrestacionServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOReservaServicio;
+import uniandes.isis2304.EPSAndes.negocio.VOServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 
 /**
@@ -352,7 +355,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 
-			InfoBasicUsers();
+			//InfoBasicUsers();
 			int numdocMedico = 106;
 			int numdocAfiliado = 1;
 			long idServicio = 1;
@@ -365,6 +368,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de Ordenes\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
+			resultado += InfoBasicUsers();
 			resultado += "Adicionado la orden: " + orden1 + "\n";
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado += "\n" + listarOrdenes (lista);
@@ -403,6 +407,12 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
 			VOPrestacionServicio prestacion1 = EPSAndes.adicionarPrestacionServicio(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
 
+			boolean errorAgregando = false;
+			if (prestacion1 == null)
+			{
+				errorAgregando = true;
+			}
+
 			List <VOPrestacionServicio> lista = EPSAndes.darVOPrestacionServicio();
 
 			long prestacionesEliminadas = EPSAndes.eliminarPrestacionServicioPorId(numdocAf, idServicio, idIPS, fechaHora);
@@ -410,7 +420,16 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de Prestaciones\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			resultado += "Adicionado la prestacion: " + prestacion1 + "\n";
+
+			if (errorAgregando)
+			{
+				resultado += "*** Exception creando prestacion !!\n";
+				resultado += "*** Es probable que esta prestacion ya existiera y hay restricción de UNICIDAD.\n";
+				resultado += "*** Revise el log de EPSAndes para más detalles\n";
+			} else {
+				resultado += "Adicionado la prestacion: " + prestacion1 + "\n";
+			}
+
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado += "\n" + listarPrestaciones (lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
@@ -617,8 +636,20 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
 
-	private void InfoBasicUsers() {
-		//VOUsuario usr1 = EPSAndes.
+	private String InfoBasicUsers() {
+		String resp = "El afiliado usado para la prueba es:\n";
+		VOAfiliado afiliado = EPSAndes.darAfiliados().get(0);
+		resp += afiliado.toString() +"\n";
+
+		resp += "\n El Servicio usado para la prueba es:\n";
+		VOServicio servicio = EPSAndes.darServicios().get(0);
+		resp += servicio.toString() +"\n";
+
+		resp += "\n El Medico usado para la prueba es:\n";
+		VOMedico medico = EPSAndes.darMedicos().get(0);
+		resp += medico.toString() +"\n";
+
+		return resp;
 	}
 
 	private String listarCampania(List<VOCampania> lista) {
@@ -740,7 +771,6 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

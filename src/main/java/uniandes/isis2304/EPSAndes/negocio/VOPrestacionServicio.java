@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 
 public interface VOPrestacionServicio {
 	
-	int getNumDocAfiliado();
-	long getIdServicio();
+	int getNumDoc();
+	long getId_servicio();
 	long getIdIPS();
 	Timestamp getFechaHora();
 	long getIdRecepcionista();

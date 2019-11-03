@@ -6,15 +6,15 @@ public class IPS implements VOIPS{
 
 	String localizacion;
 
-	long idIPS;
+	long id_IPS;
 
 	public IPS() {
-		this.idIPS = -1;
+		this.id_IPS = -1;
 		this.nombre = null;
 		this.localizacion=null;
 	}
 	public IPS(long idIPS2, String pLocalizacion, String pNombre) {
-		this.idIPS = idIPS2;
+		this.id_IPS = idIPS2;
 		this.nombre = pNombre;
 		this.localizacion=pLocalizacion;
 	}
@@ -28,11 +28,11 @@ public class IPS implements VOIPS{
 	}
 
 	public void setID_IPS(int id) {
-		this.idIPS = id;
+		this.id_IPS = id;
 	}
 
-	public long getIdIPS() {
-		return this.idIPS;
+	public long getId_IPS() {
+		return this.id_IPS;
 	}
 
 	public String getNombre() {
@@ -49,7 +49,7 @@ public class IPS implements VOIPS{
 	 */
 	public String toString() 
 	{
-		return "id=" + idIPS + ", nombre=" + nombre+ 
+		return "id=" + id_IPS + ", nombre=" + nombre+ 
 				", localizacion=" + localizacion+ "]";
 	}
 }

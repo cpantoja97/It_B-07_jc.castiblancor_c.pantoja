@@ -9,9 +9,9 @@ public interface VOServiciosIPS {
 	Timestamp getHorarioInicio();
 	Timestamp getHorarioFin();
 	
-	long getIdServicio();
+	long getId_Servicio();
 	
-	long getIdIPS();
+	long getId_IPS();
 	
 	@Override
 	/**

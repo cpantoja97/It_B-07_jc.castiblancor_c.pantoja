@@ -16,7 +16,7 @@ public class Servicio implements VOServicio{
 		this.nombre = nombre2;
 	}
 
-	public long getIdServicio() {
+	public long getId_Servicio() {
 		return this.Id_Servicio;
 	}
 

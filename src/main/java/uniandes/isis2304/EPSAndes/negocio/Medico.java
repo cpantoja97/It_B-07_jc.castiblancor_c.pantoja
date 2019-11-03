@@ -6,37 +6,38 @@ public class Medico implements VOMedico{
 	// Atributos.
 	// ***********************************************+
 
-	long numeroDocumento;
+	long numDoc;
 
-	int numeroRegistroMedico;
+	int regMedico;
 
 	// ***********************************************+
 	// Metodos.
 	// ***********************************************+
 
 	public Medico() {
-
+		this.numDoc =0;
+		this.regMedico =0;
 	}
 
 	public Medico(long numDoc, int registroMedico) {
-		this.numeroDocumento = numDoc;
-		this.numeroRegistroMedico = registroMedico;
+		this.numDoc = numDoc;
+		this.regMedico = registroMedico;
 	}
 
-	public void setNumeroRegistroMedico(int numeroRegistroMedico) {
-		this.numeroRegistroMedico = numeroRegistroMedico;
+	public void setRegMedico(int numeroRegistroMedico) {
+		this.regMedico = numeroRegistroMedico;
 	}
 
-	public long getNumeroDocumento() {
-		return numeroDocumento;
+	public long getNumDoc() {
+		return numDoc;
 	}
 
-	public int getNumeroRegistroMedico() {
-		return this.numeroRegistroMedico;
+	public int getRegMedico() {
+		return this.regMedico;
 	}
 
-	public void setNumeroDocumento(int numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setNumDoc(int numeroDocumento) {
+		this.numDoc = numeroDocumento;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class Medico implements VOMedico{
 	 */
 	public String toString() 
 	{
-		return "numero documento Medico=" + numeroDocumento + 
-				", numero Registro Medico=" + numeroRegistroMedico+ "]";
+		return "numero documento Medico=" + numDoc + 
+				", numero Registro Medico=" + regMedico+ "]";
 	}
 }

@@ -79,7 +79,7 @@ public class OrdenTest {
 		try
 		{
 			EPSAndes.limpiarEPSAndes();
-			
+
 			List <VOOrdenDeServicio> lista = EPSAndes.darVOOrdenDeServicio();
 			int tamanio = lista.size ();
 			assertEquals ("No debe haber Ordenes creadas!!", tamanio, lista.size ());
@@ -102,7 +102,7 @@ public class OrdenTest {
 			assertTrue ("La primera orden adicionadada debe estar en la tabla", orden1.equals (lista.get (0)) || orden1.equals (lista.get (1)));
 			assertTrue ("La segunda orden adicionadada debe estar en la tabla", orden2.equals (lista.get (0)) || orden2.equals (lista.get (1)));
 
-			long oEliminados = EPSAndes.eliminarOrdenDeServicioPorId(orden1.getIdOrden(), orden1.getIdAfiliado(), orden1.getIdServicio());
+			long oEliminados = 0;// EPSAndes.eliminarOrdenDeServicioPorId(orden1.getId(), orden1.getIdAfiliado(), orden1.getIdServicio());
 			assertEquals ("Debe haberse eliminado una orden!!", tamanio+1, oEliminados);
 			lista = EPSAndes.darVOOrdenDeServicio();
 			assertEquals ("Debe haber nas sola orden !!", tamanio+1, lista.size ());

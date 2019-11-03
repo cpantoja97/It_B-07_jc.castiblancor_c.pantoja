@@ -4,13 +4,13 @@ public interface VOUsuario {
 
 	String getNombre();
 
-	TipoDocumento getTipoDocumento();
+	TipoDocumento getTipoDoc();
 
-	long getNumeroDocumento();
+	long getNumDoc();
 
-	String getCorreoElectronico();
+	String getCorreo();
 
-	long getRol();
+	long getId_Rol();
 	
 	@Override
 	/**

@@ -105,7 +105,7 @@ public class PrestacionTest {
 			assertTrue ("La primera orden adicionadada debe estar en la tabla", prestacion1.equals (lista.get (0)) || prestacion1.equals (lista.get (1)));
 			assertTrue ("La segunda orden adicionadada debe estar en la tabla", prestacion2.equals (lista.get (0)) || prestacion2.equals (lista.get (1)));
 
-			long pEliminados = EPSAndes.eliminarPrestacionServicioPorId(prestacion1.getNumDocAfiliado(), prestacion1.getIdServicio(), prestacion1.getIdIPS(), prestacion1.getFechaHora());
+			long pEliminados = EPSAndes.eliminarPrestacionServicioPorId(prestacion1.getNumDoc(), prestacion1.getId_servicio(), prestacion1.getIdIPS(), prestacion1.getFechaHora());
 			assertEquals ("Debe haberse eliminado una orden!!", 1, pEliminados);
 			lista = EPSAndes.darVOPrestacionServicio();
 			assertEquals ("Debe haber nas sola orden !!", 1, lista.size ());
