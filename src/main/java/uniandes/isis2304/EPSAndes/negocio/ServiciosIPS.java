@@ -1,28 +1,36 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
+import java.sql.Timestamp;
+
 public class ServiciosIPS implements VOServiciosIPS{
 
 	private int capacidad;
 	
-	private String horarioAtencion;
+	private Timestamp horarioInicio;
+	private Timestamp horarioFin;
 	
 	private long idServicio;
 	
 	private long idIPS;
 	
-	public ServiciosIPS(long idIPS, long idServicio, int capacidad, String horarioDeAtencion) {
+	
+	public ServiciosIPS(long idIPS, long idServicio, int capacidad, Timestamp horarioInicio, Timestamp horarioFin) {
 		this.idIPS = idIPS;
 		this.idServicio = idServicio;
 		this.capacidad = capacidad;
-		this.horarioAtencion = horarioDeAtencion;
+		this.horarioInicio = horarioInicio;
+		this.horarioFin = horarioFin;
 	}
 	
 	public int getCapacidad() {
 		return this.capacidad;
 	}
 
-	public String getHorarioAtencion() {
-		return this.horarioAtencion;
+	public Timestamp getHorarioInicio() {
+		return this.horarioInicio;
+	}
+	public Timestamp getHorarioFin() {
+		return this.horarioFin;
 	}
 
 	public long getIdServicio() {
@@ -41,8 +49,12 @@ public class ServiciosIPS implements VOServiciosIPS{
 		this.capacidad = capacidad;
 	}
 	
-	public void setHorarioAtencion(String horarioAtencion) {
-		this.horarioAtencion = horarioAtencion;
+	public void setHORARIOINICIO(Timestamp horario) {
+		this.horarioInicio = horario;
+	}
+	
+	public void setHORARIOFIN(Timestamp horario) {
+		this.horarioFin = horario;
 	}
 	
 	public void setIdIPS(int idIPS) {
@@ -55,7 +67,7 @@ public class ServiciosIPS implements VOServiciosIPS{
 	 */
 	public String toString() 
 	{
-		return "capacidad=" + capacidad + ", horarioAtencion=" + horarioAtencion+ 
+		return "capacidad=" + capacidad + ", horarioAtencion=" + horarioInicio+ 
 				", IdIPS=" + idIPS + ", IdServicio=" + idServicio+ "]";
 	}
 }

@@ -18,10 +18,10 @@ public class SQLCampania {
 		this.peps = persistenciaEPSAndes;
 	}
 
-	public long adicionarCampania(PersistenceManager pm, long id, String nombre, int afiliadosEseprados, Timestamp fechaInicio, Timestamp fechaFin) 
+	public long adicionarCampania(PersistenceManager pm, long id, String nombre, int afiliadosEsperados, Timestamp fechaInicio, Timestamp fechaFin) 
 	{
 		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaCampania() + "(id, nombre, afiliadosEsperados, fechaInicio, fechaFin) values (?, ?, ?, ?, ?)");
-		q.setParameters(id, nombre, afiliadosEseprados, fechaInicio, fechaFin);
+		q.setParameters(id, nombre, afiliadosEsperados, fechaInicio, fechaFin);
 		return (long) q.executeUnique();            
 	}
 
@@ -38,4 +38,5 @@ public class SQLCampania {
 		q.setResultClass(Campania.class);
 		return (List<Campania>) q.executeList();
 	}
+	
 }

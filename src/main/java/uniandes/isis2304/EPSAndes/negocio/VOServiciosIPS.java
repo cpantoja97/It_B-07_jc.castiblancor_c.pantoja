@@ -1,10 +1,13 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
+import java.sql.Timestamp;
+
 public interface VOServiciosIPS {
 
 	int getCapacidad();
 	
-	String getHorarioAtencion();
+	Timestamp getHorarioInicio();
+	Timestamp getHorarioFin();
 	
 	long getIdServicio();
 	

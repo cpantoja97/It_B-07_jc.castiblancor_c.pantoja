@@ -357,13 +357,13 @@ insert into RECEPCIONISTAS (NUMDOC, ID_IPS) values(126,2);
 ------------------------ Poblar Tabla SERVICIOSIPS. 7.------------------------
 ------------------------------------------------------------------------------
 
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,1,300,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio Urgencias
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,1,400,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio Urgencias
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,2,75,TO_DATE('6:30','HH24:MI'),TO_DATE('18:00','HH24:MI')); -- EPS 1 servicio Consulta general
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,2,50,TO_DATE('8:00','HH24:MI'),TO_DATE('16:00','HH24:MI')); -- EPS 2 servicio Consulta general
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(1,4,50,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio UCI
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,4,120,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio UCI
-insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIODEATENCION) values(2,3,20,TO_DATE('7:00','HH24:MI'),TO_DATE('17:00','HH24:MI')); -- EPS 2 servicio Oftalmologia
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(1,1,300,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio Urgencias
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(2,1,400,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio Urgencias
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(1,2,75,TO_DATE('6:30','HH24:MI'),TO_DATE('18:00','HH24:MI')); -- EPS 1 servicio Consulta general
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(2,2,50,TO_DATE('8:00','HH24:MI'),TO_DATE('16:00','HH24:MI')); -- EPS 2 servicio Consulta general
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(1,4,50,TO_DATE('2:00','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 1 servicio UCI
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(2,4,120,TO_DATE('0:01','HH24:MI'),TO_DATE('23:59','HH24:MI')); -- EPS 2 servicio UCI
+insert into SERVICIOSIPS (ID_IPS, ID_SERVICIO, CAPACIDAD, HORARIOINICIO, HORARIOFIN) values(2,3,20,TO_DATE('7:00','HH24:MI'),TO_DATE('17:00','HH24:MI')); -- EPS 2 servicio Oftalmologia
 
 ------------------------------------------------------------------------------
 --------------------- Poblar Tabla MEDICOSABSCRITOS. 9------------------------

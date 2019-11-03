@@ -773,7 +773,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 
 
-				VOReservaServicio tb = EPSAndes.adicionarReservaServicio( numdocAf, idServicio, idIPS, fechaHora );
+				VOReservaServicio tb = EPSAndes.adicionarReservaServicioAfiliado( numdocAf, idServicio, idIPS, fechaHora );
 				if (tb == null)
 				{
 					throw new Exception ("No se pudo crear un ReservaServicio con afiliado-servicio-ips-fecha: " + numdocAf+"-"+idServicio+"-"+idIPS+"-"+fechaHora.toString());

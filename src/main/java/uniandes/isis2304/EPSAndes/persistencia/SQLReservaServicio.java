@@ -18,9 +18,15 @@ class SQLReservaServicio {
 		this.peps = persistenciaEPSAndes;
 	}
 	
-	public long adicionarReservaServicio(PersistenceManager pm, int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
+	public long adicionarReservaServicioAfiliado(PersistenceManager pm, int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) {
 		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaReservaServicio() + " (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)" );
 		q.setParameters(numdocAf, idServicio, idIPS, fechaHora);
+		return (long) q.executeUnique();
+	}
+	
+	public long adicionarReservaServicioCampania(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaHora, long idCampania) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + peps.darTablaReservaServicio() + " (campania, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)" );
+		q.setParameters(idCampania, idServicio, idIPS, fechaHora);
 		return (long) q.executeUnique();
 	}
 

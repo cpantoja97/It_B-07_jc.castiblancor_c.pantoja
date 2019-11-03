@@ -403,9 +403,9 @@ public class EPSAndes
 	 * 			Métodos para manejar la relación RESERVASERVICIO
 	 *****************************************************************/
 
-	public ReservaServicio adicionarReservaServicio( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora)   {
+	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora)   {
 		log.info ("Adicionando ReservaServicio: numdocAf-" + numdocAf + ", idServicio- "+ idServicio);
-		ReservaServicio rs= peps.adicionarReservaServicio(numdocAf, idServicio, idIPS, fechaHora);	
+		ReservaServicio rs= peps.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);	
 		log.info ("Adicionando ReservaServicio: " + rs);
 		return rs;
 	}

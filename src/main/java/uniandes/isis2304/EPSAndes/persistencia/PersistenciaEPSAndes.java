@@ -815,18 +815,18 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar la relación ServiciosIPS
 	 *****************************************************************/
 
-	public ServiciosIPS adicionarServiciosIPS( long idIPS, long idServicio, int capacidad, String horarioDeAtencion) 
+	public ServiciosIPS adicionarServiciosIPS( long idIPS, long idServicio, int capacidad, Timestamp horarioInicio, Timestamp horarioFin) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlServiciosIPS.adicionarServiciosIPS( pm,  idIPS,  idServicio,  capacidad,  horarioDeAtencion);
+			long tuplasInsertadas = sqlServiciosIPS.adicionarServiciosIPS( pm,  idIPS,  idServicio,  capacidad,  horarioInicio, horarioFin);
 			tx.commit();
 
 			log.trace ("Inserción Servicios de IPS: " + idIPS + "-" + idServicio + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new ServiciosIPS (idIPS,  idServicio,  capacidad,  horarioDeAtencion);
+			return new ServiciosIPS (idIPS,  idServicio,  capacidad,  horarioInicio, horarioFin);
 		}
 		catch (Exception e)
 		{
@@ -1285,18 +1285,18 @@ public class PersistenciaEPSAndes
 	 * 			Métodos para manejar la relación ReservaServicio
 	 *****************************************************************/
 
-	public ReservaServicio adicionarReservaServicio( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) 
+	public ReservaServicio adicionarReservaServicioAfiliado( int numdocAf, long idServicio, long idIPS, Timestamp fechaHora) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx=pm.currentTransaction();
 		try
 		{
 			tx.begin();
-			long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicio(pm,   numdocAf,  idServicio,  idIPS,  fechaHora);
+			long tuplasInsertadas = sqlReservaServicio.adicionarReservaServicioAfiliado(pm, numdocAf,  idServicio,  idIPS,  fechaHora);
 			tx.commit();
 
 			log.trace ("Inserción ReservaServicio: " + numdocAf + "-" +idServicio + "-" + idIPS + "-" + fechaHora + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new ReservaServicio(numdocAf,  idServicio,  idIPS,  fechaHora);
+			return new ReservaServicio(numdocAf,  idServicio,  idIPS,  fechaHora, -1);
 		}
 		catch (Exception e)
 		{
@@ -1412,6 +1412,80 @@ public class PersistenciaEPSAndes
 	{
 		return sqlPrestacionServicio.darPrestacionServicio(pmf.getPersistenceManager());
 	}
+
+	/* ****************************************************************
+	 * 			Métodos para manejar la relación PrestacionServicio
+	 *****************************************************************/
+	public Campania agregarCampaniaRF10(String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin, List<Servicio> servicios, List<Integer> cantidades) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx=pm.currentTransaction();
+		try
+		{
+			tx.begin();
+			tx.setIsolationLevel("serializable");
+
+			// Insertar tupla de Campaña
+			long id = nextval();
+			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
+			log.trace ("Inserción Campaña: " +  nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			// Insertar reservas de servicios
+			for(int i = 0; i < servicios.size(); i++) {
+				// Servicio:
+				Servicio servicioAct = servicios.get(i);
+				// Cantidad necesaria:
+				int cantidad = cantidades.get(i);
+				int contador = 0;
+
+				// Hallar las IPS para recorrerlas
+				List<IPS> IPSs = sqlIPS.darIPSs(pm);
+				
+				for(IPS ips : IPSs) {
+					List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, ips.getIdIPS(), servicioAct.getIdServicio());
+					if(respConsulta.size() > 0) {
+						ServiciosIPS servIPS = respConsulta.get(0);
+						int capacidad = servIPS.getCapacidad();
+						double minutos = (pFechaInicio.getTime() - pFechaFin.getTime())/60000.0;
+						int deltaTiempo = (int) (minutos/capacidad);
+					}
+					
+					if(cantidad >= contador) break;
+				}
+						//Revisar si capacidad es suficiente
+
+						//Hacer un select for update
+
+						//Asignar reservas
+
+
+						if(contador < cantidad) {
+							tx.rollback();
+						} else {
+							tx.commit();
+						}
+			}
+
+			tx.commit();
+			return new Campania( id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
+
+		}
+		catch (Exception e)
+		{
+			//        	e.printStackTrace();
+			log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		}
+		finally
+		{
+			if (tx.isActive())
+			{
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+
+
 
 	/* ****************************************************************
 	 * 			Métodos útiles

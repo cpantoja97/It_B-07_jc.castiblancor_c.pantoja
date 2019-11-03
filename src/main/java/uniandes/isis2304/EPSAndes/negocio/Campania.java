@@ -10,7 +10,16 @@ public class Campania implements VOCampania{
 	private Timestamp fechaInicio;
 	private Timestamp fechaFin;
 
-	public Campania(int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin) {
+	public Campania() {
+		this.id = 0;
+		this.nombre = null;
+		this.afiliadosEsperados = -1;
+		this.fechaInicio = null;
+		this.fechaFin = null;
+	}
+	public Campania(long id, String nombre, int pAfiliados, Timestamp pFechaInicio, Timestamp pFechaFin) {
+		this.id = id;
+		this.nombre = nombre;
 		this.afiliadosEsperados = pAfiliados;
 		this.fechaInicio = pFechaInicio;
 		this.fechaFin = pFechaFin;
