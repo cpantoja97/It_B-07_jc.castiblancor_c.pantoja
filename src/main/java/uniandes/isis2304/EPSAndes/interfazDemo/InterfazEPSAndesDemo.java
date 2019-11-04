@@ -648,10 +648,10 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			long idServicio = 1;
 			long idIPS =1;
 			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 12, 0, 0, 0);
-			//VOReservaServicio reserva1 = EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
+			VOReservaServicio reserva1 = EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
 
 			List <VOReservaServicio> lista = EPSAndes.darVOReservaServicio();
-			//long reservasEliminadas = EPSAndes.eliminarReservaServicioPorId(reserva1.getNumDoc(), reserva1.getIdServicio(), reserva1.getIdIPS(), reserva1.getFechaHora());
+			long reservasEliminadas = EPSAndes.eliminarReservaServicioPorId(reserva1.getNumDoc(), reserva1.getIdServicio(), reserva1.getIdIPS(), reserva1.getFechaHora());
 
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de Reservas\n\n";
