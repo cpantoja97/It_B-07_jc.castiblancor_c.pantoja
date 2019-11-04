@@ -1,0 +1,126 @@
+{
+	"title": "Demostración de EPSAndes",
+	"frameH": 600,
+	"frameW": 800,
+	"bannerPath": "./src/main/resources/config/logo.png",
+	"menuBar":
+	[
+		{ "menuTitle": "Campania",
+		  "options":
+			[
+				{
+					"label": "CRD de Campania",
+					"event": "demoCampania"
+				},
+				{
+					"label": "Pruebas en Campania",
+					"event": "errorCampania"
+				}
+			]
+		},		
+		{ "menuTitle": "Inhabilitacion",
+		  "options":
+			[
+				{
+					"label": "CRD Inhabilitacion",
+					"event": "demoInhabilitacion"
+				},
+				{
+					"label": "Pruebas en Inhabilitacion",
+					"event": "erroresInhabilitacion"
+				}
+			]
+		},
+		{ "menuTitle": "Orden",
+		  "options":
+			[
+				{
+					"label": "CRD Orden",
+					"event": "demoOrden"
+				},
+				{
+					"label": "Pruebas en Orden",
+					"event": "erorresOrden"
+				}
+			]
+		},
+		{ "menuTitle": "Prestacion",
+		  "options":
+			[
+				{
+					"label": "CRD Prestacion",
+					"event": "demoPrestacion"
+				},
+				{
+					"label": "Pruebas en Prestacion",
+					"event": "erorresPrestacion"
+				}
+			]
+		},
+		{ "menuTitle": "Reserva",
+		  "options":
+			[
+				{
+					"label": "CRD Reserva",
+					"event": "demoReserva"
+				},
+				{
+					"label": "Pruebas en Reserva",
+					"event": "erroresReserva"
+				}
+			]
+		},
+		{ "menuTitle": "Mantenimiento",
+		  "options":
+			[
+				{
+					"label": "Mostrar log EPSAndes",
+					"event": "mostrarLogEPSAndes"
+				},
+				{
+					"label": "Mostrar log datanucleus",
+					"event": "mostrarLogDatanuecleus"
+				},
+				{
+					"label": "Limpiar log de EPSAndes",
+					"event": "limpiarLogEPSAndes"
+				},
+				{
+					"label": "Limpiar log de datanucleus",
+					"event": "limpiarLogDatanucleus"
+				},
+				{
+					"label": "Limpiar Base de Datos",
+					"event": "limpiarBD"
+				}
+			]
+		},		
+		{ "menuTitle": "Documentación",
+		  "options":
+			[
+				{
+					"label": "Modelo conceptual",
+					"event": "mostrarModeloConceptual"
+				},
+				{
+					"label": "Esquema de la BD",
+					"event": "mostrarEsquemaBD"
+				},
+				{
+					"label": "Script creación de la BD",
+					"event": "mostrarScriptBD"
+				}
+			]
+		},		
+		{ "menuTitle": "Acerca de ...",
+		  "options":
+			[
+				{
+					"label": "Acerca de ...",
+					"event": "acercaDe"
+				}
+			]
+		}		
+	]
+}
+	
