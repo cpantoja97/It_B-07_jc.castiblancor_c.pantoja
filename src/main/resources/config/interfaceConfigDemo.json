@@ -11,6 +11,10 @@
 				{
 					"label": "CRD de Campania",
 					"event": "demoCampania"
+				},
+				{
+					"label": "Errores en create Campania",
+					"event": "errorCampania"
 				}
 			]
 		},		
@@ -20,6 +24,10 @@
 				{
 					"label": "CRD Inhabilitacion",
 					"event": "demoInhabilitacion"
+				},
+				{
+					"label": "Errores en create Inhabilitacion",
+					"event": "erroresInhabilitacion"
 				}
 			]
 		},
@@ -29,6 +37,10 @@
 				{
 					"label": "CRD Orden",
 					"event": "demoOrden"
+				},
+				{
+					"label": "Errores en create Orden",
+					"event": "erorresOrden"
 				}
 			]
 		},
@@ -38,6 +50,10 @@
 				{
 					"label": "CRD Prestacion",
 					"event": "demoPrestacion"
+				},
+				{
+					"label": "Errores en create Prestacion",
+					"event": "erorresPrestacion"
 				}
 			]
 		},
@@ -47,6 +63,10 @@
 				{
 					"label": "CRD Reserva",
 					"event": "demoReserva"
+				},
+				{
+					"label": "Errores en create Prestacion",
+					"event": "erroresReserva"
 				}
 			]
 		},

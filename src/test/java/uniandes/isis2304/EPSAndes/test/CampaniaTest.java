@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.io.FileReader;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.VOCampania;
 import uniandes.isis2304.EPSAndes.negocio.VOReservaServicio;
 
-public class CamapniaTest {
+public class CampaniaTest {
 
 	/* ****************************************************************
 	 * 			Constantes
@@ -30,7 +31,7 @@ public class CamapniaTest {
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(CamapniaTest.class.getName());
+	private static Logger log = Logger.getLogger(CampaniaTest.class.getName());
 
 	/**
 	 * Ruta al archivo de configuración de los nombres de tablas de la base de datos: La unidad de persistencia existe y el esquema de la BD también
@@ -80,39 +81,38 @@ public class CamapniaTest {
 
 		try
 		{
-			/**
-			 *
+
 			EPSAndes.limpiarEPSAndes();
-			List <VOCampania> lista = EPSAndes.darVoCampania();
-			assertEquals ("No debe haber Reservas creadas!!", 0, lista.size ());
+			List <VOCampania> lista = EPSAndes.darVOCampania();
+			int tamanio = lista.size();
+			assertEquals ("No debe haber Reservas creadas!!", tamanio, lista.size ());
 
-  			int numdocAf = 1;
-			long idServicio = 1;
-			long idIPS =1;
-			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
-			VOReservaServicio reserva1 = EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
-			lista = EPSAndes.darVOReservaServicio();
-			assertEquals ("Debe haber una reserva creada !!", 1, lista.size ());
-			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", reserva1, lista.get (0));
+			String nombre= "campania 1";
+			int pAfiliados = 20;
+			List<Long> servicios = new ArrayList<Long>();
+			List<Integer> cantidades = new ArrayList<Integer>();
+			servicios.add((long) 1);	servicios.add((long) 2);
+			cantidades.add(10);	cantidades.add(20);
+			Timestamp pFechaInicio =  new Timestamp(118, 1, 5 , 0, 0, 0, 0);
+			Timestamp pFechaFin =  new Timestamp(118, 1, 10 , 0, 0, 0, 0);
+			VOCampania campania1 = EPSAndes.agregarCampaniaRF10(nombre, pAfiliados, pFechaInicio, pFechaFin, servicios, cantidades);
+			lista = EPSAndes.darVOCampania();
+			assertEquals ("Debe haber una campania creada !!", tamanio+ 1, lista.size ());
+			//assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", campania1, lista.get (0));
 
-			numdocAf = 1;
-			idServicio = 1;
-			idIPS =1;
-			fechaHora =  new Timestamp(118, 11, 8 , 0, 0, 0, 0);
-			VOReservaServicio reserva2 = EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
-			lista = EPSAndes.darVOReservaServicio();
-			assertEquals ("Debe haber dos reservas creadas !!", 2, lista.size ());
-			assertTrue ("La primera reserva adicionadada debe estar en la tabla", reserva1.equals (lista.get (0)) || reserva1.equals (lista.get (1)));
-			assertTrue ("La segunda reserva adicionadada debe estar en la tabla", reserva2.equals (lista.get (0)) || reserva2.equals (lista.get (1)));
-
-			long pEliminados = EPSAndes.eliminarReservaServicioPorId(reserva1.getnumDocAfiliado(), reserva1.getIdServicio(), reserva1.getIdIPS(), reserva1.getFechaHora());
-			assertEquals ("Debe haberse eliminado una orden!!", 1, pEliminados);
-			lista = EPSAndes.darVOReservaServicio();
-			assertEquals ("Debe haber una sola orden !!", 1, lista.size ());
-			assertFalse ("La primera reserva no debe estar en la tabla", reserva1.equals (lista.get (0)));
-			assertTrue ("La segunda reserva adicionada debe estar en la tabla", reserva2.equals (lista.get (0)));
-			 */
-
+			nombre= "campania 2";
+			pAfiliados = 100;
+			List<Long> servicios2 = new ArrayList<Long>();
+			List<Integer> cantidades2 = new ArrayList<Integer>();
+			servicios2.add((long) 3);	servicios2.add((long) 4);
+			cantidades2.add(100);	cantidades2.add(200);
+			pFechaInicio =  new Timestamp(118, 2, 1 , 0, 0, 0, 0);
+			pFechaFin =  new Timestamp(118, 2, 25 , 0, 0, 0, 0);
+			VOCampania campania2 = EPSAndes.agregarCampaniaRF10(nombre, pAfiliados, pFechaInicio, pFechaFin, servicios2, cantidades2);
+			lista = EPSAndes.darVOCampania();
+			assertEquals ("Debe haber dos reservas creadas !!", tamanio+2, lista.size ());
+//			assertTrue ("La primera reserva adicionadada debe estar en la tabla", campania1.equals (lista.get (0)) || campania1.equals (lista.get (1)));
+//			assertTrue ("La segunda reserva adicionadada debe estar en la tabla", campania2.equals (lista.get (0)) || campania2.equals (lista.get (1)));
 
 		}
 		catch (Exception e)

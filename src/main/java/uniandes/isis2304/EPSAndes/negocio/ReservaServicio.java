@@ -5,14 +5,14 @@ import java.sql.Timestamp;
 public class ReservaServicio implements VOReservaServicio{
 
 	int numDoc;
-	long id_Servicio;
+	long id_servicio;
 	long id_IPS;
 	Timestamp fechaHora;
 	long campania;
 
 	public ReservaServicio() {
-		numDoc = -1;
-		this.id_Servicio = 0;
+		this.numDoc = -1;
+		this.id_servicio = 0;
 		this.id_IPS = 0;
 		this.fechaHora = new Timestamp(System.currentTimeMillis());
 		this.campania = -1;
@@ -20,7 +20,7 @@ public class ReservaServicio implements VOReservaServicio{
 
 	public ReservaServicio(int numdocAf, long idServicio, long idIPS, Timestamp fechaHora, long campania) {
 		numDoc = numdocAf;
-		this.id_Servicio = idServicio;
+		this.id_servicio = idServicio;
 		this.id_IPS = idIPS;
 		this.fechaHora = fechaHora;
 		this.campania = campania;
@@ -28,8 +28,8 @@ public class ReservaServicio implements VOReservaServicio{
 	public void setNumDoc(int p) {
 		numDoc = p;
 	}
-	public void setId_Servicio(long p) {
-		id_Servicio = p;
+	public void setId_servicio(long p) {
+		id_servicio = p;
 	}
 	public void setId_IPS(long p) {
 		id_IPS = p;
@@ -40,7 +40,7 @@ public class ReservaServicio implements VOReservaServicio{
 	public void setCampania(long p) {
 		campania = p;
 	}
-	public int getnumDocAfiliado() {
+	public int getNumDoc() {
 		return this.numDoc;
 	}
 
@@ -49,7 +49,7 @@ public class ReservaServicio implements VOReservaServicio{
 	}
 
 	public long getIdServicio() {
-		return id_Servicio;
+		return id_servicio;
 	}
 
 	public long getIdIPS() {

@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -32,13 +33,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
+import uniandes.isis2304.EPSAndes.negocio.Campania;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
+import uniandes.isis2304.EPSAndes.negocio.PrestacionServicio;
+import uniandes.isis2304.EPSAndes.negocio.ReservaServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
 import uniandes.isis2304.EPSAndes.negocio.VOCampania;
 import uniandes.isis2304.EPSAndes.negocio.VOInhabilitacion;
 import uniandes.isis2304.EPSAndes.negocio.VOMedico;
 import uniandes.isis2304.EPSAndes.negocio.VOOrdenDeServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOPrestacionServicio;
+import uniandes.isis2304.EPSAndes.negocio.VORecepcionista;
 import uniandes.isis2304.EPSAndes.negocio.VOReservaServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
@@ -249,30 +254,33 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 
-			String datosCampania = "xd XD Xd xD";
+			String nombre= "campania 7";
+			int pAfiliados = 20;
+			List<Long> servicios = new ArrayList<Long>();
+			servicios.add((long) 1);	servicios.add((long) 2);
+			List<Integer> cantidades = new ArrayList<Integer>() ;
+			cantidades.add(3);	cantidades.add(4);
+			Timestamp pFechaInicio =  new Timestamp(118, 1, 5 , 0, 0, 0, 0);
+			Timestamp pFechaFin =  new Timestamp(118, 1, 10 , 0, 0, 0, 0);
+			VOCampania campania1 = EPSAndes.agregarCampaniaRF10(nombre, pAfiliados, pFechaInicio, pFechaFin, servicios, cantidades);
 			boolean errorAgregando = false;
-			VOCampania campania = null;//EPSAndes.adicionarCampania(datosCampania);
-			if (campania == null)
+			if (campania1 == null)
 			{
 				errorAgregando = true;
 			}
-			List <VOCampania> lista = null;//EPSAndes.DarVOCampania();
-			long campaniaEliminados = 0;//EPSAndes.eliminarCampaniaPorId (campania.getId ());
+			List <VOCampania> lista = EPSAndes.darVOCampania();
 
-			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de Campania\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
 			if (errorAgregando)
 			{
 				resultado += "*** Exception creando Campania !!\n";
-				resultado += "*** Es probable que esta campania ya existiera y hay restricción de UNICIDAD sobre el nombre, la fecha y otras cositas jeje\n";
+				resultado += "*** Es probable que esta campania ya existiera y hay restricción de UNICIDAD\n";
 				resultado += "*** Revise el log de EPSAndes para más detalles\n";
 			}
-			resultado += "Adicionado la campania"  + campania + "\n";
+			resultado += "Adicionado la campania"  + campania1 + "\n";
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado +=  "\n" + listarCampania(lista);
-			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += campaniaEliminados + " campania eliminadas\n";
 			resultado += "\n Demo terminada";
 
 			panelDatos.actualizarInterfaz(resultado);
@@ -284,6 +292,49 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 
+	}
+
+	public void errorCampania( )
+	{
+		try 
+		{
+			List <VOCampania> lista = EPSAndes.darVOCampania();
+			String nombre= "campania 3";
+			int pAfiliados = 1000;
+			List<Long> servicios = new ArrayList<Long>();
+			servicios.add((long) 1);	servicios.add((long) 2);
+			List<Integer> cantidades = new ArrayList<Integer>() ;
+			cantidades.add(1000);	cantidades.add(1000);
+			Timestamp pFechaInicio =  new Timestamp(118, 2,2 , 0, 0, 0, 0);
+			Timestamp pFechaFin =  new Timestamp(118, 2, 3 , 0, 0, 0, 0);
+			VOCampania campania1 = null;
+			String msjErr= "";
+			try {
+				campania1 = EPSAndes.agregarCampaniaRF10(nombre, pAfiliados, pFechaInicio, pFechaFin, servicios, cantidades);
+			} catch(Exception e)  {
+				msjErr= generarMensajeError(e); ;
+			}
+			
+			List <VOCampania> lista1 = EPSAndes.darVOCampania();
+
+			String resultado = "Demo de errores creación y listado de Ordenes\n\n";
+			resultado += "Lista antes de agregar datos incorrectos: " + "\n";
+			resultado += "\n" + listarCampania(lista);
+
+			resultado += "\n\n************Intentando adicionar campaña con muchos servicios en pocos días: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado+= msjErr;
+			resultado += "\n" + listarCampania (lista1);
+			resultado += "\n Demo terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 
 	/* ****************************************************************
@@ -356,7 +407,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
 
 			//InfoBasicUsers();
-			int numdocMedico = 106;
+			int numdocMedico = 101;
 			int numdocAfiliado = 1;
 			long idServicio = 1;
 			VOOrdenDeServicio orden1 = EPSAndes.adicionarOrdenDeServicio(numdocMedico, numdocAfiliado, idServicio);
@@ -386,6 +437,61 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 		}
 	}
 
+	public void erorresOrden( )
+	{
+		try 
+		{
+			// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+
+			//InfoBasicUsers();
+			List <VOOrdenDeServicio> lista = EPSAndes.darVOOrdenDeServicio();
+			int numdocMedico = -1;
+			int numdocAfiliado = 1;
+			long idServicio = 1;
+			VOOrdenDeServicio orden1 = EPSAndes.adicionarOrdenDeServicio(numdocMedico, numdocAfiliado, idServicio);
+			List <VOOrdenDeServicio> lista1 = EPSAndes.darVOOrdenDeServicio();
+
+			numdocMedico = 101;
+			numdocAfiliado = -1;
+			idServicio = 1;
+			VOOrdenDeServicio orden2 = EPSAndes.adicionarOrdenDeServicio(numdocMedico, numdocAfiliado, idServicio);
+			List <VOOrdenDeServicio> lista2 = EPSAndes.darVOOrdenDeServicio();
+
+			numdocMedico = 101;
+			numdocAfiliado = 1;
+			idServicio = -1;
+			VOOrdenDeServicio orden3 = EPSAndes.adicionarOrdenDeServicio(numdocMedico, numdocAfiliado, idServicio);
+			List <VOOrdenDeServicio> lista3 = EPSAndes.darVOOrdenDeServicio();
+
+
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "Demo de errores creación y listado de Ordenes\n\n";
+			resultado += "Lista antes de agregar datos incorrectos: " + "\n";
+			resultado += "\n" + listarOrdenes (lista);
+
+			resultado += "\n\n************Intentando adicionar orden de un Medico inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarOrdenes (lista1);
+
+			resultado += "\n\n************Intentando adicionar orden de un Afiliado inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarOrdenes (lista2);
+
+			resultado += "\n\n************Intentando adicionar orden de un Servicio inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarOrdenes (lista3);
+			resultado += "\n Demo terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 
 	/* ****************************************************************
 	 * 			Demos de Prestacion
@@ -446,6 +552,85 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 		}
 	}
 
+	public void erorresPrestacion( )
+	{
+		try 
+		{
+			// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+
+			List <VOPrestacionServicio> lista = EPSAndes.darVOPrestacionServicio();
+
+			int numdocAf = -1;
+			long idServicio = 1;
+			long idIPS =1;
+			long id_Recepcionista = 121;
+			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
+			EPSAndes.adicionarPrestacionServicio(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
+			List <VOPrestacionServicio> lista1 = EPSAndes.darVOPrestacionServicio();
+
+			numdocAf = 1;
+			idServicio = -1;
+			idIPS =1;
+			id_Recepcionista = 121;
+			fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
+			EPSAndes.adicionarPrestacionServicio(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
+			List <VOPrestacionServicio> lista2 = EPSAndes.darVOPrestacionServicio();
+
+			numdocAf = 1;
+			idServicio = 1;
+			idIPS =-1;
+			id_Recepcionista = 121;
+			fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
+			EPSAndes.adicionarPrestacionServicio(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
+			List <VOPrestacionServicio> lista3 = EPSAndes.darVOPrestacionServicio();
+
+			numdocAf = 1;
+			idServicio = 1;
+			idIPS =1;
+			id_Recepcionista = -121;
+			fechaHora =  new Timestamp(118, 10, 29 , 0, 0, 0, 0);
+			EPSAndes.adicionarPrestacionServicio(numdocAf, idServicio, idIPS, fechaHora, id_Recepcionista);
+			List <VOPrestacionServicio> lista4 = EPSAndes.darVOPrestacionServicio();
+
+			PrestacionServicio prestacion = EPSAndes.darPrestacionServicio().get(0);
+			EPSAndes.adicionarPrestacionServicio(prestacion.getNumDoc(), prestacion.getId_servicio(), prestacion.getIdIPS(), prestacion.getFechaHora(), prestacion.getIdRecepcionista());
+			List <VOPrestacionServicio> lista5 = EPSAndes.darVOPrestacionServicio();
+
+			String resultado = "Demo de errores creación y listado de Ordenes\n\n";
+			resultado += "Lista antes de agregar datos incorrectos: " + "\n";
+			resultado += "\n" + listarPrestaciones (lista);
+
+			resultado += "\n\n************Intentando adicionar prestacion de un afiliado inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarPrestaciones (lista1);
+
+			resultado += "\n\n************Intentando adicionar orden de un Servicio inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarPrestaciones (lista2);
+
+			resultado += "\n\n************Intentando adicionar orden de una IPS inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarPrestaciones (lista3);
+
+			resultado += "\n\n************Intentando adicionar orden de un recepcionista inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarPrestaciones (lista4);
+
+			resultado += "\n\n************Intentando adicionar orden que ya existia: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarPrestaciones (lista5);
+			resultado += "\n Demo terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
 	/* ****************************************************************
 	 * 			Demos de Reserva
 	 *****************************************************************/
@@ -466,7 +651,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			//VOReservaServicio reserva1 = EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
 
 			List <VOReservaServicio> lista = EPSAndes.darVOReservaServicio();
-			//long reservasEliminadas = EPSAndes.eliminarReservaServicioPorId(reserva1.getnumDocAfiliado(), reserva1.getIdServicio(), reserva1.getIdIPS(), reserva1.getFechaHora());
+			//long reservasEliminadas = EPSAndes.eliminarReservaServicioPorId(reserva1.getNumDoc(), reserva1.getIdServicio(), reserva1.getIdIPS(), reserva1.getFechaHora());
 
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de Reservas\n\n";
@@ -487,6 +672,73 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+
+	public void erroresReserva( )
+	{
+		try 
+		{
+			List <VOReservaServicio> lista = EPSAndes.darVOReservaServicio();
+
+			int numdocAf = -1;
+			long idServicio = 1;
+			long idIPS =1;
+			Timestamp fechaHora =  new Timestamp(118, 10, 29 , 12, 0, 0, 0);
+			EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
+			List <VOReservaServicio> lista1 = EPSAndes.darVOReservaServicio();
+
+			numdocAf = 1;
+			idServicio = -1;
+			idIPS =1;
+			fechaHora =  new Timestamp(118, 10, 29 , 12, 0, 0, 0);
+			EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
+			List <VOReservaServicio> lista2 = EPSAndes.darVOReservaServicio();
+
+			numdocAf = 1;
+			idServicio = 1;
+			idIPS =-1;
+			fechaHora =  new Timestamp(118, 10, 29 , 12, 0, 0, 0);
+			EPSAndes.adicionarReservaServicioAfiliado(numdocAf, idServicio, idIPS, fechaHora);
+			List <VOReservaServicio> lista3 = EPSAndes.darVOReservaServicio();
+
+			PrestacionServicio prestacion = EPSAndes.darPrestacionServicio().get(0);
+			EPSAndes.adicionarPrestacionServicio(prestacion.getNumDoc(), prestacion.getId_servicio(), prestacion.getIdIPS(), prestacion.getFechaHora(), prestacion.getIdRecepcionista());
+			List <VOPrestacionServicio> lista5 = EPSAndes.darVOPrestacionServicio();
+
+			ReservaServicio reserva = EPSAndes.darReservaServicio().get(0);
+			EPSAndes.adicionarReservaServicioAfiliado(reserva.getNumDoc(), reserva.getIdServicio(), reserva.getIdIPS(), reserva.getFechaHora());
+			List <VOReservaServicio> lista4 = EPSAndes.darVOReservaServicio();
+
+			String resultado = "Demo de errores creación y listado de Ordenes\n\n";
+			resultado += "Lista antes de agregar datos incorrectos: " + "\n";
+			resultado += "\n" + listarReservas (lista);
+
+			resultado += "\n\n************Intentando adicionar prestacion de un afiliado inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarReservas (lista1);
+
+			resultado += "\n\n************Intentando adicionar orden de un Servicio inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarReservas (lista2);
+
+			resultado += "\n\n************Intentando adicionar orden de una IPS inexistente: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarReservas (lista3);
+
+			resultado += "\n\n************Intentando adicionar orden que ya existia: ************ \\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarReservas (lista4);
+			resultado += "\n Demo terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+		catch (Exception e) 
+		{
+			//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
 
 	/* ****************************************************************
 	 * 			Métodos administrativos
@@ -649,6 +901,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener
 		VOMedico medico = EPSAndes.darMedicos().get(0);
 		resp += medico.toString() +"\n";
 
+		//		resp += "\n El Recepcionista usado para la prueba es:\n";
+		//		VORecepcionista recepcionista = EPSAndes.darRecepcionistas().get(0);
+		//		resp += recepcionista.toString() +"\n";
 		return resp;
 	}
 

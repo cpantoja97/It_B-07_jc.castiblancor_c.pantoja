@@ -37,7 +37,7 @@ class SQLReservaServicio {
 	}
 
 	public List<ReservaServicio> darReservaServicio(PersistenceManager persistenceManager) {
-		Query q = persistenceManager.newQuery(SQL, "SELECT * FROM " + peps.darTablaReservaServicio());
+		Query q = persistenceManager.newQuery(SQL, "SELECT nvl(NumDoc,0) as NumDoc, Id_Servicio, Id_IPS, FechaHora, nvl(Campania,0) as Campania FROM " + peps.darTablaReservaServicio());
 		q.setResultClass(ReservaServicio.class);
 		return (List<ReservaServicio>) q.executeList();
 	}

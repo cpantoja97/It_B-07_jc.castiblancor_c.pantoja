@@ -1,350 +1,262 @@
-12:55:18,761 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-12:55:21,005 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-12:55:21,255 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-12:55:21,256 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-12:55:21,256 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-12:55:54,874 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: prueba
-12:55:55,860 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "SELECT * FROM SERVICIOS WHERE id = ?".
-ORA-00904: "ID": invalid identifier
+17:16:33,612 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:16:35,481 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 73, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:16:35,481 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:16:35,576 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 61 existentes
+17:16:35,576 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:16:35,668 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:16:35,668 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:16:35,683 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 0 existentes
+17:16:44,565 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:16:44,566 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:16:44,578 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:17:06,109 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:17:06,321 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 74, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:17:06,321 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:17:32,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 62 existentes
+17:17:32,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:17:32,565 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:17:32,863 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:17:32,878 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 0 existentes
+17:17:44,368 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:17:45,858 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 75, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:17:45,858 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:17:50,700 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 63 existentes
+17:17:50,700 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:17:50,790 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:18:01,184 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:18:01,202 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 0 existentes
+17:20:16,499 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:20:16,500 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:20:16,512 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:20:22,241 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:20:22,413 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 76, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:20:22,413 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:20:22,481 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 64 existentes
+17:20:22,481 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:20:22,554 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:20:22,555 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:20:22,569 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 0 existentes
+17:20:28,196 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:20:28,197 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:20:28,210 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:20:31,225 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:20:31,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 77, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:20:31,434 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:20:31,532 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 65 existentes
+17:20:31,532 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:20:31,628 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:20:37,012 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:20:37,024 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 0 existentes
+17:21:19,386 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:21:19,387 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:21:19,400 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:21:22,765 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:21:23,248 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 78, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:21:23,248 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:21:23,383 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 66 existentes
+17:21:23,383 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:21:23,483 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:21:27,420 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:21:27,438 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
+17:21:31,480 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
+17:21:31,514 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+17:23:03,673 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:23:03,673 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:23:03,686 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:23:07,937 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+17:24:42,540 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:24:42,540 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:24:42,553 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:24:47,669 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+17:26:05,979 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:26:05,980 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:26:05,992 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:26:10,573 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+17:28:41,459 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:28:41,460 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:28:41,472 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:28:45,984 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:28:46,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 79, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:28:46,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:28:46,764 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 67 existentes
+17:28:46,764 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:28:46,838 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:28:46,838 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:28:46,855 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
+17:28:46,855 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
+17:28:46,887 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+17:28:46,887 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Recepcionistas
+17:28:46,914 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Recepcionistas: 0 existentes
+17:29:00,080 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:29:00,081 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:29:00,093 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:29:04,184 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+17:29:05,013 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 80, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+17:29:05,013 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:29:05,106 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 68 existentes
+17:29:05,106 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+17:29:05,168 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+17:29:05,168 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+17:29:05,180 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
+17:29:05,180 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
+17:29:05,209 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+17:36:35,912 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:36:35,913 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:36:35,926 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:36:41,964 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico--1, numdocAfiliado- 1
+17:36:43,388 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDMEDICO) violated - parent key not found
 
-12:55:55,975 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-12:59:49,621 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-12:59:51,577 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-12:59:51,814 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-12:59:51,818 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-12:59:51,819 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:00:09,148 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-13:00:10,010 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.Servicio" but it was impossible to set the field "ID_SERVICIO" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+17:36:43,398 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:36:43,398 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- -1
+17:36:43,419 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDAFILIADO) violated - parent key not found
 
-13:00:10,115 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-13:01:40,850 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:01:42,759 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:01:42,995 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:01:42,996 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:01:42,996 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:02:17,055 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-13:02:17,956 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.Servicio" but it was impossible to set the field "ID_SERVICIO" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+17:36:43,429 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:36:43,429 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- 1
+17:36:43,451 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDSERVICIO) violated - parent key not found
 
-13:02:18,089 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-13:03:38,528 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:03:40,677 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:03:40,944 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:03:40,945 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:03:40,945 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:03:59,427 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-13:25:55,269 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:25:57,620 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:25:57,945 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:25:57,947 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:25:57,948 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:26:19,358 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: prueba
-13:33:33,366 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:33:36,310 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:33:36,587 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:33:36,595 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:33:36,595 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:34:00,062 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: 1
-13:34:01,667 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 40, nombre = 1, Afiliados esperados = 10, fechaInicio = 0017-05-11 00:00:00.0, fechaFin = 0017-05-11 00:00:00.0]
-13:38:13,278 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:38:15,250 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:38:15,497 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:38:15,500 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:38:15,500 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:38:35,206 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-13:38:37,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 41, nombre = Prueba, Afiliados esperados = 10, fechaInicio = 2019-11-11 00:00:00.0, fechaFin = 2019-11-11 00:00:00.0]
-13:51:00,267 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-13:51:03,559 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-13:51:03,812 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-13:51:03,816 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-13:51:03,816 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-13:51:47,198 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-13:51:48,686 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 42, nombre = Prueba, Afiliados esperados = 10, fechaInicio = 0018-12-12 00:00:00.0, fechaFin = 0018-12-13 00:00:00.0]
-14:01:34,832 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:01:37,867 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:01:38,396 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:01:38,397 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:01:38,397 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:03:02,280 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:03:03,404 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "FECHAHORA" type "java.sql.Timestamp". The field should have either a public set/put method, or be public.
+17:36:43,459 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:36:43,459 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:36:43,542 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 68 existentes
+17:39:14,482 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:39:14,483 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:39:14,495 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:39:21,275 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico--1, numdocAfiliado- 1
+17:39:22,117 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDMEDICO) violated - parent key not found
 
-14:03:03,520 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-14:06:42,454 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:06:44,913 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:06:45,208 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:06:45,210 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:06:45,210 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:07:15,904 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:07:17,061 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "NUMDOC" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+17:39:22,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:39:22,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- -1
+17:39:22,151 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDAFILIADO) violated - parent key not found
 
-14:07:17,174 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-14:08:28,818 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:08:30,815 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:08:31,088 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:08:31,089 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:08:31,089 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:08:50,827 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:08:52,524 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "ID_SERVICIO" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+17:39:22,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:39:22,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- 1
+17:39:22,191 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO ORDENES(id, id_Medico, id_Afiliado, id_Servicio) values (?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_ORDENES_IDSERVICIO) violated - parent key not found
 
-14:08:52,648 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-14:09:53,445 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:09:55,391 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:09:55,632 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:09:55,635 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:09:55,635 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:10:12,120 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:10:13,597 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "CAMPANIA" type "null". The field should have either a public set/put method, or be public.
+17:39:22,202 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: null
+17:39:22,202 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+17:39:22,303 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 68 existentes
+17:54:47,426 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:54:47,426 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:54:47,439 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:54:52,521 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+17:54:52,654 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
 
-14:10:13,708 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-14:11:29,904 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:11:32,897 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:11:33,155 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:11:33,156 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:11:33,156 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:11:50,088 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:11:51,366 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "CAMPANIA" type "null". The field should have either a public set/put method, or be public.
+17:54:52,664 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:54:52,664 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:54:52,717 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:55:01,225 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:55:01,254 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:55:01,255 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf--1, idServicio- 1
+17:55:01,264 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
 
-14:11:51,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
-14:16:23,616 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:16:29,977 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:16:30,209 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:16:30,210 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:16:30,210 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:16:44,257 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba
-14:16:46,576 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 50, nombre = Prueba, Afiliados esperados = 10, fechaInicio = 2018-12-12 00:00:00.0, fechaFin = 2018-12-13 00:00:00.0]
-14:28:34,310 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:28:36,420 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:28:36,667 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:28:36,669 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:28:36,670 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:29:57,806 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba2
-14:29:59,726 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : INVIABLE -No hay disponibilidad para alguno de los servicios.
+17:55:01,274 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:55:01,274 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:55:01,303 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:55:01,303 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- -1
+17:55:01,318 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERV_IDSERV) violated - parent key not found
 
-14:31:16,017 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:31:18,889 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:31:19,126 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-14:31:19,128 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:31:19,128 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:32:12,986 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba2
-14:32:14,721 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 53, nombre = Prueba2, Afiliados esperados = 10, fechaInicio = 2018-11-16 00:00:00.0, fechaFin = 2018-11-17 00:00:00.0]
+17:55:01,326 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:55:01,326 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:55:01,363 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:55:01,364 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+17:55:01,374 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDIPS) violated - parent key not found
+
+17:55:01,383 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:55:01,383 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:55:01,416 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:55:01,416 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- -1
+17:55:01,429 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDRECEP) violated - parent key not found
+
+17:55:01,437 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:55:01,437 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:55:01,468 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:15,775 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+17:59:15,775 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+17:59:15,788 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+17:59:20,306 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,398 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:20,399 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf--1, idServicio- 1
+17:59:20,499 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
+
+17:59:20,506 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:59:20,506 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,527 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:20,527 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- -1
+17:59:20,536 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERV_IDSERV) violated - parent key not found
+
+17:59:20,546 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:59:20,546 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,569 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:20,569 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+17:59:20,577 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDIPS) violated - parent key not found
+
+17:59:20,584 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:59:20,584 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,605 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:20,605 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- -1
+17:59:20,613 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-02291: integrity constraint (ISIS2304B191920.FK_PRESTACIONSERVICIO_IDRECEP) violated - parent key not found
+
+17:59:20,620 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:59:20,620 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,649 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+17:59:20,650 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Prestaciones de servicio
+17:59:20,675 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Prestaciones de servicio: 13 existentes
+17:59:20,676 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+17:59:20,684 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
+
+17:59:20,692 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+17:59:20,692 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+17:59:20,714 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+18:10:21,156 (main) INFO  [uniandes.isis2304.EPSAndes.test.OrdenTest] - Probando las operaciones Create sobre Orden
+18:10:21,212 (main) INFO  [uniandes.isis2304.EPSAndes.test.OrdenTest] - Se encontró un archivo de configuración de tablas válido
+18:10:22,289 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:22,424 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:22,434 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:10:22,435 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+18:10:22,506 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 68 existentes
+18:10:22,506 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
+18:10:22,535 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 87, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
+18:10:22,535 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+18:10:22,586 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 69 existentes
+18:10:22,586 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-105, numdocAfiliado- 2
+18:10:22,610 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 88, idServicio=1, Documento Afiliado=2, numero documento Medico=105]
+18:10:22,610 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+18:10:22,673 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 70 existentes
+18:10:22,673 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:22,683 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:22,692 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:10:34,478 (main) INFO  [uniandes.isis2304.EPSAndes.test.OrdenTest] - Probando las operaciones CRUD sobre Prestacion
+18:10:35,805 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:35,927 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:35,936 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:10:35,936 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+18:10:35,974 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+18:10:35,974 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+18:10:35,983 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
+
 <<<<<<< Updated upstream
-15:07:58,757 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-15:08:01,209 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-15:08:01,522 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-15:08:01,524 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-15:08:01,524 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-15:08:49,715 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: Prueba 3
-15:08:53,352 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 56, nombre = Prueba 3, Afiliados esperados = 20, fechaInicio = 2019-11-11 00:00:00.0, fechaFin = 2019-11-13 00:00:00.0]
-15:12:13,049 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - NO se encontró un archivo de configuración válido
-15:12:14,380 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración por defecto
-15:25:37,012 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-15:25:39,388 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-15:25:39,728 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-15:25:39,730 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-15:25:39,730 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-15:25:59,211 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Eliminando Servicio 1 de Campania: 56
-15:25:59,231 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : SQL query "DELETE FROM RESERVASERVICIO WHERE id_Servicio = ? AND campania = ?" requires 2 parameters yet none have been supplied
-
-15:25:59,233 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Se eliminaron: -1 reservas
-15:31:08,404 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-15:31:11,110 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-15:31:11,407 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
-15:31:11,408 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-15:31:11,408 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-15:31:19,403 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Eliminando Servicio 1 de Campania: 56
-15:31:20,120 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Se eliminaron: 6 reservas
-=======
-14:46:00,598 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-14:46:00,599 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-14:46:00,613 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-14:46:11,991 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-14:46:13,860 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
-14:46:13,935 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
-14:46:13,936 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
-14:46:13,936 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
-14:46:37,872 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-14:46:37,873 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-14:46:37,885 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-14:46:41,415 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
-14:47:05,762 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-14:47:05,762 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-14:47:05,775 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-14:47:09,872 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
-14:47:50,643 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-14:47:50,644 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-14:47:50,659 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-14:47:54,260 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-14:47:54,454 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
-14:47:54,473 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
-14:47:54,473 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
-14:48:05,211 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
-14:49:00,715 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-14:49:01,395 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
-14:49:01,405 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
-14:49:01,405 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
-14:49:13,522 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
-14:51:12,625 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-14:51:12,626 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-14:51:12,638 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-14:51:16,127 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-14:51:16,268 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
-14:51:16,279 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
-14:51:16,279 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
-14:51:16,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
-15:03:00,350 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:03:00,350 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:03:00,355 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:04:05,275 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:04:05,285 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:04:05,295 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:04:08,162 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:04:08,315 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:04:08,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-15:04:08,475 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 54, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-15:04:08,475 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-15:04:08,526 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 43 existentes
-15:04:08,526 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:04:08,597 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:07:54,341 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:07:54,341 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:07:54,356 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:08:01,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:08:01,637 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:08:01,638 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
-15:08:01,666 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
-15:08:01,666 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:08:01,691 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 0 existentes
-15:08:07,485 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-15:08:08,575 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
-15:08:08,585 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
-15:08:08,585 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
-15:08:08,625 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
-15:08:13,215 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:08:13,285 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:08:13,285 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
-15:08:13,295 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
-15:08:13,295 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:08:13,315 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 0 existentes
-15:08:41,295 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:08:41,295 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:08:41,305 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:08:47,705 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:08:47,855 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:08:47,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:08:47,875 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 0 existentes
-15:08:57,575 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:08:57,575 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:08:57,585 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:09:00,615 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:09:00,765 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:09:00,765 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-15:09:00,905 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 55, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-15:09:00,905 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-15:09:00,965 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 44 existentes
-15:09:00,965 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:09:01,085 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:11:16,697 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:11:16,697 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:11:16,712 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:11:20,991 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:11:21,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:11:21,160 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-15:11:21,291 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 57, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-15:11:21,291 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-15:11:21,361 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 45 existentes
-15:11:21,361 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:11:21,461 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:11:59,823 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:11:59,823 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:11:59,849 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:12:04,031 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:12:04,200 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:12:14,192 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:12:14,207 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 0 existentes
-15:14:48,488 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:14:48,488 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:14:48,504 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:14:53,074 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:14:53,227 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:14:58,626 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:14:58,642 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 0 existentes
-15:22:00,129 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-15:22:00,129 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-15:22:00,145 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-15:22:03,703 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:22:03,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:22:12,719 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:22:12,734 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
-15:22:15,625 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-15:22:15,741 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 58, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-15:22:15,741 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-15:22:15,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 46 existentes
-15:22:15,825 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-15:22:15,888 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-15:22:18,117 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-15:22:18,164 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
->>>>>>> Stashed changes
-16:14:04,453 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:14:04,453 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:14:04,469 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:14:19,093 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-16:14:23,378 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-16:14:23,378 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-16:14:24,996 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
-16:14:24,996 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-16:14:31,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 59, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-16:14:31,155 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-16:15:01,618 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:15:01,618 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:15:01,618 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:15:07,873 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-16:15:10,289 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-16:15:17,134 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-16:15:18,716 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
-16:15:21,143 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-16:15:26,183 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 60, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-16:15:26,183 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-16:15:51,806 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:15:51,806 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:15:51,822 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:16:00,221 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
-16:16:28,395 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:16:28,395 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:16:28,410 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:16:35,319 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-16:16:38,961 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
-16:16:39,414 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
-16:16:39,414 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
-16:16:53,955 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
-16:17:03,063 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
-16:17:07,755 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
-16:17:16,572 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
-16:17:18,108 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
-16:17:53,142 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-16:17:55,909 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 61, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-16:17:55,909 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-16:18:46,038 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:18:46,038 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:18:46,054 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:18:49,618 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-106, numdocAfiliado- 1
-16:18:49,834 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 62, idServicio=1, Documento Afiliado=1, numero documento Medico=106]
-16:18:49,834 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
-16:22:10,786 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
-16:22:10,786 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
-16:22:10,792 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
-16:22:20,196 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
-16:22:24,806 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
-ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
-
 16:22:25,577 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
 16:22:25,577 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
 16:22:26,981 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
@@ -454,6 +366,7 @@ Operación terminada
 18:28:07,846 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
 
 18:28:07,965 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: null
+<<<<<<< Updated upstream
 18:43:22,796 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
 18:43:25,049 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
 18:43:25,304 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
@@ -494,6 +407,7 @@ Operación terminada
 18:52:41,576 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
 18:53:50,944 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
 18:53:54,967 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 94, nombre = campania 3, Afiliados esperados = 20, fechaInicio = 2018-01-05 00:00:00.0, fechaFin = 2018-01-10 00:00:00.0]
+<<<<<<< Updated upstream
 19:00:00,297 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
 19:00:02,391 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
 19:00:02,651 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
@@ -567,3 +481,287 @@ Operación terminada
 19:39:52,699 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
 19:40:25,353 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Modificando Inhabilitación: servicio 1 - IPS 1
 19:40:26,163 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Inhabilitación: Servicio = 1, IPS = 1, fechaInicio = 2018-11-15 00:00:00.0, fechaFin = 2018-11-17 00:00:00.0]
+=======
+=======
+=======
+18:10:35,990 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+18:10:35,990 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+18:10:36,026 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+18:10:36,026 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:36,035 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:36,042 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:10:55,407 (main) INFO  [uniandes.isis2304.EPSAndes.test.OrdenTest] - Probando las operaciones CRUD sobre Prestacion
+18:10:56,533 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:56,680 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:56,691 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:10:56,691 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+18:10:56,728 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 13 existentes
+18:10:56,728 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+18:10:56,746 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: idIPS=1, Documento Afiliado=1, idRecepcionista=121, idServicio=1]
+18:10:56,746 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+18:10:56,769 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 14 existentes
+18:10:56,769 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+18:10:56,783 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: idIPS=1, Documento Afiliado=1, idRecepcionista=121, idServicio=1]
+18:10:56,783 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+18:10:56,815 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 15 existentes
+18:10:56,815 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:10:56,826 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:10:56,834 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:11:16,236 (main) INFO  [uniandes.isis2304.EPSAndes.test.ReservaTest] - Probando las operaciones CRUD sobre Reserva
+18:11:17,433 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+18:11:17,565 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+18:11:17,574 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+18:11:17,574 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+18:12:55,356 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+18:12:55,357 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+18:12:55,369 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+18:12:58,908 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- 1
+18:12:59,095 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 89, idServicio=1, Documento Afiliado=1, numero documento Medico=101]
+18:12:59,095 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+18:12:59,177 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 71 existentes
+18:12:59,177 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+18:12:59,263 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+18:12:59,263 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+18:12:59,280 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
+18:12:59,280 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
+18:12:59,314 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+18:25:38,922 (main) INFO  [uniandes.isis2304.EPSAndes.test.InhabilitacionTest] - Probando las operaciones Create sobre Inhabilitacion
+18:25:38,981 (main) INFO  [uniandes.isis2304.EPSAndes.test.InhabilitacionTest] - Se encontró un archivo de configuración de tablas válido
+>>>>>>> Stashed changes
+18:39:10,450 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+18:39:10,451 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+18:39:10,464 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+18:39:15,817 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 1
+18:39:16,041 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:39:16,053 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+18:39:16,053 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+18:39:16,073 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 5 existentes
+18:42:36,238 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+18:42:36,238 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+18:42:36,250 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+18:42:51,580 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 1
+18:42:51,758 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:42:51,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+18:42:51,770 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+18:42:51,785 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 5 existentes
+18:46:21,617 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+18:46:21,618 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+18:46:21,630 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+18:46:25,313 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
+18:46:25,510 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:46:25,522 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+18:46:25,522 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+18:46:25,542 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 5 existentes
+18:47:09,665 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:47:10,688 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:47:10,760 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Administrador existente
+18:47:10,760 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:47:10,760 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:47:21,219 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+18:47:22,436 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+18:47:22,508 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Organizador campania existente
+18:47:22,508 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+18:47:22,508 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+18:53:27,434 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+18:53:27,435 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+18:53:27,448 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+18:53:45,017 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
+18:53:45,225 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+18:53:45,236 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+18:53:45,236 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+18:53:45,266 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 5 existentes
+19:00:07,051 (main) INFO  [uniandes.isis2304.EPSAndes.test.CamapniaTest] - Probando las operaciones CRUD sobre Campania
+19:00:08,429 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:00:08,580 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:00:08,590 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:00:08,590 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:00:08,622 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 6 existentes
+19:00:08,622 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:00:08,629 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:00:08,636 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:00:59,469 (main) INFO  [uniandes.isis2304.EPSAndes.test.CamapniaTest] - Probando las operaciones CRUD sobre Campania
+19:01:00,600 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:01:00,748 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:01:00,757 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:01:00,757 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:01:00,789 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 6 existentes
+19:01:00,789 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 1
+19:01:00,827 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ServiciosIPS" but it was impossible to set the field "ID_IPS" type "java.math.BigDecimal". The field should have either a public set/put method, or be public.
+
+19:01:00,836 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+19:01:00,836 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:01:00,851 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 6 existentes
+19:01:00,851 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:01:00,860 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:01:00,872 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+>>>>>>> Stashed changes
+19:03:13,136 (main) INFO  [uniandes.isis2304.EPSAndes.test.CamapniaTest] - Probando las operaciones CRUD sobre Campania
+19:03:14,482 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:03:14,605 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:03:14,615 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:03:14,615 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:03:14,646 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 6 existentes
+19:03:14,646 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 1
+19:03:14,948 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 96, nombre = campania 1, Afiliados esperados = 20, fechaInicio = 2018-02-05 00:00:00.0, fechaFin = 2018-02-10 00:00:00.0]
+19:03:14,948 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:03:14,960 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 7 existentes
+19:03:14,960 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 2
+19:03:16,848 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: id = 97, nombre = campania 2, Afiliados esperados = 100, fechaInicio = 2018-03-01 00:00:00.0, fechaFin = 2018-03-25 00:00:00.0]
+19:03:16,848 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:03:16,877 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:03:16,877 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:03:16,887 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:03:16,897 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:12:49,126 (main) INFO  [uniandes.isis2304.EPSAndes.test.CamapniaTest] - Probando las operaciones CRUD sobre Campania
+19:12:50,651 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:12:50,791 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:12:50,804 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:12:50,804 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:12:50,839 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:12:50,840 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 1
+19:13:03,147 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:13:03,147 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:13:03,161 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:13:07,294 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:13:07,474 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:13:07,490 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:13:07,490 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:13:24,911 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Query needs to return objects of type "uniandes.isis2304.EPSAndes.negocio.ReservaServicio" but it was impossible to set the field "NUMDOC" type "null". The field should have either a public set/put method, or be public.
+
+19:13:24,921 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: null
+19:13:24,921 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:13:24,941 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:13:24,943 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos
+19:13:24,951 (main) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "DELETE FROM ROLUSUARIO".
+ORA-02292: integrity constraint (ISIS2304B191920.FK_USUARIO_ROL) violated - child record found
+
+19:13:24,959 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Limpiando la BD de Parranderos: Listo!
+19:15:12,424 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:15:12,425 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:15:12,439 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:15:16,011 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:15:16,218 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:15:16,230 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:15:16,230 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:16:39,308 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:16:39,309 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:16:39,322 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:16:44,758 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:16:44,960 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:16:44,971 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:16:44,971 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:17:08,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios: 360 existentes
+19:17:54,386 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:17:54,387 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:17:54,400 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:19:06,498 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:19:06,499 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:19:06,511 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:19:10,682 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:19:10,878 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:19:10,888 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:31:07,842 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:31:07,843 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:31:07,855 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:31:45,619 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:31:45,620 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:31:45,632 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:32:01,268 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:32:01,352 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:32:01,352 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
+19:32:04,973 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : INVIABLE -No hay disponibilidad para alguno de los servicios.
+
+19:34:50,472 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:34:50,473 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:34:50,485 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:34:54,560 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:34:54,645 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:34:54,646 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Campania: campania 3
+19:34:58,794 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : INVIABLE -No hay disponibilidad para alguno de los servicios.
+
+19:34:58,796 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña
+19:34:58,831 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Campaña: 8 existentes
+19:37:23,869 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:37:23,869 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:37:23,883 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:37:30,431 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:37:30,618 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:37:30,623 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:38:20,304 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:38:20,304 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:38:20,324 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:38:24,165 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:38:24,355 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:38:24,366 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:38:42,843 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:41:46,555 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios: 355 existentes
+19:42:05,760 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: numdocAf-1, idServicio- 1
+19:42:05,783 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO RESERVASERVICIO (numDoc, id_Servicio, id_IPS, fechaHora) values (?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.RESERVASERVICIO_PK) violated
+
+19:42:05,794 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando ReservaServicio: null
+19:42:16,195 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:42:51,855 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios: 355 existentes
+19:44:04,154 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+19:44:04,154 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+19:44:04,173 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+19:44:16,834 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:44:21,152 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios: 355 existentes
+19:45:51,362 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: numdocMedico-101, numdocAfiliado- 1
+19:45:51,605 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando OrdenDeServicio: id= 101, idServicio=1, Documento Afiliado=1, numero documento Medico=101]
+19:45:51,605 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio
+19:45:51,712 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Orden De Servicio: 72 existentes
+19:45:51,712 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados
+19:45:51,775 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Afiliados: 100 existentes
+19:45:51,775 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios
+19:45:51,793 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Servicios: 4 existentes
+19:45:51,793 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos
+19:45:51,819 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Medicos: 20 existentes
+19:46:05,577 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: numdocAf-1, idServicio- 1
+19:46:05,597 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error executing SQL query "INSERT INTO PRESTACIONSERVICIO(numDoc, id_Servicio, id_IPS, fechaHora, id_Recepcionista) values (?, ?, ?, ?, ?)".
+ORA-00001: unique constraint (ISIS2304B191920.PRESTACIONSERVICIO_PK) violated
+
+19:46:05,607 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando PrestacionServicio: null
+19:46:05,607 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios
+19:46:12,815 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Prestacion de Servicios: 15 existentes
+19:46:23,461 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios
+19:46:29,222 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Reservas de Servicios: 355 existentes
+>>>>>>> Stashed changes

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public interface VOReservaServicio {
 
-	int getnumDocAfiliado();
+	int getNumDoc();
 	long getIdServicio();
 	long getIdIPS();
 	long getCampania();
