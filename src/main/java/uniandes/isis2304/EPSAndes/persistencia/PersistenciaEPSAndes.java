@@ -1294,6 +1294,7 @@ public class PersistenciaEPSAndes
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			tx.setIsolationLevel("serializable");
 			tx.begin();
 			// La IPS Presta el servicio?
 			List<ServiciosIPS> respConsulta = sqlServiciosIPS.buscarServicioIPS(pm, idIPS, idServicio);
@@ -1448,9 +1449,9 @@ public class PersistenciaEPSAndes
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			tx.setIsolationLevel("serializable");
 			tx.begin();
-			//tx.setIsolationLevel("serializable");
-
+			
 			// Insertar tupla de Campaña
 			long id = nextval();
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
@@ -1568,6 +1569,7 @@ public class PersistenciaEPSAndes
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			tx.setIsolationLevel("serializable");
 			tx.begin();
 			long resp = sqlReservaServicio.eliminarReservasCampaniaPorServicio(pm, idServicio,  idCampania);
 			tx.commit();
@@ -1601,6 +1603,7 @@ public class PersistenciaEPSAndes
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			tx.setIsolationLevel("serializable");
 			tx.begin();
 			// Generar la inhabilitación
 			long resp = sqlInhabilitacion.adicionarInhabilitacion(pm, fechaInicio, fechaFin, idIPS, idServicio);
@@ -1743,6 +1746,7 @@ public class PersistenciaEPSAndes
 		Transaction tx=pm.currentTransaction();
 		try
 		{
+			tx.setIsolationLevel("serializable");
 			tx.begin();
 			long resp = sqlInhabilitacion.updateFechaFinInhabilitacion(pm, nuevaFechaFin, fechaInicio, IPS, Servicio);
 			tx.commit();
