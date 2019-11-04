@@ -13,7 +13,7 @@
 					"event": "demoCampania"
 				},
 				{
-					"label": "Errores en create Campania",
+					"label": "Pruebas en Campania",
 					"event": "errorCampania"
 				}
 			]
@@ -26,7 +26,7 @@
 					"event": "demoInhabilitacion"
 				},
 				{
-					"label": "Errores en create Inhabilitacion",
+					"label": "Pruebas en Inhabilitacion",
 					"event": "erroresInhabilitacion"
 				}
 			]
@@ -39,7 +39,7 @@
 					"event": "demoOrden"
 				},
 				{
-					"label": "Errores en create Orden",
+					"label": "Pruebas en Orden",
 					"event": "erorresOrden"
 				}
 			]
@@ -52,7 +52,7 @@
 					"event": "demoPrestacion"
 				},
 				{
-					"label": "Errores en create Prestacion",
+					"label": "Pruebas en Prestacion",
 					"event": "erorresPrestacion"
 				}
 			]
@@ -65,7 +65,7 @@
 					"event": "demoReserva"
 				},
 				{
-					"label": "Errores en create Prestacion",
+					"label": "Pruebas en Reserva",
 					"event": "erroresReserva"
 				}
 			]

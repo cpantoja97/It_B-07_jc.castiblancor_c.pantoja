@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.FileReader;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -18,6 +19,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
+import uniandes.isis2304.EPSAndes.negocio.VOInhabilitacion;
+import uniandes.isis2304.EPSAndes.negocio.VOOrdenDeServicio;
 
 public class InhabilitacionTest {
 
@@ -73,6 +76,57 @@ public class InhabilitacionTest {
 			msg += "Revise el log de EPSAndes y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println (msg);
 			fail (msg);
+		}
+
+		try
+		{
+			EPSAndes.limpiarEPSAndes();
+
+			List <VOInhabilitacion> lista = EPSAndes.darVOInhabilitacion();
+			int tamanio = lista.size ();
+			assertEquals ("No debe haber Inhabilitacion creadas!!", tamanio, lista.size ());
+
+
+			long idServicio = 1;
+			long idIPS = 1;
+			Timestamp fechaFin = new Timestamp(118, 2, 23, 0, 0, 0, 0);
+			Timestamp fechaInicio = new Timestamp(118, 2, 25, 0, 0, 0, 0);
+			EPSAndes.deshabilitarServicioRF12(idServicio, idIPS , fechaInicio, fechaFin);
+			lista = EPSAndes.darVOInhabilitacion();
+			assertEquals ("Debe haber una orden creada !!", tamanio+1, lista.size ());
+//			assertEquals ("El objeto creado y el traido de la BD deben ser iguales !!", orden1, lista.get (tamanio));
+
+			idServicio = 1;
+			idIPS = 1;
+			fechaFin = new Timestamp(118, 8, 23, 0, 0, 0, 0);
+			fechaInicio = new Timestamp(118, 8, 25, 0, 0, 0, 0);
+			EPSAndes.deshabilitarServicioRF12(idServicio, idIPS , fechaInicio, fechaFin);
+			lista = EPSAndes.darVOInhabilitacion();
+			assertEquals ("Debe haber dos ordenes creadas !!", tamanio+2, lista.size ());
+//			assertTrue ("La primera orden adicionadada debe estar en la tabla", orden1.equals (lista.get (0)) || orden1.equals (lista.get (1)));
+//			assertTrue ("La segunda orden adicionadada debe estar en la tabla", orden2.equals (lista.get (0)) || orden2.equals (lista.get (1)));
+
+//			long oEliminados = 0;// EPSAndes.eliminarOrdenDeServicioPorId(orden1.getId(), orden1.getIdAfiliado(), orden1.getIdServicio());
+//			assertEquals ("Debe haberse eliminado una orden!!", tamanio+1, oEliminados);
+//			lista = EPSAndes.darVOOrdenDeServicio();
+//			assertEquals ("Debe haber nas sola orden !!", tamanio+1, lista.size ());
+//			assertFalse ("La primera orden no debe estar en la tabla", orden1.equals (lista.get (0)));
+//			assertTrue ("La segunda orden adicionada debe estar en la tabla", orden2.equals (lista.get (0)));
+
+		}
+		catch (Exception e)
+		{
+			//			e.printStackTrace();
+			String msg = "Error en la ejecución de las pruebas de operaciones sobre la tabla Orden.\n";
+			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
+			System.out.println (msg);
+
+			fail ("Error en las pruebas sobre la tabla Orden");
+		}
+		finally
+		{
+			EPSAndes.limpiarEPSAndes();
+			EPSAndes.cerrarUnidadPersistencia ();    		
 		}
 	}
 
