@@ -1636,10 +1636,15 @@ public class PersistenciaEPSAndes
 							System.out.println("dT en IPS " + ips.getId_IPS()+ " es " + deltaTiempo);
 							int numDia = 0;
 
-							// Se busca todos los días hasta encontrar 
+							// Se busca todos los días hasta encontrar un lugar para la reserva hasta máximo 5 días después
 							while(!hayDisponibilidad && numDia <= diasMax) {
 								// Se inicializa las citas del día en 0, la hora inicial en el primer horario de atencion del día correspondiente y se calcula la disponibilidad del día
-								long hoy = reserva.getFechaHora().getTime() + numDia*86400000;
+								Timestamp ts= new Timestamp( reserva.getFechaHora().getTime() );
+								ts.setHours(0);
+								ts.setMinutes(0);
+								ts.setSeconds(0);
+								ts.setNanos(0);
+								long hoy = ts.getTime() + numDia*86400000;
 								long horarioInicio = servIPS.getHorarioInicio().getHours()*3600000 + servIPS.getHorarioInicio().getMinutes()*60000;
 								long horarioFinal = servIPS.getHorarioFin().getHours()*3600000 + servIPS.getHorarioFin().getMinutes()*60000;
 								long horaAct =  hoy + horarioInicio;
@@ -1661,8 +1666,8 @@ public class PersistenciaEPSAndes
 									while(disponibilidad > 0 && !hayDisponibilidad) {
 										try {
 											// Se intenta agregar 
+											System.out.println("Se intentará cambiar reserva a: " + new Timestamp(horaAct));
 											sqlReservaServicio.cambiarReserva(pm, reserva.getIdServicio(), reserva.getIdIPS(), reserva.getFechaHora(), ips.getId_IPS(), new Timestamp(horaAct));
-											// RESERVARLA POR EL AFILIADO SI HABIA
 											log.trace ("Actualización Reserva: " +  servicioAct.getId_Servicio() +" en "+ ips.getId_IPS() + ""+(new Timestamp(horaAct)).toString());
 											hayDisponibilidad = true;
 											reserva.setId_IPS(ips.getId_IPS());

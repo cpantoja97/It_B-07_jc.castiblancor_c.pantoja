@@ -44,7 +44,7 @@ class SQLReservaServicio {
 	
 	public List<ReservaServicio> darReservasDia(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio){
 		Timestamp fechaFin = new Timestamp( fechaInicio.getTime() + 86399999);
-		Query q = pm.newQuery(SQL, "SELECT numDoc, id_servicio, id_IPS, fechaHora FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora >= ? AND fechaHora <= ?" );
+		Query q = pm.newQuery(SQL, "SELECT NVL(numdoc, -1) AS NUMDOC, id_servicio, id_IPS, fechaHora FROM " + peps.darTablaReservaServicio()+ " WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora >= ? AND fechaHora <= ?" );
 		q.setParameters( idServicio, idIPS, fechaInicio, fechaFin);
 		q.setResultClass(ReservaServicio.class);
 		return (List<ReservaServicio>) q.executeList();
@@ -64,11 +64,11 @@ class SQLReservaServicio {
 		return (List<ReservaServicio>) q.executeList();	
 	}
 	
-	public ReservaServicio cambiarReserva(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio, long nuevoIPS, Timestamp nuevaFecha){
+	public long cambiarReserva(PersistenceManager pm, long idServicio, long idIPS, Timestamp fechaInicio, long nuevoIPS, Timestamp nuevaFecha){
 		Query q = pm.newQuery(SQL, "UPDATE " + peps.darTablaReservaServicio()+ " SET id_IPS=?, fechaHora=?  WHERE id_Servicio = ? AND id_IPS = ? AND fechaHora = ?" );
 		q.setParameters( nuevoIPS, nuevaFecha, idServicio, idIPS, fechaInicio);
 		q.setResultClass(ReservaServicio.class);
-		return (ReservaServicio) q.executeUnique();
+		return (long) q.executeUnique();
 		
 	}
 

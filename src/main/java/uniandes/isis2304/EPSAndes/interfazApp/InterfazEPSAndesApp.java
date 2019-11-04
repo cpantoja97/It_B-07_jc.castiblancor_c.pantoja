@@ -1146,7 +1146,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				String[] fi = textField3.getText().split("/");
 				String[] ff = textField4.getText().split("/");
 				Timestamp fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
-				Timestamp fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+				Timestamp fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 23, 59, 59, 999999999);
 
 				String resultado = EPSAndes.deshabilitarServicioRF12(idServicio, idIPS, fechaInicio, fechaFin);
 				if (resultado == null)
@@ -1195,8 +1195,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 				Inhabilitacion resp = EPSAndes.reabrirServicioRF13(nuevoFin, fechaInicio, idIPS, idServicio);
 
-				String resultado = "En eliminar Servicio de Campaña\n\n";
-				resultado += resp + " reservas del servicio eliminadas\n";
+				String resultado = "En habilitar servicio\n\n";
+				resultado += "Se cambió la fecha fianl de la inhabilitación ["+ resp + "\n";
 				resultado += "\n Operación terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}

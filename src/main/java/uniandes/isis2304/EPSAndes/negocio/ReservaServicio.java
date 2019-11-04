@@ -66,7 +66,7 @@ public class ReservaServicio implements VOReservaServicio{
 	 */
 	public String toString() 
 	{
-		return "numero Documento Afiliado =" + numDoc + ", IdIPS =" + id_IPS+
-				", IdServicio =" + id_Servicio+ "]";
+		return "Documento Afiliado =" + numDoc + ", IdIPS =" + id_IPS+
+				", IdServicio =" + id_Servicio+", fecha =" + fechaHora+ "]";
 	}
 }
