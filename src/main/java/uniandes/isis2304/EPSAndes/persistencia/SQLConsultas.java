@@ -195,4 +195,92 @@ class SQLConsultas {
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
+
+	// RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES.
+	public List<Object> RF9(PersistenceManager pm) {
+		//TODO poner sentencia sql correcta
+		String sql = " SELECT servicios.nombre ";
+		sql+= "FROM servicios left outer join ( ";
+		sql+= "select aux.nombre ";
+		sql+= "from ( ";
+		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
+		sql+= "from " + peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "having count(*) >2 ) aux ";
+		sql+= "group by aux.nombre ";
+		sql+= "having count(*)=1 ";
+		sql+= ") aux2 ";
+		sql+= "on servicios.nombre = aux2.nombre ";
+		sql+= "where aux2.nombre is null ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	// RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES – RFC9-V2.
+	public List<Object> RF10(PersistenceManager pm) {
+		//TODO poner sentencia sql correcta
+		String sql = " SELECT servicios.nombre ";
+		sql+= "FROM servicios left outer join ( ";
+		sql+= "select aux.nombre ";
+		sql+= "from ( ";
+		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
+		sql+= "from " + peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "having count(*) >2 ) aux ";
+		sql+= "group by aux.nombre ";
+		sql+= "having count(*)=1 ";
+		sql+= ") aux2 ";
+		sql+= "on servicios.nombre = aux2.nombre ";
+		sql+= "where aux2.nombre is null ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	// RFC11 - CONSULTAR FUNCIONAMIENTO.
+	public List<Object> RF11(PersistenceManager pm) {
+		//TODO poner sentencia sql correcta
+		String sql = " SELECT servicios.nombre ";
+		sql+= "FROM servicios left outer join ( ";
+		sql+= "select aux.nombre ";
+		sql+= "from ( ";
+		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
+		sql+= "from " + peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "having count(*) >2 ) aux ";
+		sql+= "group by aux.nombre ";
+		sql+= "having count(*)=1 ";
+		sql+= ") aux2 ";
+		sql+= "on servicios.nombre = aux2.nombre ";
+		sql+= "where aux2.nombre is null ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	// RFC12 - CONSULTAR LOS AFILIADOS COSTOSOS.
+	public List<Object> RF12(PersistenceManager pm) {
+		//TODO poner sentencia sql correcta
+		String sql = " SELECT servicios.nombre ";
+		sql+= "FROM servicios left outer join ( ";
+		sql+= "select aux.nombre ";
+		sql+= "from ( ";
+		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
+		sql+= "from " + peps.darTablaServicio() + " servicios ";
+		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
+		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
+		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
+		sql+= "having count(*) >2 ) aux ";
+		sql+= "group by aux.nombre ";
+		sql+= "having count(*)=1 ";
+		sql+= ") aux2 ";
+		sql+= "on servicios.nombre = aux2.nombre ";
+		sql+= "where aux2.nombre is null ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
 }

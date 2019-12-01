@@ -500,7 +500,7 @@ public class EPSAndes
 		log.info("Generando los VO de Campaña: " + voCampanias.size() + " existentes");
 		return voCampanias;
 	}
-	
+
 	/* ****************************************************************
 	 * 			Métodos para manejar la relación Inhabilitación
 	 *****************************************************************/
@@ -533,7 +533,7 @@ public class EPSAndes
 		log.info("Generando los VO de Campaña: " + voInhabilitaciones.size() + " existentes");
 		return voInhabilitaciones;
 	}
-	
+
 
 	/* ****************************************************************
 	 * 			Metodos útiles
@@ -627,6 +627,42 @@ public class EPSAndes
 	{
 		log.info ("Listando cosas");
 		List<String> tuplas = peps.RFC8();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC9 ()
+	{
+		//TODO pasar parametros.
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC9();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC10 ()
+	{
+		//TODO pasar parametros.
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC10();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC11 ()
+	{
+		//TODO pasar parametros.
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC11();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Object []> darRFC12 ()
+	{
+		//TODO pasar parametros.
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC12();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}

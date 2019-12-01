@@ -894,7 +894,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JTextField textField7 = new JTextField();
 			JTextField textField8 = new JTextField();
 
-			//TODO Listas para servicio e ips
 			Object[] inputFields = {"identificación Afiliado", textField1,
 					"código de servicio", textField2,
 					"código IPS", textField3,
@@ -1001,7 +1000,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JTextField textField3 = new JTextField();
 			JTextField textField4 = new JTextField();
 
-			//TODO Listas para servicio e ips
 			Object[] inputFields = {"Nombre de la campaña", textField1,
 					"Afiliados esperados", textField2,
 					"Fecha inicio (DD/MM/AAAA)", textField3,
@@ -1019,7 +1017,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				JTextField textField9 = new JTextField();
 				JTextField textField10 = new JTextField();
 
-				//TODO Listas para servicio e ips
 				Object[] inputFields2 = {"Servicio 1", textField5,
 						"Cantidad 1", textField6,
 						"Servicio 2", textField7,
@@ -1087,7 +1084,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JTextField textField1 = new JTextField();
 			JTextField textField2 = new JTextField();
 
-			//TODO Listas para servicio e ips
 			Object[] inputFields = {"ID de la campaña", textField1,
 					"ID del servicio", textField2
 			};
@@ -1130,7 +1126,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JTextField textField3 = new JTextField();
 			JTextField textField4 = new JTextField();
 
-			//TODO Listas para servicio e ips
 			Object[] inputFields = {"ID del Servicio", textField1,
 					"ID de la IPS", textField2,
 					"Fecha inicio (DD/MM/AAAA)", textField3,
@@ -1175,7 +1170,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JTextField textField3 = new JTextField();
 			JTextField textField4 = new JTextField();
 
-			//TODO Listas para servicio e ips
 			Object[] inputFields = {"ID del Servicio", textField1,
 					"ID de la IPS", textField2,
 					"Fecha inicio (DD/MM/AAAA)", textField3,
@@ -1609,6 +1603,246 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		return resp;
 	}
 
+	public void requerimientoFuncional9( )
+	{
+		//TODO pasar bien parametros y listar obejtos de respuesta.
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+			JTextField textField7 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+					"numero documento", textField7
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				int anioInicio =  Integer.parseInt(textField3.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				int numdoc = Integer.parseInt(textField7.getText());
+
+				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional5\n\n";
+				resultado += "\n\n************ Ejecutando RF5 ************ \n";
+				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void requerimientoFuncional10( )
+	{
+		//TODO pasar bien parametros y listar obejtos de respuesta.
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+			JTextField textField7 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+					"numero documento", textField7
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				int anioInicio =  Integer.parseInt(textField3.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				int numdoc = Integer.parseInt(textField7.getText());
+
+				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional5\n\n";
+				resultado += "\n\n************ Ejecutando RF5 ************ \n";
+				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void requerimientoFuncional11( )
+	{
+		//TODO pasar bien parametros y listar obejtos de respuesta.
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+			JTextField textField7 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+					"numero documento", textField7
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				int anioInicio =  Integer.parseInt(textField3.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				int numdoc = Integer.parseInt(textField7.getText());
+
+				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional5\n\n";
+				resultado += "\n\n************ Ejecutando RF5 ************ \n";
+				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	public void requerimientoFuncional12( )
+	{
+		//TODO pasar bien parametros y listar obejtos de respuesta.
+		try 
+		{
+			JTextField textField1 = new JTextField();
+			JTextField textField2 = new JTextField();
+			JTextField textField3 = new JTextField();
+			JTextField textField4 = new JTextField();
+			JTextField textField5 = new JTextField();
+			JTextField textField6 = new JTextField();
+			JTextField textField7 = new JTextField();
+
+			Object[] inputFields = {
+					"día inicio filtro", textField1,
+					"mes inicio filtro", textField2,
+					"año inicio filtro", textField3,
+					"día fin filtro", textField4,
+					"mes fin filtro", textField5,
+					"año fin filtro", textField6,
+					"numero documento", textField7
+			};
+
+			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+			if (option == JOptionPane.OK_OPTION)
+			{
+				int diaInicio = Integer.parseInt(textField1.getText());
+				int mesInicio = Integer.parseInt(textField2.getText());
+				int anioInicio =  Integer.parseInt(textField3.getText());
+				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+
+				int diaFin= Integer.parseInt(textField4.getText());
+				int mesFin= Integer.parseInt(textField5.getText());
+				int anioFin=  Integer.parseInt(textField6.getText());
+				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+
+				int numdoc = Integer.parseInt(textField7.getText());
+
+				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+
+				String resultado = "En requerimientoFuncional5\n\n";
+				resultado += "\n\n************ Ejecutando RF5 ************ \n";
+				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}
+			else
+			{
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} 
+		catch (Exception e) 
+		{
+			// e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
 
 	/* ****************************************************************
 	 * 			Métodos privados para la presentación de resultados y otras operaciones
@@ -1829,7 +2063,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

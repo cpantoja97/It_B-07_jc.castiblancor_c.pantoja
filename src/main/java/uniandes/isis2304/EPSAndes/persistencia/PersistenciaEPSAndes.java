@@ -1451,7 +1451,7 @@ public class PersistenciaEPSAndes
 		{
 			tx.setIsolationLevel("serializable");
 			tx.begin();
-			
+
 			// Insertar tupla de Campaña
 			long id = nextval();
 			long tuplasInsertadas = sqlCampania.adicionarCampania(pm,  id, nombre,  pAfiliados,  pFechaInicio,  pFechaFin);
@@ -1706,12 +1706,12 @@ public class PersistenciaEPSAndes
 
 			tx.commit();
 			log.trace ("Inserción Inhabilitación: " +  idServicio + " - " + idIPS + " - " +  fechaInicio + " hasta " +  fechaFin + ": " + resp + " tuplas insertadas");
-			
+
 			Inhabilitacion inhab = new Inhabilitacion(fechaInicio, fechaFin, idIPS, idServicio);
-			
+
 			String mensaje = "En deshabilitar Servicio\n\n";
 			mensaje += "Servicio deshabilitado exitosamente: " + inhab +"\n";
-			
+
 			mensaje +="Había " + reservas.size() + " reservas\n";
 			mensaje += "Se cancelaron las siguientes reservas: \n";
 			for(ReservaServicio r : reservasCanceladas) {
@@ -1723,7 +1723,7 @@ public class PersistenciaEPSAndes
 			}
 
 			mensaje += "Operación terminada\n";
-			
+
 			return mensaje;
 		}
 		catch (Exception e)
@@ -2041,6 +2041,106 @@ public class PersistenciaEPSAndes
 		{
 			String nombre = (String)tupla;
 			respuesta.add(nombre);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC9 ()
+	{
+		//TODO ajustar de acuerdo al RF
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF9(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
+
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC10 ()
+	{
+		//TODO ajustar de acuerdo al RF
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF10(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
+
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC11 ()
+	{
+		//TODO ajustar de acuerdo al RF
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF11(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
+
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
+
+			respuesta.add(resp);
+		}
+
+		return respuesta;
+	}
+
+	public List<Object []> RFC12 ()
+	{
+		//TODO ajustar de acuerdo al RF
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF12(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			int d1 = ((BigDecimal) datos [0]).intValue ();
+			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d3 = ((BigDecimal) datos [2]).intValue ();
+
+			Object [] resp = new Object [3];
+			resp [0] = d1;
+			resp [1] = d2;
+			resp [2] = d3;
+
+			respuesta.add(resp);
 		}
 
 		return respuesta;
