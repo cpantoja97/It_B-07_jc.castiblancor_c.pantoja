@@ -144,11 +144,47 @@ from servicios left outer join
 on servicios.nombre = aux2.nombre
 where aux2.nombre is null;
 
---RFC 9 CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES
+--RFC 9 CONSULTAR LA PRESTACIï¿½N DE SERVICIOS EN EPSANDES
 select afiliados.*, prestacionservicio.fechahora
 from afiliados, prestacionservicio, servicios
 where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' and afiliados.numdoc = prestacionservicio.numdoc
 and servicios.id_servicio = prestacionservicio.id_servicio and servicios.id_servicio = 4 and servicios.tipo = 1 and prestacionservicio.ID_IPS = 1
+;
+
+--RFC 11 CONSULTAR FUNCIONAMIENTO
+select TRUNC( prestacionServicio.fechaHora,'IW' ), prestacionServicio.id_servicio, count(*)
+from prestacionServicio
+Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
+order by TRUNC( prestacionServicio.fechaHora, 'IW' ), count(*) desc
+(
+    select max(*) 
+    from (
+        select count(*) 
+        from prestacionServicio
+        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
+    )
+)
+;
+
+--RFC 12 CONSULTAR LOS AFILIADOS COSTOSOS
+select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ), count(*)
+from afiliados, prestacionservicio 
+where afiliados.numdoc = prestacionservicio.numdoc and afiliados.numdoc = 10311
+group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' )
+order by TRUNC( prestacionServicio.fechaHora, 'MM' )
+;
+
+select afiliados.numdoc, count(TRUNC( prestacionServicio.fechaHora, 'MM' ))
+from afiliados, prestacionservicio 
+where afiliados.numdoc = prestacionservicio.numdoc
+group by afiliados.numdoc 
+having count(TRUNC( prestacionServicio.fechaHora, 'MM' ))>20
+;
+
+select afiliados.*
+from afiliados, prestacionservicio, servicios
+where afiliados.numdoc = prestacionservicio.numdoc and prestacionservicio.id_servicio = servicios.id_servicio
+and servicios.tipo = 3
 ;
 
 -- Tabla 1
