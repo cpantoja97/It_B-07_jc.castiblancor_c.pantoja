@@ -143,6 +143,14 @@ from servicios left outer join
     ) aux2 
 on servicios.nombre = aux2.nombre
 where aux2.nombre is null;
+
+--RFC 9 CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES
+select afiliados.*, prestacionservicio.fechahora
+from afiliados, prestacionservicio, servicios
+where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' and afiliados.numdoc = prestacionservicio.numdoc
+and servicios.id_servicio = prestacionservicio.id_servicio and servicios.id_servicio = 4 and servicios.tipo = 1 and prestacionservicio.ID_IPS = 1
+;
+
 -- Tabla 1
 SELECT *
 FROM ROLUSUARIO
