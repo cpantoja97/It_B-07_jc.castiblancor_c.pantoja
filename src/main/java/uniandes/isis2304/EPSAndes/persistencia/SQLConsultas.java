@@ -199,44 +199,37 @@ class SQLConsultas {
 	// RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES.
 	public List<Object> RF9(PersistenceManager pm) {
 		//TODO poner sentencia sql correcta
-		String sql = " SELECT servicios.nombre ";
-		sql+= "FROM servicios left outer join ( ";
-		sql+= "select aux.nombre ";
-		sql+= "from ( ";
-		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
-		sql+= "from " + peps.darTablaServicio() + " servicios ";
-		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
-		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
-		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
-		sql+= "having count(*) >2 ) aux ";
-		sql+= "group by aux.nombre ";
-		sql+= "having count(*)=1 ";
-		sql+= ") aux2 ";
-		sql+= "on servicios.nombre = aux2.nombre ";
-		sql+= "where aux2.nombre is null ";
+		String sql = " SELECT afiliados.*, prestacionservicio.fechahora ";
+		sql+= "FROM" + peps.darTablaAfiliados() +" afiliados, ";
+		sql+= peps.darTablaPrestacionServicio() +" prestacionservicio, ";
+		sql+= peps.darTablaServicio() +" servicios ";
+		sql+= "where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' ";
+		sql+= "and afiliados.numdoc = prestacionservicio.numdoc";
+		sql+= "and servicios.id_servicio = prestacionservicio.id_servicio ";
+		sql+= "and servicios.id_servicio = 4 ";
+		sql+= "and servicios.tipo = 1 ";
+		sql+= "and prestacionservicio.ID_IPS = 1 ";
 		Query q = pm.newQuery(SQL, sql);
+		//q.setParameters(f1, f2, idServicio, tipo, ips);
 		return q.executeList(); 
 	}
+
 
 	// RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES – RFC9-V2.
 	public List<Object> RF10(PersistenceManager pm) {
 		//TODO poner sentencia sql correcta
-		String sql = " SELECT servicios.nombre ";
-		sql+= "FROM servicios left outer join ( ";
-		sql+= "select aux.nombre ";
-		sql+= "from ( ";
-		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
-		sql+= "from " + peps.darTablaServicio() + " servicios ";
-		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
-		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
-		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
-		sql+= "having count(*) >2 ) aux ";
-		sql+= "group by aux.nombre ";
-		sql+= "having count(*)=1 ";
-		sql+= ") aux2 ";
-		sql+= "on servicios.nombre = aux2.nombre ";
-		sql+= "where aux2.nombre is null ";
+		String sql = " SELECT afiliados.*, prestacionservicio.fechahora ";
+		sql+= "FROM" + peps.darTablaAfiliados() +" afiliados, ";
+		sql+= peps.darTablaPrestacionServicio() +" prestacionservicio, ";
+		sql+= peps.darTablaServicio() +" servicios ";
+		sql+= "where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' ";
+		sql+= "and afiliados.numdoc = prestacionservicio.numdoc";
+		sql+= "and servicios.id_servicio = prestacionservicio.id_servicio ";
+		sql+= "and servicios.id_servicio = 4 ";
+		sql+= "and servicios.tipo = 1 ";
+		sql+= "and prestacionservicio.ID_IPS = 1 ";
 		Query q = pm.newQuery(SQL, sql);
+		//q.setParameters(f1, f2, idServicio, tipo, ips);
 		return q.executeList(); 
 	}
 
