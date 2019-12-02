@@ -26,8 +26,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -1725,122 +1727,150 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 	public void requerimientoFuncional11( )
 	{
-		//TODO pasar bien parametros y listar obejtos de respuesta.
-		try 
+		try
 		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			JTextField textField4 = new JTextField();
-			JTextField textField5 = new JTextField();
-			JTextField textField6 = new JTextField();
-			JTextField textField7 = new JTextField();
+			List <Object[]> listaServicios = EPSAndes.darRFC11a();
+			//List <Object[]> listaEspecializados = EPSAndes.darRFC11b();
+			List <Object[]> listaAfiliadosNoUsanServicios= EPSAndes.darRFC11d();
 
-			Object[] inputFields = {
-					"día inicio filtro", textField1,
-					"mes inicio filtro", textField2,
-					"año inicio filtro", textField3,
-					"día fin filtro", textField4,
-					"mes fin filtro", textField5,
-					"año fin filtro", textField6,
-					"numero documento", textField7
-			};
-
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
-			if (option == JOptionPane.OK_OPTION)
-			{
-				int diaInicio = Integer.parseInt(textField1.getText());
-				int mesInicio = Integer.parseInt(textField2.getText());
-				int anioInicio =  Integer.parseInt(textField3.getText());
-				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
-
-				int diaFin= Integer.parseInt(textField4.getText());
-				int mesFin= Integer.parseInt(textField5.getText());
-				int anioFin=  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
-
-				int numdoc = Integer.parseInt(textField7.getText());
-
-				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
-
-				String resultado = "En requerimientoFuncional5\n\n";
-				resultado += "\n\n************ Ejecutando RF5 ************ \n";
-				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
+			List <Object[]> listaFinal= combinarListas(listaServicios,listaAfiliadosNoUsanServicios);
+			String resultado = "En requerimientoFuncional11\n\n";
+			resultado += "\n\n************ Ejecutando RF11 ************ \n";
+			resultado +=  "\n" + listarFuncionamientoSemanal(listaFinal);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
 		} 
 		catch (Exception e) 
 		{
-			// e.printStackTrace();
+			//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
 
-	public void requerimientoFuncional12( )
-	{
-		//TODO pasar bien parametros y listar obejtos de respuesta.
-		try 
+	private List<Object[]> combinarListas(List<Object[]> listaServicios, List<Object[]> listaAfiliadosNoUsanServicios) {
+
+		List<Object []> respuesta = new LinkedList <Object []> ();
+
+		for (Object [] tupla : listaAfiliadosNoUsanServicios)
 		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			JTextField textField4 = new JTextField();
-			JTextField textField5 = new JTextField();
-			JTextField textField6 = new JTextField();
-			JTextField textField7 = new JTextField();
+			// TODO no me gusta esto, mejor solucionar la consulta sql para que solo me muestre 1 de cada cosa y unirlo todo. (no funciona distinct)
+			Object [] datos = (Object []) tupla;
+			Timestamp fecha = (Timestamp) datos [0];
+			int numAfiliados= (int) tupla [1];
+			Servicio servicioMas= null;
+			Servicio servicioMenos= null;
+			TipoServicio tipoServicioMas= null;
+			TipoServicio tipoServicioMenos= null;
+			IPS ipsMas= null;
+			IPS ipsMenos= null;
+			Afiliado afiliados= null;
 
-			Object[] inputFields = {
-					"día inicio filtro", textField1,
-					"mes inicio filtro", textField2,
-					"año inicio filtro", textField3,
-					"día fin filtro", textField4,
-					"mes fin filtro", textField5,
-					"año fin filtro", textField6,
-					"numero documento", textField7
-			};
+			Object [] resp = new Object [3];
+			resp [0] = fecha;
+			resp [1] = numAfiliados;
+			resp [2] = servicioMas;
+			resp [3] = servicioMenos;
+			resp [4] = tipoServicioMas;
+			resp [5] = tipoServicioMenos;
+			resp [6] = ipsMas;
+			resp [7] = ipsMenos;
+			resp [8] = afiliados;
 
-			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			respuesta.add(resp);
 
-			if (option == JOptionPane.OK_OPTION)
-			{
-				int diaInicio = Integer.parseInt(textField1.getText());
-				int mesInicio = Integer.parseInt(textField2.getText());
-				int anioInicio =  Integer.parseInt(textField3.getText());
-				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+		}
 
-				int diaFin= Integer.parseInt(textField4.getText());
-				int mesFin= Integer.parseInt(textField5.getText());
-				int anioFin=  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+		return respuesta;
+	}
 
-				int numdoc = Integer.parseInt(textField7.getText());
+	private String listarFuncionamientoSemanal(List<Object[]> listac) {
+		String resp = "el funcionamiento de EPSAndes es el siguiente: \n";
 
-				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+		int i = 1;
+		for (Object [] tupla : listac)
+		{
+			int numAfiliados= (int) tupla [1];
 
-				String resultado = "En requerimientoFuncional5\n\n";
-				resultado += "\n\n************ Ejecutando RF5 ************ \n";
-				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
-				resultado += "\n Operación terminada";
-				panelDatos.actualizarInterfaz(resultado);
-			}
-			else
-			{
-				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
-			}
+			resp+= "\n Para la semana ";
+			resp+=  tupla[0] + " \n";
+			resp+= " el tipo de servicio mas consumido es: "; 
+			resp+=  "\n";
+			resp+= " el tipo de servicio menos consumido es: "; 
+			resp+=  "\n";
+			resp+= " el servicio mas consumido es: "; 
+			resp+=  "\n";
+			resp+= " el servicio menos consumido es: "; 
+			resp+=  "\n";
+			resp+= " la ips mas solicitada es: "; 
+			resp+=  "\n";
+			resp+= " la ips menos solicitada es: "; 
+			resp+=  "\n";
+			resp+= " el afiliado que mas ha utilizado servicios es: "; 
+			resp+=  "\n";
+			resp+= " el numero de afiliados que no usaron los servicios es: "; 
+			resp+= numAfiliados +"\n";
+		}
+		return resp;
+	}
+
+	public void requerimientoFuncional12( )	{
+		try
+		{
+			List <Integer> listaMeses = EPSAndes.darRFC12a();
+			List <Integer> listaEspecializados = EPSAndes.darRFC12b();
+			List <Integer> listaHospital = EPSAndes.darRFC12b();
+
+			String resultado = "En requerimientoFuncional12\n\n";
+			resultado += "\n\n************ Ejecutando RF12 ************ \n";
+			resultado +=  "\n" + listarAfiliadosCostosos(listaMeses,0);
+			resultado +=  "\n" + listarAfiliadosCostosos(listaEspecializados,1);
+			resultado +=  "\n" + listarAfiliadosCostosos(listaHospital,2);
+			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
 		} 
 		catch (Exception e) 
 		{
-			// e.printStackTrace();
+			//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
+	}
+
+	private String listarAfiliadosCostosos(List<Integer> lista, int caso) {
+		String resp = "\n";
+		if(caso == 0) {
+			resp = " Los afiliados costosos que tienen consulta cada mes son:\n"; 
+			int i = 1;
+			for (Integer tupla : lista)
+			{
+				String resp1 = i++ + ". " + "[";
+				resp1 += "numero de identificacion afiliado: " + tupla;
+				resp1 += "]";
+				resp += resp1 + "\n";
+			}
+		} else if(caso==1) {
+			resp = " Los afiliados costosos que siempre requieren servicios de tipo especializado son:\n"; 
+			int i = 1;
+			for (Integer tupla : lista)
+			{
+				String resp1 = i++ + ". " + "[";
+				resp1 += "numero de identificacion afiliado: " + tupla;
+				resp1 += "]";
+				resp += resp1 + "\n";
+			}
+		}else if(caso == 2) {
+			resp = " Los afiliados costosos que cuando requieren de un servicio de salud terminan hospitalizados son:\n"; 
+			int i = 1;
+			for (Integer tupla : lista)
+			{
+				String resp1 = i++ + ". " + "[";
+				resp1 += "numero de identificacion afiliado: " + tupla;
+				resp1 += "]";
+				resp += resp1 + "\n";
+			}
+		}
+		return resp;
 	}
 
 

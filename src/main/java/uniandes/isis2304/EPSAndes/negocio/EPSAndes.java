@@ -649,20 +649,34 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC11 ()
+	public List<Object []> darRFC11a ()
 	{
-		//TODO pasar parametros.
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC11();
+		List<Object []> tuplas = peps.RFC11a();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
 
-	public List<Object []> darRFC12 ()
+	public List<Object []> darRFC11d ()
 	{
-		//TODO pasar parametros.
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC12();
+		List<Object []> tuplas = peps.RFC11d();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Integer> darRFC12a ()
+	{
+		log.info ("Listando cosas");
+		List<Integer> tuplas = peps.RFC12a();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
+
+	public List<Integer> darRFC12b ()
+	{
+		log.info ("Listando cosas");
+		List<Integer> tuplas = peps.RFC12b();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}

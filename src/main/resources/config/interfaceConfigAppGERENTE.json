@@ -51,6 +51,22 @@
 				{
 					"label": "RFC8",
 					"event": "requerimientoFuncional8"
+				},
+				{
+					"label": "RFC9",
+					"event": "requerimientoFuncional9"
+				},
+				{
+					"label": "RFC10",
+					"event": "requerimientoFuncional10"
+				},
+				{
+					"label": "RFC11",
+					"event": "requerimientoFuncional11"
+				},
+				{
+					"label": "RFC12",
+					"event": "requerimientoFuncional12"
 				}
 				
 			]

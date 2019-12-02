@@ -1,5 +1,6 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -198,7 +199,7 @@ class SQLConsultas {
 
 	// RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES.
 	public List<Object> RF9(PersistenceManager pm) {
-		//TODO poner sentencia sql correcta
+		//TODO pasar parametros
 		String sql = " SELECT afiliados.*, prestacionservicio.fechahora ";
 		sql+= "FROM" + peps.darTablaAfiliados() +" afiliados, ";
 		sql+= peps.darTablaPrestacionServicio() +" prestacionservicio, ";
@@ -213,7 +214,6 @@ class SQLConsultas {
 		//q.setParameters(f1, f2, idServicio, tipo, ips);
 		return q.executeList(); 
 	}
-
 
 	// RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES – RFC9-V2.
 	public List<Object> RF10(PersistenceManager pm) {
@@ -234,46 +234,150 @@ class SQLConsultas {
 	}
 
 	// RFC11 - CONSULTAR FUNCIONAMIENTO.
-	public List<Object> RF11(PersistenceManager pm) {
-		//TODO poner sentencia sql correcta
-		String sql = " SELECT servicios.nombre ";
-		sql+= "FROM servicios left outer join ( ";
-		sql+= "select aux.nombre ";
+	public List<Object> RF11a(PersistenceManager pm) {
+		// sentencia para servicios + y - consumido
+		String sql = " select  t1.week, t1.servicio, t1.cuenta ";
 		sql+= "from ( ";
-		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
-		sql+= "from " + peps.darTablaServicio() + " servicios ";
-		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
-		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
-		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
-		sql+= "having count(*) >2 ) aux ";
-		sql+= "group by aux.nombre ";
-		sql+= "having count(*)=1 ";
-		sql+= ") aux2 ";
-		sql+= "on servicios.nombre = aux2.nombre ";
-		sql+= "where aux2.nombre is null ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as servicio, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio ";
+		sql+= ") t1, ( ";
+		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
+		sql+= "from( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as serv, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio ";
+		sql+= ") aux ";
+		sql+= "group by aux.week ";
+		sql+= ") t2 ";
+		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
+		sql+= "order by week ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	public List<Object> RF11b(PersistenceManager pm) {
+		// TODO sentencia para tipo servicios + y - consumido
+		String sql = " select  t1.week, t1.ips, t1.cuenta ";
+		sql+= "from ( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
+		sql+= ") t1, ( ";
+		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
+		sql+= "from( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
+		sql+= ") aux ";
+		sql+= "group by aux.week ";
+		sql+= ") t2 ";
+		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
+		sql+= "order by week ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	public List<Object> RF11c(PersistenceManager pm) {
+		// sentencia para ips + y - solicitada
+		String sql = " select  t1.week, t1.ips, t1.cuenta ";
+		sql+= "from ( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
+		sql+= ") t1, ( ";
+		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
+		sql+= "from( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
+		sql+= ") aux ";
+		sql+= "group by aux.week ";
+		sql+= ") t2 ";
+		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
+		sql+= "order by week ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	public List<Object> RF11d(PersistenceManager pm) {
+		// afiliado que no han utilizado servicios
+		String sql = " select week, ( ";
+		sql+= "select count(*) as cantidad ";
+		sql+= "from "+ peps.darTablaAfiliados() +" afiliados ";
+		sql+= ")- count(*) ";
+		sql+= "from ( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc ";
+		sql+= " from " + peps.darTablaPrestacionServicio() + " prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc ) ";
+		sql+= "group by week ";
+		sql+= "order by week ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	public List<Object> RF11e(PersistenceManager pm) {
+		// sentencia para ips + y - solicitada
+		String sql = " select  t1.week, t1.afiliado ";
+		sql+= "from ( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc ";
+		sql+= ") t1, ( ";
+		sql+= "select week, max(cuenta) as maximo";
+		sql+= "from( ";
+		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta ";
+		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
+		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc ";
+		sql+= ") aux ";
+		sql+= "group by aux.week ";
+		sql+= ") t2 ";
+		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo)";
+		sql+= "order by week ";
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
 
 	// RFC12 - CONSULTAR LOS AFILIADOS COSTOSOS.
-	public List<Object> RF12(PersistenceManager pm) {
-		//TODO poner sentencia sql correcta
-		String sql = " SELECT servicios.nombre ";
-		sql+= "FROM servicios left outer join ( ";
-		sql+= "select aux.nombre ";
-		sql+= "from ( ";
-		sql+= "select servicios.nombre, TRUNC( reservaServicio.fechaHora,'IW' ) ";
-		sql+= "from " + peps.darTablaServicio() + " servicios ";
-		sql+= "inner join " + peps.darTablaReservaServicio() + " reservaServicio ";
-		sql+= " on servicios.id_servicio = reservaServicio.id_servicio ";
-		sql+= "Group by servicios.nombre, TRUNC( reservaServicio.fechaHora, 'IW' ) ";
-		sql+= "having count(*) >2 ) aux ";
-		sql+= "group by aux.nombre ";
-		sql+= "having count(*)=1 ";
-		sql+= ") aux2 ";
-		sql+= "on servicios.nombre = aux2.nombre ";
-		sql+= "where aux2.nombre is null ";
+	public List<Object> RF12a(PersistenceManager pm) {
+		// afiliados que van cada mes. 
+		String sql = " select numdoc from ( ";
+		sql+= "select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) as meses ";
+		sql+= "from "+peps.darTablaAfiliados()+" afiliados, "+peps.darTablaPrestacionServicio()+" prestacionservicio ";
+		sql+= "where afiliados.numdoc = prestacionservicio.numdoc ";
+		sql+= "group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) ) ";
+		sql+= "group by numdoc ";
+		sql+= "having count(*)=24 ";
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}
+
+	public List<Object> RF12b(PersistenceManager pm) {
+		// afiliados que siempre requieren servicios medicos especializados
+		String sql = " select afiliados.numdoc ";
+		sql+= "from "+peps.darTablaAfiliados()+" afiliados, "+peps.darTablaPrestacionServicio()+" prestacionservicio , " +peps.darTablaServicio()+" servicios ";
+		sql+= "where afiliados.numdoc = prestacionservicio.numdoc and prestacionservicio.id_servicio = servicios.id_servicio ";
+		sql+= "group by afiliados.numdoc ";
+		sql+= "having count(*) = sum(case when servicios.tipo = 7 then 1 else 0 end) ";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
+	public List<Object> RF12c(PersistenceManager pm) {
+		// TODO afiliados que cada vez que requieren de un servicio de salud terminan hospitalizados. 
+		String sql = " select numdoc, count(*) from ( ";
+		sql+= "select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) as meses ";
+		sql+= "from "+peps.darTablaAfiliados()+" afiliados, "+peps.darTablaPrestacionServicio()+" prestacionservicio ";
+		sql+= "where afiliados.numdoc = prestacionservicio.numdoc ";
+		sql+= "group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) )";
+		sql+= "group by numdoc ";
+		sql+= "having count(*)=24 ";
+		sql+= "";
+		sql+= "";
+		sql+= "";
+		sql+= "";
+		Query q = pm.newQuery(SQL, sql);
+		return q.executeList(); 
+	}
+
 }

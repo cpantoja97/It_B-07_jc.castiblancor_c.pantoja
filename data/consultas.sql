@@ -152,39 +152,100 @@ and servicios.id_servicio = prestacionservicio.id_servicio and servicios.id_serv
 ;
 
 --RFC 11 CONSULTAR FUNCIONAMIENTO
-select TRUNC( prestacionServicio.fechaHora,'IW' ), prestacionServicio.id_servicio, count(*)
-from prestacionServicio
-Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
-order by TRUNC( prestacionServicio.fechaHora, 'IW' ), count(*) desc
+-- servicio + y - consumido
+select  distinct(t1.week), t1.servicio, t1.cuenta
+from (
+    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as servicio, count(*) as cuenta
+    from prestacionServicio
+    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
+) t1,
 (
-    select max(*) 
-    from (
-        select count(*) 
+    select week, max(cuenta) as maximo, min(cuenta) as minimo
+    from(
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as serv, count(*) as cuenta
         from prestacionServicio
         Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
-    )
+    ) aux
+    group by aux.week
+    order by aux.week
+) t2
+where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo)
+order by week
+;
+
+-- ips + y - solicitada
+select t1.week, t1.ips, t1.cuenta
+from (
+    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta
+    from prestacionServicio
+    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips
+) t1, 
+(
+    select week, max(cuenta) as maximo, min(cuenta) as minimo
+    from(
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta
+        from prestacionServicio
+        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips
+    ) aux
+    group by aux.week
+    order by aux.week
+) t2
+where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.maximo)
+order by week
+;
+
+-- afiliado que no han utilizado servicios
+select week, (
+select count(*) as cantidad
+from afiliados
+)- count(*) 
+from (
+    select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc
+    from prestacionServicio
+    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc
 )
+group by week
+;
+
+-- afiliado que mas a usado servicios
+select t1.week, t1.afiliado, maximo
+from (
+    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta
+    from prestacionServicio
+    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc
+) t1, 
+(
+    select week, max(cuenta) as maximo
+    from(
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta
+        from prestacionServicio
+        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc
+    ) aux
+    group by aux.week
+    order by aux.week
+) t2
+where t1.week = t2.week and t1.cuenta = t2.maximo
+order by week
 ;
 
 --RFC 12 CONSULTAR LOS AFILIADOS COSTOSOS
-select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ), count(*)
-from afiliados, prestacionservicio 
-where afiliados.numdoc = prestacionservicio.numdoc and afiliados.numdoc = 10311
-group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' )
-order by TRUNC( prestacionServicio.fechaHora, 'MM' )
+-- afiliados que van cada mes. 
+select numdoc, count(*) from (
+    select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) as meses
+    from afiliados, prestacionservicio 
+    where afiliados.numdoc = prestacionservicio.numdoc
+    group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' )
+)
+group by numdoc
+having count(*)=24
 ;
 
-select afiliados.numdoc, count(TRUNC( prestacionServicio.fechaHora, 'MM' ))
-from afiliados, prestacionservicio 
-where afiliados.numdoc = prestacionservicio.numdoc
-group by afiliados.numdoc 
-having count(TRUNC( prestacionServicio.fechaHora, 'MM' ))>20
-;
-
-select afiliados.*
+-- afiliados que siempre requieren servicios medicos especializados
+select afiliados.numdoc, count(*) as total , sum(case when servicios.tipo = 7 then 1 else 0 end) as especial
 from afiliados, prestacionservicio, servicios
 where afiliados.numdoc = prestacionservicio.numdoc and prestacionservicio.id_servicio = servicios.id_servicio
-and servicios.tipo = 3
+group by afiliados.numdoc
+having count(*) = sum(case when servicios.tipo = 7 then 1 else 0 end)
 ;
 
 -- Tabla 1
@@ -266,3 +327,5 @@ FROM RESERVASERVICIO
 SELECT *
 FROM PRESTACIONSERVICIO
 ;
+
+commit;
