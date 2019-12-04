@@ -99,6 +99,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	private EPSAndes EPSAndes;
 	
 	private int rolActual;
+	
+	private int idUsuarioActual;
 
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -135,6 +137,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		if (option == JOptionPane.OK_OPTION) {
 			int rol = 0;
 			int numDoc = Integer.parseInt(textField.getText());
+			idUsuarioActual = numDoc;
 
 			tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
 			EPSAndes = new EPSAndes (tableConfig);
@@ -1684,8 +1687,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				}
 				if(jComboBox2.getSelectedIndex() == 1) {
 					orden += " desc";
-				} else {
-					orden += " asc";
 				}
 								
 				List<Object []> utilizacionServicios= EPSAndes.darRFC9(fechaInicio, fechaFin, idServicio, tipo, ips, orden);
@@ -1740,48 +1741,98 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 	public void requerimientoFuncional10( )
 	{
-		//TODO pasar bien parametros y listar obejtos de respuesta.
 		try 
 		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			JTextField textField4 = new JTextField();
-			JTextField textField5 = new JTextField();
-			JTextField textField6 = new JTextField();
-			JTextField textField7 = new JTextField();
-
+			JComboBox jComboBox0 = new JComboBox<>();
+			jComboBox0.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Servicios", "Afiliados","IPS"}));
+			jComboBox0.setSelectedIndex(0);
+			
+			JTextField textField1 = new JTextField("");
+			JTextField textField2 = new JTextField("");
+			JTextField textField3 = new JTextField("");
+			JTextField textField4 = new JTextField("");
+			JTextField textField5 = new JTextField("");
+			JComboBox jComboBox1 = new JComboBox<>();
+			jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nada", "Afiliado (nombre)","Afiliado (documento)", "Servicio (id)", "Servicio (nombre)", "Tipo de Servicio", "Fecha", "IPS"}));
+			jComboBox1.setSelectedIndex(0);
+			
+			JComboBox jComboBox2 = new JComboBox<>();
+			jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ascendente", "Descendente"}));
+			jComboBox2.setSelectedIndex(0);
+			
 			Object[] inputFields = {
-					"día inicio filtro", textField1,
-					"mes inicio filtro", textField2,
-					"año inicio filtro", textField3,
-					"día fin filtro", textField4,
-					"mes fin filtro", textField5,
-					"año fin filtro", textField6,
-					"numero documento", textField7
+					"Criterio", jComboBox0,
+					"Fecha inicio (DD/MM/AAAA)", textField1,
+					"Fecha fin (DD/MM/AAAA)", textField2,
+					"Servicio", textField3,
+					"Tipo de servicio", textField4,
+					"IPS", textField5,
+					"Ordenar por", jComboBox1,
+					jComboBox2
 			};
+			
 
 			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
 			if (option == JOptionPane.OK_OPTION)
 			{
-				int diaInicio = Integer.parseInt(textField1.getText());
-				int mesInicio = Integer.parseInt(textField2.getText());
-				int anioInicio =  Integer.parseInt(textField3.getText());
-				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+				Timestamp fechaInicio = null;
+				Timestamp fechaFin = null;
 
-				int diaFin= Integer.parseInt(textField4.getText());
-				int mesFin= Integer.parseInt(textField5.getText());
-				int anioFin=  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+				if(!textField1.getText().isEmpty() && !textField2.getText().isEmpty()) {
+					String[] fi = textField1.getText().split("/");
+					String[] ff = textField2.getText().split("/");
+					fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
+					fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+				}else {
+					//Por si ingresaron uno de los dos... quitar si se hacen los checkboxes
+					fechaInicio = null;
+					fechaFin = null;
+				}
+				long idServicio = (!textField3.getText().isEmpty()) ? Long.parseLong(textField3.getText()) : -1;
+				long tipo = (!textField4.getText().isEmpty()) ? Long.parseLong(textField4.getText()) : -1;
+				long ips = (!textField5.getText().isEmpty()) ? Long.parseLong(textField5.getText()) : -1;
+				
+				String orden = null;
+				switch(jComboBox1.getSelectedIndex()) {
+				case 1:
+					orden = "t1.nombre";
+					break;
+				case 2:
+					orden = "t1.numDoc";
+					break;
+				case 3:
+					orden = "t1.id_servicio";
+					break;
+				case 4:
+					orden = "t1.nombre";
+					break;
+				case 5:
+					orden = "t1.tipo";
+					break;
+				case 6:
+					orden = "t1.fechahora";
+					break;
+				case 7:
+					orden = "t1.id_ips";
+					break;	
+				}
+				if(jComboBox2.getSelectedIndex() == 1) {
+					orden += " desc";
+				}
 
-				int numdoc = Integer.parseInt(textField7.getText());
+				String resultado = "En requerimientoFuncional10\n\n";
+				resultado += "\n\n************ Ejecutando RF10 ************ \n";
+				List<Object[]> utilizacionServicios= EPSAndes.darRFC10(jComboBox0.getSelectedIndex(), fechaInicio, fechaFin, idServicio, tipo, ips, orden);
 
-				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
+				if(jComboBox0.getSelectedIndex() == 0) {
+					resultado += "\n" + listarNOUtilizacion0(utilizacionServicios);
+				}else if(jComboBox0.getSelectedIndex() == 1) {
+					resultado += "\n" + listarNOUtilizacion1(utilizacionServicios);
+				} else {
+					resultado += "\n" + listarNOUtilizacion2(utilizacionServicios);
+				}
 
-				String resultado = "En requerimientoFuncional5\n\n";
-				resultado += "\n\n************ Ejecutando RF5 ************ \n";
-				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
 				resultado += "\n Operación terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}
@@ -1796,6 +1847,75 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
+	}
+	
+	private String listarNOUtilizacion0(List<Object[]> lista) {
+		String resp = "La información de los servicios prestados es:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String idServicio= ""+ tupla [0];
+			String nombre= ""+tupla [1];
+			String tipo= ""+ tupla [2];
+			
+			String resp1 = i++ + ". " + "[";
+			resp1 += "id servicio: " + idServicio + " ";
+			resp1 += "nombre servicio: " + nombre + " ";
+			resp1 += "tipo servicio: " + tipo + " ";
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+	
+	private String listarNOUtilizacion1(List<Object[]> lista) {
+		String resp = "La información de los servicios prestados es:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			
+			String numdoc= "" + tupla[0];
+			String nombre= "" + tupla[1];
+			String fechaNacimiento= "" + tupla[2];
+			String correo= "" + tupla [3];
+			
+			String resp1 = i++ + ". " + "[";
+			resp1 += "id afiliado: " + numdoc + " ";
+			resp1 += "nombre: " + nombre + " ";
+			resp1 += "fecha nacimiento: " + fechaNacimiento + " ";
+			resp1 += "correo: " + correo + " ";
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+	
+	private String listarNOUtilizacion2(List<Object[]> lista) {
+		String resp = "La información de los servicios prestados es:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			
+			String idIPS= ""+ tupla [0];
+			String nombre= ""+ tupla [1];
+			String localizacion= ""+tupla [2];
+			String idServicio= ""+ tupla [3];
+			String nomServ = ""+tupla[4];
+			String tipo = ""+ tupla[5];
+
+			
+			String resp1 = i++ + ". " + "[";
+			resp1 += "id IPS: " + idIPS + " ";
+			resp1 += "nombre IPS: " + nombre + " ";
+			resp1 += "localizacion: " + localizacion + " ";
+			resp1 += "id servicio: " + idServicio + " ";
+			resp1 += "nombre servicio: " + nomServ + " ";
+			resp1 += "tipo: " + tipo + " ";
+
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
 	}
 
 	public void requerimientoFuncional11( )

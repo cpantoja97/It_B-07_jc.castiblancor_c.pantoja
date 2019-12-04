@@ -155,6 +155,64 @@ where usuarios.numdoc = afiliados.numdoc and afiliados.numdoc = prestacionservic
 order by prestacionservicio.fechahora
 ;
 
+--RFC 10 
+    --CRITERIO SERVICIOS NO UTILIZADOS
+    --SIN AGRUPAR
+    SELECT t1.*
+    FROM SERVICIOS t1 LEFT OUTER JOIN (
+            SELECT *
+            FROM PRESTACIONSERVICIO
+            WHERE 1=1
+            --AND fechahora between '27-oct-18' and '29-oct-18'
+            AND prestacionservicio.ID_IPS = 3
+            ) AUX_PRESTACION
+        ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO
+    WHERE AUX_PRESTACION.FECHAHORA IS NULL
+        --AND t1.tipo = 1
+    ORDER BY t1.nombre
+    ;
+    
+    
+    --CRITERIO GENTE 
+    --SIN AGRUPAR
+    SELECT t1.NUMDOC, t1.NOMBRE, t1.FECHANACIMIENTO, t1.CORREO
+    FROM (
+            SELECT USUARIOS.*, AFILIADOS.FECHANACIMIENTO 
+            FROM AFILIADOS INNER JOIN USUARIOS ON AFILIADOS.NUMDOC = USUARIOS.NUMDOC
+            ) t1 LEFT OUTER JOIN (
+            SELECT PRESTACIONSERVICIO.*
+            FROM PRESTACIONSERVICIO INNER JOIN SERVICIOS ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
+            WHERE 1 = 1
+            --AND fechahora between '27-oct-17' and '29-oct-18'
+            --AND SERVICIOS.TIPO = 3
+            --AND SERVICIOS.ID_SERVICIO = 1
+            ) AUX_PRESTACION
+        ON t1.NUMDOC = AUX_PRESTACION.NUMDOC
+    WHERE AUX_PRESTACION.FECHAHORA IS NULL
+    ORDER BY t1.NUMDOC ASC
+    ;
+
+    --CRITERIO IPS
+    --SIN AGRUPAR
+    SELECT t1.*
+    FROM (
+            SELECT IPS.*, SERVICIOSIPS.ID_SERVICIO, SERVICIOS.NOMBRE NOMSERVICIO, SERVICIOS.TIPO
+            FROM IPS, SERVICIOSIPS, SERVICIOS
+            WHERE IPS.ID_IPS = SERVICIOSIPS.ID_IPS AND SERVICIOSIPS.ID_SERVICIO = SERVICIOS.ID_SERVICIO
+        ) t1 LEFT OUTER JOIN (
+            SELECT PRESTACIONSERVICIO.*, SERVICIOS.TIPO
+            FROM PRESTACIONSERVICIO INNER JOIN SERVICIOS ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
+            WHERE 1 = 1
+            --AND fechahora between '27-oct-12' and '29-oct-12'
+        ) AUX_PRESTACION
+        ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO AND t1.ID_IPS = AUX_PRESTACION.ID_IPS
+    WHERE AUX_PRESTACION.FECHAHORA IS NULL
+        AND t1.ID_SERVICIO = 1
+        --AND t1.TIPO = 1
+    ORDER BY t1.ID_IPS desc
+    ;
+
+
 --RFC 11 CONSULTAR FUNCIONAMIENTO
 -- servicio + y - consumido
 select  distinct(t1.week), t1.servicio, t1.cuenta
