@@ -360,106 +360,126 @@ class SQLConsultas {
 	}
 	
 	// RFC11 - CONSULTAR FUNCIONAMIENTO.
-	public List<Object> RF11a(PersistenceManager pm) {
-		// sentencia para servicios + y - consumido
-		String sql = " select  t1.week, t1.servicio, t1.cuenta ";
-		sql+= "from ( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as servicio, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio ";
-		sql+= ") t1, ( ";
-		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
-		sql+= "from( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as serv, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio ";
-		sql+= ") aux ";
-		sql+= "group by aux.week ";
-		sql+= ") t2 ";
-		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
-		sql+= "order by week ";
-		Query q = pm.newQuery(SQL, sql);
-		return q.executeList(); 
-	}
-
-	public List<Object> RF11b(PersistenceManager pm) {
-		// TODO sentencia para tipo servicios + y - consumido
-		String sql = " select  t1.week, t1.ips, t1.cuenta ";
-		sql+= "from ( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
-		sql+= ") t1, ( ";
-		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
-		sql+= "from( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
-		sql+= ") aux ";
-		sql+= "group by aux.week ";
-		sql+= ") t2 ";
-		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
-		sql+= "order by week ";
-		Query q = pm.newQuery(SQL, sql);
-		return q.executeList(); 
-	}
-
-	public List<Object> RF11c(PersistenceManager pm) {
-		// sentencia para ips + y - solicitada
-		String sql = " select  t1.week, t1.ips, t1.cuenta ";
-		sql+= "from ( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
-		sql+= ") t1, ( ";
-		sql+= "select week, max(cuenta) as maximo, min(cuenta) as minimo ";
-		sql+= "from( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips ";
-		sql+= ") aux ";
-		sql+= "group by aux.week ";
-		sql+= ") t2 ";
-		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo) ";
-		sql+= "order by week ";
-		Query q = pm.newQuery(SQL, sql);
-		return q.executeList(); 
-	}
-
-	public List<Object> RF11d(PersistenceManager pm) {
-		// afiliado que no han utilizado servicios
-		String sql = " select week, ( ";
-		sql+= "select count(*) as cantidad ";
-		sql+= "from "+ peps.darTablaAfiliados() +" afiliados ";
-		sql+= ")- count(*) ";
-		sql+= "from ( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc ";
-		sql+= " from " + peps.darTablaPrestacionServicio() + " prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc ) ";
-		sql+= "group by week ";
-		sql+= "order by week ";
-		Query q = pm.newQuery(SQL, sql);
-		return q.executeList(); 
-	}
-
-	public List<Object> RF11e(PersistenceManager pm) {
-		// sentencia para ips + y - solicitada
-		String sql = " select  t1.week, t1.afiliado ";
-		sql+= "from ( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc ";
-		sql+= ") t1, ( ";
-		sql+= "select week, max(cuenta) as maximo";
-		sql+= "from( ";
-		sql+= "select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta ";
-		sql+= "from " + peps.darTablaPrestacionServicio() +" prestacionServicio ";
-		sql+= "Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc ";
-		sql+= ") aux ";
-		sql+= "group by aux.week ";
-		sql+= ") t2 ";
-		sql+= "where (t1.week = t2.week and t1.cuenta = t2.maximo)";
-		sql+= "order by week ";
+	public List<Object> RF11(PersistenceManager pm) {
+		String sql = " "
+				+ "select t1.week, t1.cantidad, t2.serviciomas, t3.serviciomenos, t4.ipsmas, t5.ipsmenos, t6.afiliado, t7.tipomenos, t8.tipomas\n" + 
+				"from\n" + 
+				"(\n" + 
+				"    select week, (\n" + 
+				"    select count(*) as cantidad\n" + 
+				"    from afiliados\n" + 
+				"    )- count(*) as cantidad\n" + 
+				"    from (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc\n" + 
+				"        from prestacionServicio\n" + 
+				"        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc\n" + 
+				"    )\n" + 
+				"    group by week\n" + 
+				") t1\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, serviciomas\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomas, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio \n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t2\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, serviciomenos\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomenos, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio \n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t3\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, ipsmas\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmas, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio \n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t4\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, ipsmenos\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmenos, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio \n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t5\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, afiliado\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, numdoc as afiliado, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio \n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), numdoc\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t6\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, tipomenos\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomenos, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio inner join servicios \n" + 
+				"        on prestacionservicio.id_servicio = servicios.id_servicio\n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t7\n" + 
+				",\n" + 
+				"(\n" + 
+				"    select week, tipomas\n" + 
+				"    from\n" + 
+				"        (\n" + 
+				"        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomas, count(*), \n" + 
+				"            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) \n" + 
+				"            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn\n" + 
+				"        from prestacionservicio inner join servicios \n" + 
+				"        on prestacionservicio.id_servicio = servicios.id_servicio\n" + 
+				"        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo\n" + 
+				"        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc\n" + 
+				"        )\n" + 
+				"    where rn = 1\n" + 
+				") t8\n" + 
+				" where t1.week=t2.week and t2.week=t3.week and t3.week=t4.week and t4.week=t5.week\n" + 
+				" and t5.week=t6.week and t6.week=t7.week and t7.week=t8.week\n" + 
+				" order by t1.week";
+ 
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}

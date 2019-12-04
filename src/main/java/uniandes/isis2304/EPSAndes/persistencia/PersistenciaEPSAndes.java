@@ -2104,46 +2104,34 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC11a ()
+	public List<Object []> RFC11 ()
 	{
 		//TODO ajustar de acuerdo al RF
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF11a(pmf.getPersistenceManager());
+		List<Object> tuplas = sqlConsulta.RF11(pmf.getPersistenceManager());
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
 			Timestamp fecha = (Timestamp) datos [0];
 			int d1 = ((BigDecimal) datos [1]).intValue ();
-			int d2 = ((BigDecimal) datos [1]).intValue ();
+			int d2 = ((BigDecimal) datos [2]).intValue ();
+			int d3 = ((BigDecimal) datos [3]).intValue ();
+			int d4 = ((BigDecimal) datos [4]).intValue ();
+			int d5 = ((BigDecimal) datos [5]).intValue ();
+			int d6 = ((BigDecimal) datos [6]).intValue ();
+			int d7 = ((BigDecimal) datos [7]).intValue ();
 
-			Object [] resp = new Object [3];
+			Object [] resp = new Object [8];
 			resp [0] = fecha;
 			resp [1] = d1;
 			resp [2] = d2;
-
-			respuesta.add(resp);
-		}
-
-		return respuesta;
-	}
-
-	public List<Object []> RFC11d ()
-	{
-		List<Object []> respuesta = new LinkedList <Object []> ();
-		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF11d(pmf.getPersistenceManager());
-		log.info ("consulta exitosa");
-		for ( Object tupla : tuplas)
-		{
-			Object [] datos = (Object []) tupla;
-			Timestamp fecha = (Timestamp) datos [0];
-			int d2 = ((BigDecimal) datos [1]).intValue ();
-
-			Object [] resp = new Object [3];
-			resp [0] = fecha;
-			resp [1] = d2;
+			resp [3] = d3;
+			resp [4] = d4;
+			resp [5] = d5;
+			resp [6] = d6;
+			resp [7] = d7;
 
 			respuesta.add(resp);
 		}

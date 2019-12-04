@@ -97,9 +97,9 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 * Asociación a la clase principal del negocio.
 	 */
 	private EPSAndes EPSAndes;
-	
+
 	private int rolActual;
-	
+
 	private int idUsuarioActual;
 
 	/* ****************************************************************
@@ -172,7 +172,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				config = CONFIG_INTERFAZ_CAMPANA;
 				break;
 			}
-			
+
 			rolActual = rol;
 
 		} else {
@@ -1450,7 +1450,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 		return resp;
 	}
-	
+
 
 	public void requerimientoFuncional6( )
 	{
@@ -1627,11 +1627,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JComboBox jComboBox1 = new JComboBox<>();
 			jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nada", "Afiliado (nombre)","Afiliado (documento)", "Servicio", "Tipo de Servicio", "Fecha", "IPS"}));
 			jComboBox1.setSelectedIndex(0);
-			
+
 			JComboBox jComboBox2 = new JComboBox<>();
 			jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ascendente", "Descendente"}));
 			jComboBox2.setSelectedIndex(0);
-			
+
 			Object[] inputFields = {
 					"Fecha inicio (DD/MM/AAAA)", textField1,
 					"Fecha fin (DD/MM/AAAA)", textField2,
@@ -1641,8 +1641,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 					"Ordenar por", jComboBox1,
 					jComboBox2
 			};
-			
-			
+
+
 
 			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 			if (option == JOptionPane.OK_OPTION)
@@ -1663,7 +1663,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				long idServicio = (!textField3.getText().isEmpty()) ? Long.parseLong(textField3.getText()) : -1;
 				long tipo = (!textField4.getText().isEmpty()) ? Long.parseLong(textField4.getText()) : -1;
 				long ips = (!textField5.getText().isEmpty()) ? Long.parseLong(textField5.getText()) : -1;
-				
+
 				String orden = null;
 				switch(jComboBox1.getSelectedIndex()) {
 				case 1:
@@ -1688,7 +1688,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				if(jComboBox2.getSelectedIndex() == 1) {
 					orden += " desc";
 				}
-								
+
 				List<Object []> utilizacionServicios= EPSAndes.darRFC9(fechaInicio, fechaFin, idServicio, tipo, ips, orden);
 
 				String resultado = "En requerimientoFuncional9\n\n";
@@ -1709,13 +1709,13 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+
 	private String listarPrestacionServiciosSinAgrupar(List<Object[]> lista) {
 		String resp = "La información de los servicios prestados es:\n";
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
-			
+
 			String nombre= (String) tupla [0];
 			int numDoc= (int) tupla [1];
 			Timestamp fechaNac = (Timestamp) tupla[2];
@@ -1723,8 +1723,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			int servicio = (int) tupla[4];
 			int ips = (int) tupla[5];
 			Timestamp fechaHora = (Timestamp) tupla[6];
-			
-			
+
+
 			String resp1 = i++ + ". " + "[";
 			resp1 += "nombre usuario: " + nombre + " ";
 			resp1 += "id: " + numDoc + " ";
@@ -1746,7 +1746,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JComboBox jComboBox0 = new JComboBox<>();
 			jComboBox0.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Servicios", "Afiliados","IPS"}));
 			jComboBox0.setSelectedIndex(0);
-			
+
 			JTextField textField1 = new JTextField("");
 			JTextField textField2 = new JTextField("");
 			JTextField textField3 = new JTextField("");
@@ -1755,11 +1755,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			JComboBox jComboBox1 = new JComboBox<>();
 			jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nada", "Afiliado (nombre)","Afiliado (documento)", "Servicio (id)", "Servicio (nombre)", "Tipo de Servicio", "Fecha", "IPS"}));
 			jComboBox1.setSelectedIndex(0);
-			
+
 			JComboBox jComboBox2 = new JComboBox<>();
 			jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ascendente", "Descendente"}));
 			jComboBox2.setSelectedIndex(0);
-			
+
 			Object[] inputFields = {
 					"Criterio", jComboBox0,
 					"Fecha inicio (DD/MM/AAAA)", textField1,
@@ -1770,7 +1770,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 					"Ordenar por", jComboBox1,
 					jComboBox2
 			};
-			
+
 
 			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
@@ -1792,7 +1792,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				long idServicio = (!textField3.getText().isEmpty()) ? Long.parseLong(textField3.getText()) : -1;
 				long tipo = (!textField4.getText().isEmpty()) ? Long.parseLong(textField4.getText()) : -1;
 				long ips = (!textField5.getText().isEmpty()) ? Long.parseLong(textField5.getText()) : -1;
-				
+
 				String orden = null;
 				switch(jComboBox1.getSelectedIndex()) {
 				case 1:
@@ -1848,7 +1848,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
+
 	private String listarNOUtilizacion0(List<Object[]> lista) {
 		String resp = "La información de los servicios prestados es:\n";
 		int i = 1;
@@ -1857,7 +1857,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String idServicio= ""+ tupla [0];
 			String nombre= ""+tupla [1];
 			String tipo= ""+ tupla [2];
-			
+
 			String resp1 = i++ + ". " + "[";
 			resp1 += "id servicio: " + idServicio + " ";
 			resp1 += "nombre servicio: " + nombre + " ";
@@ -1867,18 +1867,18 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 		return resp;
 	}
-	
+
 	private String listarNOUtilizacion1(List<Object[]> lista) {
 		String resp = "La información de los servicios prestados es:\n";
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
-			
+
 			String numdoc= "" + tupla[0];
 			String nombre= "" + tupla[1];
 			String fechaNacimiento= "" + tupla[2];
 			String correo= "" + tupla [3];
-			
+
 			String resp1 = i++ + ". " + "[";
 			resp1 += "id afiliado: " + numdoc + " ";
 			resp1 += "nombre: " + nombre + " ";
@@ -1889,13 +1889,13 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 		return resp;
 	}
-	
+
 	private String listarNOUtilizacion2(List<Object[]> lista) {
 		String resp = "La información de los servicios prestados es:\n";
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
-			
+
 			String idIPS= ""+ tupla [0];
 			String nombre= ""+ tupla [1];
 			String localizacion= ""+tupla [2];
@@ -1903,7 +1903,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String nomServ = ""+tupla[4];
 			String tipo = ""+ tupla[5];
 
-			
+
 			String resp1 = i++ + ". " + "[";
 			resp1 += "id IPS: " + idIPS + " ";
 			resp1 += "nombre IPS: " + nombre + " ";
@@ -1922,14 +1922,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	{
 		try
 		{
-			List <Object[]> listaServicios = EPSAndes.darRFC11a();
-			//List <Object[]> listaEspecializados = EPSAndes.darRFC11b();
-			List <Object[]> listaAfiliadosNoUsanServicios= EPSAndes.darRFC11d();
+			List <Object[]> lista = EPSAndes.darRFC11();
 
-			List <Object[]> listaFinal= combinarListas(listaServicios,listaAfiliadosNoUsanServicios);
 			String resultado = "En requerimientoFuncional11\n\n";
 			resultado += "\n\n************ Ejecutando RF11 ************ \n";
-			resultado +=  "\n" + listarFuncionamientoSemanal(listaFinal);
+			resultado +=  "\n" + listarFuncionamientoSemanal(lista);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
 		} 
@@ -1939,42 +1936,6 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
-	}
-
-	private List<Object[]> combinarListas(List<Object[]> listaServicios, List<Object[]> listaAfiliadosNoUsanServicios) {
-
-		List<Object []> respuesta = new LinkedList <Object []> ();
-
-		for (Object [] tupla : listaAfiliadosNoUsanServicios)
-		{
-			// TODO no me gusta esto, mejor solucionar la consulta sql para que solo me muestre 1 de cada cosa y unirlo todo. (no funciona distinct)
-			Object [] datos = (Object []) tupla;
-			Timestamp fecha = (Timestamp) datos [0];
-			int numAfiliados= (int) tupla [1];
-			Servicio servicioMas= null;
-			Servicio servicioMenos= null;
-			TipoServicio tipoServicioMas= null;
-			TipoServicio tipoServicioMenos= null;
-			IPS ipsMas= null;
-			IPS ipsMenos= null;
-			Afiliado afiliados= null;
-
-			Object [] resp = new Object [3];
-			resp [0] = fecha;
-			resp [1] = numAfiliados;
-			resp [2] = servicioMas;
-//			resp [3] = servicioMenos;
-//			resp [4] = tipoServicioMas;
-//			resp [5] = tipoServicioMenos;
-//			resp [6] = ipsMas;
-//			resp [7] = ipsMenos;
-//			resp [8] = afiliados;
-
-			respuesta.add(resp);
-
-		}
-
-		return respuesta;
 	}
 
 	private String listarFuncionamientoSemanal(List<Object[]> listac) {
@@ -1988,19 +1949,19 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			resp+= "\n Para la semana ";
 			resp+=  tupla[0] + " \n";
 			resp+= " el tipo de servicio mas consumido es: "; 
-			resp+=  "\n";
+			resp+=  tupla[1] + " \n";
 			resp+= " el tipo de servicio menos consumido es: "; 
-			resp+=  "\n";
+			resp+=  tupla[2] + " \n";
 			resp+= " el servicio mas consumido es: "; 
-			resp+=  "\n";
+			resp+=  tupla[3] + " \n";
 			resp+= " el servicio menos consumido es: "; 
-			resp+=  "\n";
+			resp+=  tupla[4] + " \n";
 			resp+= " la ips mas solicitada es: "; 
-			resp+=  "\n";
+			resp+=  tupla[5] + " \n";
 			resp+= " la ips menos solicitada es: "; 
-			resp+=  "\n";
+			resp+=  tupla[6] + " \n";
 			resp+= " el afiliado que mas ha utilizado servicios es: "; 
-			resp+=  "\n";
+			resp+=  tupla[7] + " \n";
 			resp+= " el numero de afiliados que no usaron los servicios es: "; 
 			resp+= numAfiliados +"\n";
 		}

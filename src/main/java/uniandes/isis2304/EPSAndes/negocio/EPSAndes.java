@@ -647,18 +647,10 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC11a ()
+	public List<Object []> darRFC11 ()
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC11a();
-		log.info ("Listando cosas: Listo!");
-		return tuplas;
-	}
-
-	public List<Object []> darRFC11d ()
-	{
-		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC11d();
+		List<Object []> tuplas = peps.RFC11();
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
