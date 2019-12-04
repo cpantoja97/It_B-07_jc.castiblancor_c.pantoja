@@ -156,81 +156,126 @@ order by prestacionservicio.fechahora
 ;
 
 --RFC 11 CONSULTAR FUNCIONAMIENTO
--- servicio + y - consumido
-select  distinct(t1.week), t1.servicio, t1.cuenta
-from (
-    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as servicio, count(*) as cuenta
-    from prestacionServicio
-    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
-) t1,
-(
-    select week, max(cuenta) as maximo, min(cuenta) as minimo
-    from(
-        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_servicio as serv, count(*) as cuenta
-        from prestacionServicio
-        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_servicio
-    ) aux
-    group by aux.week
-    order by aux.week
-) t2
-where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.minimo)
-order by week
-;
 
--- ips + y - solicitada
-select t1.week, t1.ips, t1.cuenta
-from (
-    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta
-    from prestacionServicio
-    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips
-) t1, 
+-- Super consulta de la muerte RFC 11
+select t1.week, t1.cantidad, t2.serviciomas, t3.serviciomenos, t4.ipsmas, t5.ipsmenos, t6.afiliado, t7.tipomenos, t8.tipomas
+from
 (
-    select week, max(cuenta) as maximo, min(cuenta) as minimo
-    from(
-        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.id_ips as ips, count(*) as cuenta
+    select week, (
+    select count(*) as cantidad
+    from afiliados
+    )- count(*) as cantidad
+    from (
+        select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc
         from prestacionServicio
-        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.id_ips
-    ) aux
-    group by aux.week
-    order by aux.week
-) t2
-where (t1.week = t2.week and t1.cuenta = t2.maximo) or (t1.week = t2.week and t1.cuenta = t2.maximo)
-order by week
-;
-
--- afiliado que no han utilizado servicios
-select week, (
-select count(*) as cantidad
-from afiliados
-)- count(*) 
-from (
-    select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc
-    from prestacionServicio
-    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc
-)
-group by week
-;
-
--- afiliado que mas a usado servicios
-select t1.week, t1.afiliado, maximo
-from (
-    select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta
-    from prestacionServicio
-    Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc
-) t1, 
+        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc
+    )
+    group by week
+) t1
+,
 (
-    select week, max(cuenta) as maximo
-    from(
-        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, prestacionServicio.numdoc as afiliado, count(*) as cuenta
-        from prestacionServicio
-        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), prestacionServicio.numdoc
-    ) aux
-    group by aux.week
-    order by aux.week
+    select week, serviciomas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
 ) t2
-where t1.week = t2.week and t1.cuenta = t2.maximo
-order by week
-;
+,
+(
+    select week, serviciomenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t3
+,
+(
+    select week, ipsmas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
+) t4
+,
+(
+    select week, ipsmenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t5
+,
+(
+    select week, afiliado
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, numdoc as afiliado, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), numdoc
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t6
+,
+(
+    select week, tipomenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio inner join servicios 
+        on prestacionservicio.id_servicio = servicios.id_servicio
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
+) t7
+,
+(
+    select week, tipomas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio inner join servicios 
+        on prestacionservicio.id_servicio = servicios.id_servicio
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t8
+ where t1.week=t2.week and t2.week=t3.week and t3.week=t4.week and t4.week=t5.week
+ and t5.week=t6.week and t6.week=t7.week and t7.week=t8.week
+ order by t1.week
+ ;
 
 --RFC 12 CONSULTAR LOS AFILIADOS COSTOSOS
 -- afiliados que van cada mes. 
@@ -332,4 +377,122 @@ SELECT *
 FROM PRESTACIONSERVICIO
 ;
 
-commit;
+
+-- Super consulta de la muerte RFC 11
+select t1.week, t1.cantidad, t2.serviciomas, t3.serviciomenos, t4.ipsmas, t5.ipsmenos, t6.afiliado, t7.tipomenos, t8.tipomas
+from
+(
+    select week, (
+    select count(*) as cantidad
+    from afiliados
+    )- count(*) as cantidad
+    from (
+        select TRUNC( prestacionServicio.fechaHora, 'IW' ) as week, prestacionservicio.numdoc
+        from prestacionServicio
+        Group by TRUNC( prestacionServicio.fechaHora, 'IW' ), numdoc
+    )
+    group by week
+) t1
+,
+(
+    select week, serviciomas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
+) t2
+,
+(
+    select week, serviciomenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_servicio as serviciomenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_servicio
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t3
+,
+(
+    select week, ipsmas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
+) t4
+,
+(
+    select week, ipsmenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, id_ips as ipsmenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), id_ips
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t5
+,
+(
+    select week, afiliado
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, numdoc as afiliado, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio 
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), numdoc
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t6
+,
+(
+    select week, tipomenos
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomenos, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio inner join servicios 
+        on prestacionservicio.id_servicio = servicios.id_servicio
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) desc
+        )
+    where rn = 1
+) t7
+,
+(
+    select week, tipomas
+    from
+        (
+        select TRUNC( prestacionServicio.fechaHora,'IW' ) as week, servicios.tipo as tipomas, count(*), 
+            ROW_NUMBER() OVER(PARTITION BY TRUNC( prestacionServicio.fechaHora,'IW' ) 
+            ORDER BY  TRUNC( prestacionServicio.fechaHora,'IW' ) DESC) AS rn
+        from prestacionservicio inner join servicios 
+        on prestacionservicio.id_servicio = servicios.id_servicio
+        group by TRUNC( prestacionServicio.fechaHora,'IW' ), servicios.tipo
+        order by TRUNC( prestacionServicio.fechaHora,'IW' ), count(*) asc
+        )
+    where rn = 1
+) t8
+ where t1.week=t2.week  and t1.week=t3.week  and t1.week=t4.week and t1.week=t5.week 
+ and t1.week=t6.week and t1.week=t7.week and t1.week=t8.week 
+ ;
