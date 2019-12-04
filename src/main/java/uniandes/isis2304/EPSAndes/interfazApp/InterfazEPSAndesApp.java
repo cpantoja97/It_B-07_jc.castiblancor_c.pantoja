@@ -1843,12 +1843,12 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			resp [0] = fecha;
 			resp [1] = numAfiliados;
 			resp [2] = servicioMas;
-			resp [3] = servicioMenos;
-			resp [4] = tipoServicioMas;
-			resp [5] = tipoServicioMenos;
-			resp [6] = ipsMas;
-			resp [7] = ipsMenos;
-			resp [8] = afiliados;
+//			resp [3] = servicioMenos;
+//			resp [4] = tipoServicioMas;
+//			resp [5] = tipoServicioMenos;
+//			resp [6] = ipsMas;
+//			resp [7] = ipsMenos;
+//			resp [8] = afiliados;
 
 			respuesta.add(resp);
 
