@@ -34,6 +34,7 @@ import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -96,6 +97,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	 * Asociación a la clase principal del negocio.
 	 */
 	private EPSAndes EPSAndes;
+	
+	private int rolActual;
 
 	/* ****************************************************************
 	 * 			Atributos de interfaz
@@ -166,6 +169,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				config = CONFIG_INTERFAZ_CAMPANA;
 				break;
 			}
+			
+			rolActual = rol;
 
 		} else {
 			dispose();
@@ -1442,6 +1447,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		}
 		return resp;
 	}
+	
 
 	public void requerimientoFuncional6( )
 	{
@@ -1610,45 +1616,83 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		//TODO pasar bien parametros y listar obejtos de respuesta.
 		try 
 		{
-			JTextField textField1 = new JTextField();
-			JTextField textField2 = new JTextField();
-			JTextField textField3 = new JTextField();
-			JTextField textField4 = new JTextField();
-			JTextField textField5 = new JTextField();
-			JTextField textField6 = new JTextField();
-			JTextField textField7 = new JTextField();
-
+			JTextField textField1 = new JTextField("");
+			JTextField textField2 = new JTextField("");
+			JTextField textField3 = new JTextField("");
+			JTextField textField4 = new JTextField("");
+			JTextField textField5 = new JTextField("");
+			JComboBox jComboBox1 = new JComboBox<>();
+			jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nada", "Afiliado (nombre)","Afiliado (documento)", "Servicio", "Tipo de Servicio", "Fecha", "IPS"}));
+			jComboBox1.setSelectedIndex(0);
+			
+			JComboBox jComboBox2 = new JComboBox<>();
+			jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Ascendente", "Descendente"}));
+			jComboBox2.setSelectedIndex(0);
+			
 			Object[] inputFields = {
-					"día inicio filtro", textField1,
-					"mes inicio filtro", textField2,
-					"año inicio filtro", textField3,
-					"día fin filtro", textField4,
-					"mes fin filtro", textField5,
-					"año fin filtro", textField6,
-					"numero documento", textField7
+					"Fecha inicio (DD/MM/AAAA)", textField1,
+					"Fecha fin (DD/MM/AAAA)", textField2,
+					"Servicio", textField3,
+					"Tipo de servicio", textField4,
+					"IPS", textField5,
+					"Ordenar por", jComboBox1,
+					jComboBox2
 			};
+			
+			
 
 			int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
-
 			if (option == JOptionPane.OK_OPTION)
 			{
-				int diaInicio = Integer.parseInt(textField1.getText());
-				int mesInicio = Integer.parseInt(textField2.getText());
-				int anioInicio =  Integer.parseInt(textField3.getText());
-				Timestamp fechaHoraInicio = new Timestamp(anioInicio+100, mesInicio, diaInicio , 0, 0, 0, 0);
+				Timestamp fechaInicio = null;
+				Timestamp fechaFin = null;
 
-				int diaFin= Integer.parseInt(textField4.getText());
-				int mesFin= Integer.parseInt(textField5.getText());
-				int anioFin=  Integer.parseInt(textField6.getText());
-				Timestamp fechaHoraFin = new Timestamp(anioFin+100, mesFin, diaFin, 0, 0, 0, 0);
+				if(!textField1.getText().isEmpty() && !textField2.getText().isEmpty()) {
+					String[] fi = textField1.getText().split("/");
+					String[] ff = textField2.getText().split("/");
+					fechaInicio = new Timestamp(Integer.parseInt(fi[2])-1900, Integer.parseInt(fi[1])-1, Integer.parseInt(fi[0]) , 0, 0, 0, 0);
+					fechaFin = new Timestamp(Integer.parseInt(ff[2])-1900, Integer.parseInt(ff[1])-1, Integer.parseInt(ff[0]) , 0, 0, 0, 0);
+				}else {
+					//Por si ingresaron uno de los dos... quitar si se hacen los checkboxes
+					fechaInicio = null;
+					fechaFin = null;
+				}
+				long idServicio = (!textField3.getText().isEmpty()) ? Long.parseLong(textField3.getText()) : -1;
+				long tipo = (!textField4.getText().isEmpty()) ? Long.parseLong(textField4.getText()) : -1;
+				long ips = (!textField5.getText().isEmpty()) ? Long.parseLong(textField5.getText()) : -1;
+				
+				String orden = null;
+				switch(jComboBox1.getSelectedIndex()) {
+				case 1:
+					orden = "usuarios.nombre";
+					break;
+				case 2:
+					orden = "afiliados.numDoc";
+					break;
+				case 3:
+					orden = "prestacionservicio.id_servicio";
+					break;
+				case 4:
+					orden = "servicios.tipo";
+					break;
+				case 5:
+					orden = "prestacionservicio.fechahora";
+					break;
+				case 6:
+					orden = "prestacionservicio.id_ips";
+					break;	
+				}
+				if(jComboBox2.getSelectedIndex() == 1) {
+					orden += " desc";
+				} else {
+					orden += " asc";
+				}
+								
+				List<Object []> utilizacionServicios= EPSAndes.darRFC9(fechaInicio, fechaFin, idServicio, tipo, ips, orden);
 
-				int numdoc = Integer.parseInt(textField7.getText());
-
-				List<Object []> utilizacionServicios= EPSAndes.darRFC5(numdoc, fechaHoraInicio, fechaHoraFin);
-
-				String resultado = "En requerimientoFuncional5\n\n";
-				resultado += "\n\n************ Ejecutando RF5 ************ \n";
-				resultado += "\n" + listarUtilizacionServicios(utilizacionServicios);
+				String resultado = "En requerimientoFuncional9\n\n";
+				resultado += "\n\n************ Ejecutando RFC9 ************ \n";
+				resultado += "\n" + listarPrestacionServiciosSinAgrupar(utilizacionServicios);
 				resultado += "\n Operación terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}
@@ -1663,6 +1707,35 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
+	}
+	
+	private String listarPrestacionServiciosSinAgrupar(List<Object[]> lista) {
+		String resp = "La información de los servicios prestados es:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			
+			String nombre= (String) tupla [0];
+			int numDoc= (int) tupla [1];
+			Timestamp fechaNac = (Timestamp) tupla[2];
+			int tipoServicio = (int) tupla[3];
+			int servicio = (int) tupla[4];
+			int ips = (int) tupla[5];
+			Timestamp fechaHora = (Timestamp) tupla[6];
+			
+			
+			String resp1 = i++ + ". " + "[";
+			resp1 += "nombre usuario: " + nombre + " ";
+			resp1 += "id: " + numDoc + " ";
+			resp1 += "fecha nacimiento: " + fechaNac + " ";
+			resp1 += "Tipo servicio: " + tipoServicio + " ";
+			resp1 += "Servicio: " + servicio + " ";
+			resp1 += "IPS: " + ips + " ";
+			resp1 += "fecha: " + fechaHora + " ";
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
 	}
 
 	public void requerimientoFuncional10( )
@@ -2054,6 +2127,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 	private String generarMensajeError(Exception e) 
 	{
 		String resultado = "************ Error en la ejecución\n";
+		e.printStackTrace();
 		resultado += e.getLocalizedMessage() + ", " + darDetalleException(e);
 		resultado += "\n\nRevise datanucleus.log y EPSAndes.log para más detalles";
 		return resultado;

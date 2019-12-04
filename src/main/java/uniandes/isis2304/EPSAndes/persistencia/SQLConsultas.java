@@ -3,6 +3,7 @@ package uniandes.isis2304.EPSAndes.persistencia;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -198,20 +199,44 @@ class SQLConsultas {
 	}
 
 	// RFC9 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES.
-	public List<Object> RF9(PersistenceManager pm) {
-		//TODO pasar parametros
-		String sql = " SELECT afiliados.*, prestacionservicio.fechahora ";
-		sql+= "FROM" + peps.darTablaAfiliados() +" afiliados, ";
+	public List<Object> RF9sinAgrupar(PersistenceManager pm, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden) {
+		
+		String sql = "SELECT usuarios.nombre, afiliados.*, servicios.tipo, prestacionservicio.id_servicio, prestacionservicio.id_ips, prestacionservicio.fechahora ";
+		sql+= "FROM " + peps.darTablaUsuario() +" usuarios, ";
+		sql+= peps.darTablaAfiliados() +" afiliados, ";
 		sql+= peps.darTablaPrestacionServicio() +" prestacionservicio, ";
 		sql+= peps.darTablaServicio() +" servicios ";
-		sql+= "where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' ";
-		sql+= "and afiliados.numdoc = prestacionservicio.numdoc";
-		sql+= "and servicios.id_servicio = prestacionservicio.id_servicio ";
-		sql+= "and servicios.id_servicio = 4 ";
-		sql+= "and servicios.tipo = 1 ";
-		sql+= "and prestacionservicio.ID_IPS = 1 ";
+		sql+= "where usuarios.numdoc = afiliados.numdoc";
+		sql+= " and afiliados.numdoc = prestacionservicio.numdoc";
+		sql+= " and servicios.id_servicio = prestacionservicio.id_servicio";
+		List parametros = new ArrayList();
+		if(f1!= null && f2!= null) {
+			sql+= " and prestacionservicio.fechahora between ? and ?";
+			parametros.add(f1);
+			parametros.add(f2);
+		}
+		if(idServicio != -1) {
+			sql+= " and servicios.id_servicio = ?";
+			parametros.add(idServicio);
+		}
+		if(tipo !=-1) {
+			sql+= " and servicios.tipo = ?";
+			parametros.add(tipo);
+		}
+		if(ips != -1) {
+			sql+= " and prestacionservicio.ID_IPS = ?";
+			parametros.add(ips);
+		}
+		
+		// TODO más opciones de orden
+		if (orden != null) {
+			sql+= " ORDER BY ";
+			sql+= orden;
+		}
+
 		Query q = pm.newQuery(SQL, sql);
-		//q.setParameters(f1, f2, idServicio, tipo, ips);
+		Object[] params = parametros.toArray();
+		q.setParameters(params);
 		return q.executeList(); 
 	}
 

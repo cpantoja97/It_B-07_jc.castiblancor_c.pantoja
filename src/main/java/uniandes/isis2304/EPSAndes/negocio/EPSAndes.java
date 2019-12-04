@@ -631,11 +631,10 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC9 ()
+	public List<Object []> darRFC9 (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
 	{
-		//TODO pasar parametros.
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC9();
+		List<Object []> tuplas = peps.RFC9sinAgrupar(f1, f2, idServicio, tipo, ips, orden);
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}

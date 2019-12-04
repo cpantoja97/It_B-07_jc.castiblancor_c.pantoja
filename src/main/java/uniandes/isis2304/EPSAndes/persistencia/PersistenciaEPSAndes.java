@@ -2046,24 +2046,34 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC9 ()
+	public List<Object []> RFC9sinAgrupar (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
 	{
-		//TODO ajustar de acuerdo al RF
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF9(pmf.getPersistenceManager());
+		long t0 = System.currentTimeMillis();
+		List<Object> tuplas = sqlConsulta.RF9sinAgrupar(pmf.getPersistenceManager(), f1, f2, idServicio, tipo, ips, orden);
+		long tiempo = System.currentTimeMillis() - t0;
+		System.out.println(tiempo + " ms empleados");
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			int d1 = ((BigDecimal) datos [0]).intValue ();
-			int d2 = ((BigDecimal) datos [1]).intValue ();
-			int d3 = ((BigDecimal) datos [2]).intValue ();
+			String d1 = (String) datos[0];			
+			int d2= ((BigDecimal) datos [1]).intValue ();
+			Timestamp d3 = (Timestamp) datos[2];
+			int d4 = ((BigDecimal) datos [3]).intValue ();
+			int d5 = ((BigDecimal) datos [4]).intValue ();
+			int d6 = ((BigDecimal) datos [5]).intValue ();
+			Timestamp d7 = (Timestamp) datos[6];
 
-			Object [] resp = new Object [3];
+			Object [] resp = new Object [7];
 			resp [0] = d1;
 			resp [1] = d2;
 			resp [2] = d3;
+			resp [3] = d4;
+			resp [4] = d5;
+			resp [5] = d6;
+			resp [6] = d7;
 
 			respuesta.add(resp);
 		}
