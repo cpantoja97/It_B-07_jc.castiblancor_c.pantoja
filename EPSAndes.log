@@ -1068,3 +1068,83 @@ ORA-00001: unique constraint (ISIS2304B191920.ORDENES_PK) violated
 21:27:02,078 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
 21:27:03,046 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
 21:27:03,046 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+01:41:06,023 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+01:41:08,414 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+01:41:08,766 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+01:41:08,767 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+01:41:08,767 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+01:42:22,864 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+01:42:22,866 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+01:42:23,084 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+01:42:23,085 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+01:48:47,292 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+01:48:49,380 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+01:48:49,623 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+01:48:49,626 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+01:48:49,627 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+01:48:57,822 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+01:48:57,822 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+01:48:58,043 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+01:48:58,044 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+01:52:48,949 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+01:52:48,951 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+01:52:49,275 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+01:52:49,276 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+01:54:31,915 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+01:54:31,917 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:21:04,628 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+02:21:06,951 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+02:21:07,243 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+02:21:07,245 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+02:21:07,245 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+02:21:10,862 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:21:10,862 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:26:40,962 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+02:26:43,047 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+02:26:43,312 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+02:26:43,315 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+02:26:43,315 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+02:26:50,260 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:26:50,260 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:26:50,473 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:26:50,473 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:29:59,494 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:29:59,495 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:29:59,870 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:29:59,871 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:33:22,828 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:33:22,830 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:36:20,549 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:36:20,549 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:37:30,975 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+02:37:33,172 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+02:37:33,417 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+02:37:33,419 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+02:37:33,419 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+02:37:36,587 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:37:36,587 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:37:36,827 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:37:36,828 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:37:42,294 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:37:42,294 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:37:42,818 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:37:42,819 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:37:57,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:37:57,865 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:37:58,178 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:37:58,179 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:38:52,493 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+02:38:54,557 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Consultando Rol del usuario ingresado
+02:38:54,806 (main) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Rol consultado: Gerente existente
+02:38:54,807 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+02:38:54,807 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+02:43:05,169 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:43:05,169 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:43:05,483 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:43:05,483 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!
+02:44:54,130 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:44:54,131 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:47:23,096 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas
+02:47:23,097 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - iniciando consulta
+02:47:23,304 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - consulta exitosa
+02:47:23,305 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Listando cosas: Listo!

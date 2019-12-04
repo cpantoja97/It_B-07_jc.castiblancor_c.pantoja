@@ -2050,10 +2050,7 @@ public class PersistenciaEPSAndes
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		long t0 = System.currentTimeMillis();
 		List<Object> tuplas = sqlConsulta.RF9sinAgrupar(pmf.getPersistenceManager(), f1, f2, idServicio, tipo, ips, orden);
-		long tiempo = System.currentTimeMillis() - t0;
-		System.out.println(tiempo + " ms empleados");
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
@@ -2081,26 +2078,27 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC10 ()
+	public List<Object []> RFC10 (int criterio, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
 	{
-		//TODO ajustar de acuerdo al RF
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF10(pmf.getPersistenceManager());
+		List<Object> tuplas = null;
+		switch(criterio) {
+		case 0:
+			tuplas = sqlConsulta.RF10criterioServicio(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			break;
+		case 1: 
+			tuplas = sqlConsulta.RF10criterioGente(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			break;
+		case 2:
+			tuplas = sqlConsulta.RF10criterioIPS(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			break;
+		}
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
 			Object [] datos = (Object []) tupla;
-			int d1 = ((BigDecimal) datos [0]).intValue ();
-			int d2 = ((BigDecimal) datos [1]).intValue ();
-			int d3 = ((BigDecimal) datos [2]).intValue ();
-
-			Object [] resp = new Object [3];
-			resp [0] = d1;
-			resp [1] = d2;
-			resp [2] = d3;
-
-			respuesta.add(resp);
+			respuesta.add(datos);
 		}
 
 		return respuesta;

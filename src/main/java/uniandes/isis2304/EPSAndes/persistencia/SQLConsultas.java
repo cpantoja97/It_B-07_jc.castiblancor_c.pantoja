@@ -228,7 +228,6 @@ class SQLConsultas {
 			parametros.add(ips);
 		}
 		
-		// TODO más opciones de orden
 		if (orden != null) {
 			sql+= " ORDER BY ";
 			sql+= orden;
@@ -241,23 +240,125 @@ class SQLConsultas {
 	}
 
 	// RFC10 - CONSULTAR LA PRESTACIÓN DE SERVICIOS EN EPSANDES – RFC9-V2.
-	public List<Object> RF10(PersistenceManager pm) {
-		//TODO poner sentencia sql correcta
-		String sql = " SELECT afiliados.*, prestacionservicio.fechahora ";
-		sql+= "FROM" + peps.darTablaAfiliados() +" afiliados, ";
-		sql+= peps.darTablaPrestacionServicio() +" prestacionservicio, ";
-		sql+= peps.darTablaServicio() +" servicios ";
-		sql+= "where prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' ";
-		sql+= "and afiliados.numdoc = prestacionservicio.numdoc";
-		sql+= "and servicios.id_servicio = prestacionservicio.id_servicio ";
-		sql+= "and servicios.id_servicio = 4 ";
-		sql+= "and servicios.tipo = 1 ";
-		sql+= "and prestacionservicio.ID_IPS = 1 ";
+	public List<Object> RF10criterioServicio(PersistenceManager pm, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden) {
+		List parametros = new ArrayList();
+		
+		String sql = "SELECT t1.* ";
+		sql+= "FROM " + peps.darTablaServicio() +" t1";
+		sql+= " LEFT OUTER JOIN "; //join con mi selección de prestacion
+		sql+= "( SELECT * FROM "+ peps.darTablaPrestacionServicio() +" WHERE 1=1 ";
+		//condicionales
+		if(f1!= null && f2!= null) {
+			sql+= " and prestacionservicio.fechahora between ? and ?";
+			parametros.add(f1);
+			parametros.add(f2);
+		}
+		if(ips != -1) {
+			sql+= " and prestacionservicio.ID_IPS = ?";
+			parametros.add(ips);
+		}
+		sql+= ") AUX_PRESTACION "; 
+		sql+= "ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO ";
+		sql+= "WHERE AUX_PRESTACION.FECHAHORA IS NULL ";
+		if(tipo !=-1) {
+			sql+= " and t1.tipo = ?";
+			parametros.add(tipo);
+		}
+
+		if (orden != null) {
+			sql+= " ORDER BY ";
+			sql+= orden;
+		}
+
 		Query q = pm.newQuery(SQL, sql);
-		//q.setParameters(f1, f2, idServicio, tipo, ips);
+		Object[] params = parametros.toArray();
+		q.setParameters(params);
 		return q.executeList(); 
 	}
+	
+	public List<Object> RF10criterioGente(PersistenceManager pm, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden) {
+		List parametros = new ArrayList();
+		
+		String sql = "SELECT t1.NUMDOC, t1.NOMBRE, t1.FECHANACIMIENTO, t1.CORREO ";
+		sql+= "FROM ( ";
+		sql+= "SELECT USUARIOS.*, AFILIADOS.FECHANACIMIENTO ";
+		sql+= "FROM "+ peps.darTablaAfiliados() +" INNER JOIN USUARIOS ON AFILIADOS.NUMDOC = USUARIOS.NUMDOC ";
+		sql+= ") t1 LEFT OUTER JOIN ("; //join con mi selección de prestacion
+		sql+= "SELECT PRESTACIONSERVICIO.* ";
+		sql+= "FROM "+ peps.darTablaPrestacionServicio() +" PRESTACIONSERVICIO";
+		sql+= " INNER JOIN ";
+		sql+= peps.darTablaServicio() + " ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO";
+		sql+= " WHERE 1=1 ";
+		//condicionales
+		if(f1!= null && f2!= null) {
+			sql+= " and prestacionservicio.fechahora between ? and ?";
+			parametros.add(f1);
+			parametros.add(f2);
+		}
+		if(idServicio != -1) {
+			sql+= " and servicios.id_servicio = ?";
+			parametros.add(idServicio);
+		}
+		if(tipo !=-1) {
+			sql+= " and servicios.tipo = ?";
+			parametros.add(tipo);
+		}
+		sql+= " ) AUX_PRESTACION "; 
+		sql+= "ON t1.NUMDOC = AUX_PRESTACION.NUMDOC ";
+		sql+= "WHERE AUX_PRESTACION.FECHAHORA IS NULL";
+		
+		
+		if (orden != null) {
+			sql+= " ORDER BY ";
+			sql+= orden;
+		}
 
+		Query q = pm.newQuery(SQL, sql);
+		Object[] params = parametros.toArray();
+		q.setParameters(params);
+		return q.executeList(); 
+	}
+	
+	public List<Object> RF10criterioIPS(PersistenceManager pm, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden) {
+		List parametros = new ArrayList();
+		
+		String sql = "SELECT t1.* ";
+		sql+= "FROM ( ";
+		sql+= "SELECT IPS.*, SERVICIOSIPS.ID_SERVICIO, SERVICIOS.NOMBRE NOMSERVICIO, SERVICIOS.TIPO ";
+		sql+= "FROM IPS, SERVICIOSIPS, SERVICIOS "; 
+		sql+= "WHERE IPS.ID_IPS = SERVICIOSIPS.ID_IPS AND SERVICIOSIPS.ID_SERVICIO = SERVICIOS.ID_SERVICIO";
+		sql+= ") t1 LEFT OUTER JOIN ( "; //join con mi selección de prestacion
+		sql+= "SELECT PRESTACIONSERVICIO.*, SERVICIOS.TIPO "; 
+		sql+= "FROM PRESTACIONSERVICIO INNER JOIN SERVICIOS ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO ";
+		sql+= "WHERE 1 = 1 ";
+		//condicionales
+		if(f1!= null && f2!= null) {
+			sql+= " and prestacionservicio.fechahora between ? and ?";
+			parametros.add(f1);
+			parametros.add(f2);
+		}
+		sql+= ") AUX_PRESTACION "; 
+		sql+= "ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO AND t1.ID_IPS = AUX_PRESTACION.ID_IPS ";
+		sql+= "WHERE AUX_PRESTACION.FECHAHORA IS NULL ";
+		if(tipo !=-1) {
+			sql+= " and t1.tipo = ?";
+			parametros.add(tipo);
+		}
+		if(idServicio != -1) {
+			sql+= " and t1.ID_SERVICIO = ?";
+			parametros.add(idServicio);
+		}
+		if (orden != null) {
+			sql+= " ORDER BY ";
+			sql+= orden;
+		}
+
+		Query q = pm.newQuery(SQL, sql);
+		Object[] params = parametros.toArray();
+		q.setParameters(params);
+		return q.executeList(); 
+	}
+	
 	// RFC11 - CONSULTAR FUNCIONAMIENTO.
 	public List<Object> RF11a(PersistenceManager pm) {
 		// sentencia para servicios + y - consumido
