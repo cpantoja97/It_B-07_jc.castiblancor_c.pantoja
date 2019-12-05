@@ -145,15 +145,18 @@ on servicios.nombre = aux2.nombre
 where aux2.nombre is null;
 
 --RFC 9 CONSULTAR LA PRESTACI�N DE SERVICIOS EN EPSANDES
-select usuarios.nombre, afiliados.*, servicios.tipo, prestacionservicio.id_servicio, prestacionservicio.id_ips, prestacionservicio.fechahora
-from usuarios, afiliados, prestacionservicio, servicios
-where usuarios.numdoc = afiliados.numdoc and afiliados.numdoc = prestacionservicio.numdoc and servicios.id_servicio = prestacionservicio.id_servicio
-    and prestacionservicio.fechahora between '27-oct-18' and '29-dec-18' 
-    and servicios.id_servicio = 4 
-    and servicios.tipo = 1 
-    and prestacionservicio.ID_IPS = 1
-order by prestacionservicio.fechahora
-;
+    --SIN AGRUPAR
+    select usuarios.nombre, afiliados.*, servicios.tipo, prestacionservicio.id_servicio, prestacionservicio.id_ips, prestacionservicio.fechahora
+    from usuarios, afiliados, prestacionservicio, servicios --,campania
+    where usuarios.numdoc = afiliados.numdoc and afiliados.numdoc = prestacionservicio.numdoc and servicios.id_servicio = prestacionservicio.id_servicio 
+        and prestacionservicio.fechahora between '8-feb-18' and '15-feb-18'
+        and servicios.id_servicio = 4 
+        and servicios.tipo = 1 
+        and prestacionservicio.ID_IPS = 1
+        --and prestacionservicio.campania = campania.id
+        --and campania.organizador = 40148
+    order by prestacionservicio.fechahora
+    ;
 
 --RFC 10 
     --CRITERIO SERVICIOS NO UTILIZADOS
@@ -161,16 +164,19 @@ order by prestacionservicio.fechahora
     SELECT t1.*
     FROM SERVICIOS t1 LEFT OUTER JOIN (
             SELECT *
-            FROM PRESTACIONSERVICIO
+            FROM PRESTACIONSERVICIO--, campania
             WHERE 1=1
-            --AND fechahora between '27-oct-18' and '29-oct-18'
-            AND prestacionservicio.ID_IPS = 3
+            AND fechahora between '8-feb-18' and '15-feb-18'
+            --AND prestacionservicio.ID_IPS = 3
+            --and prestacionservicio.campania = campania.id
+            --and campania.organizador = 40148
             ) AUX_PRESTACION
         ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO
     WHERE AUX_PRESTACION.FECHAHORA IS NULL
         --AND t1.tipo = 1
     ORDER BY t1.nombre
     ;
+    
     
     
     --CRITERIO GENTE 
@@ -181,11 +187,13 @@ order by prestacionservicio.fechahora
             FROM AFILIADOS INNER JOIN USUARIOS ON AFILIADOS.NUMDOC = USUARIOS.NUMDOC
             ) t1 LEFT OUTER JOIN (
             SELECT PRESTACIONSERVICIO.*
-            FROM PRESTACIONSERVICIO INNER JOIN SERVICIOS ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
-            WHERE 1 = 1
-            --AND fechahora between '27-oct-17' and '29-oct-18'
+            FROM PRESTACIONSERVICIO, SERVICIOS--,campania
+            WHERE PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
+            --AND fechahora between '8-feb-18' and '30-mar-18'
             --AND SERVICIOS.TIPO = 3
-            --AND SERVICIOS.ID_SERVICIO = 1
+            --AND SERVICIOS.ID_SERVICIO = 6
+            --and prestacionservicio.campania = campania.id
+            --and campania.organizador = 40148
             ) AUX_PRESTACION
         ON t1.NUMDOC = AUX_PRESTACION.NUMDOC
     WHERE AUX_PRESTACION.FECHAHORA IS NULL
@@ -199,18 +207,21 @@ order by prestacionservicio.fechahora
             SELECT IPS.*, SERVICIOSIPS.ID_SERVICIO, SERVICIOS.NOMBRE NOMSERVICIO, SERVICIOS.TIPO
             FROM IPS, SERVICIOSIPS, SERVICIOS
             WHERE IPS.ID_IPS = SERVICIOSIPS.ID_IPS AND SERVICIOSIPS.ID_SERVICIO = SERVICIOS.ID_SERVICIO
-        ) t1 LEFT OUTER JOIN (
+         ) t1 LEFT OUTER JOIN (
             SELECT PRESTACIONSERVICIO.*, SERVICIOS.TIPO
-            FROM PRESTACIONSERVICIO INNER JOIN SERVICIOS ON PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
-            WHERE 1 = 1
+            FROM PRESTACIONSERVICIO, SERVICIOS --,campania
+            WHERE PRESTACIONSERVICIO.ID_SERVICIO = SERVICIOS.ID_SERVICIO
             --AND fechahora between '27-oct-12' and '29-oct-12'
+            --and prestacionservicio.campania = campania.id
+            --and campania.organizador = 40148
         ) AUX_PRESTACION
         ON t1.ID_SERVICIO = AUX_PRESTACION.ID_SERVICIO AND t1.ID_IPS = AUX_PRESTACION.ID_IPS
     WHERE AUX_PRESTACION.FECHAHORA IS NULL
-        AND t1.ID_SERVICIO = 1
+        AND t1.ID_SERVICIO = 4
         --AND t1.TIPO = 1
     ORDER BY t1.ID_IPS desc
     ;
+
 
 
 --RFC 11 CONSULTAR FUNCIONAMIENTO

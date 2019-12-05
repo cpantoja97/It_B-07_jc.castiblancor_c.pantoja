@@ -21,6 +21,19 @@
 					"event": ""
 				}
 			]
+		},
+		{ "menuTitle": "Consultas",
+		  "options":
+			[
+				{
+					"label": "RFC9",
+					"event": "requerimientoFuncional9"
+				},
+				{
+					"label": "RFC10",
+					"event": "requerimientoFuncional10"
+				}
+			]
 		}
 		
 	]

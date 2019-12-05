@@ -26,10 +26,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -1358,14 +1356,32 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 	public void requerimientoFuncional4( )
 	{
+		
 		try 
-		{
-			List <VORolUsuario> lista = EPSAndes.darVORoles();
+		{JTextField textField1 = new JTextField();
 
-			String resultado = "En listarRolUsuario";
-			resultado +=  "\n" + listarRolUsuario(lista);
-			panelDatos.actualizarInterfaz(resultado);
+		Object[] inputFields = {
+				"idRecepcionista", textField1
+		};
+
+		int option = JOptionPane.showConfirmDialog(this, inputFields, "Información consulta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+		if (option == JOptionPane.OK_OPTION)
+		{
+			int idRecepcionista = Integer.parseInt( textField1.getText() );
+
+			List<Object []> serviciosPrestandosRecepcionista= EPSAndes.darRFC4(idRecepcionista);
+
+			String resultado = "En requerimientoFuncional4\n\n";
+			resultado += "\n\n************ Ejecutando RF4 ************ \n";
+			resultado += "\n" + listarServiciosRecepcionista(serviciosPrestandosRecepcionista);
 			resultado += "\n Operación terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}
+		else
+		{
+			panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+		}
 		} 
 		catch (Exception e) 
 		{
@@ -1374,6 +1390,24 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	private String listarServiciosRecepcionista(List<Object[]> lista) {
+		String resp = "Los servicio y su indice de uso son:\n";
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+			String idServicio= (String) tupla [0];
+			String nombreServicio= (String) tupla [1];
+			String tipo = (String) tupla [2];
+			String resp1 = i++ + ". " + "[";
+			resp1 += "id Servicio: " + idServicio;
+			resp1 += " - nombre Servicio: " + nombreServicio;
+			resp1 += " - tipo: " + tipo;
+			resp1 += "]";
+			resp += resp1 + "\n";
+		}
+		return resp;
+	}
+
 
 
 	public void requerimientoFuncional5( )
@@ -1688,8 +1722,11 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				if(jComboBox2.getSelectedIndex() == 1) {
 					orden += " desc";
 				}
+				
+				boolean organizador = (rolActual == 6)? true : false ;
+				int orgID = (rolActual == 6)? idUsuarioActual : -1;
 
-				List<Object []> utilizacionServicios= EPSAndes.darRFC9(fechaInicio, fechaFin, idServicio, tipo, ips, orden);
+				List<Object []> utilizacionServicios= EPSAndes.darRFC9(fechaInicio, fechaFin, idServicio, tipo, ips, orden, organizador, orgID);
 
 				String resultado = "En requerimientoFuncional9\n\n";
 				resultado += "\n\n************ Ejecutando RFC9 ************ \n";
@@ -1820,10 +1857,13 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				if(jComboBox2.getSelectedIndex() == 1) {
 					orden += " desc";
 				}
+				
+				boolean organizador = (rolActual == 6)? true : false ;
+				int orgID = (rolActual == 6)? idUsuarioActual : -1;
 
 				String resultado = "En requerimientoFuncional10\n\n";
 				resultado += "\n\n************ Ejecutando RF10 ************ \n";
-				List<Object[]> utilizacionServicios= EPSAndes.darRFC10(jComboBox0.getSelectedIndex(), fechaInicio, fechaFin, idServicio, tipo, ips, orden);
+				List<Object[]> utilizacionServicios= EPSAndes.darRFC10(jComboBox0.getSelectedIndex(), fechaInicio, fechaFin, idServicio, tipo, ips, orden, organizador, orgID);
 
 				if(jComboBox0.getSelectedIndex() == 0) {
 					resultado += "\n" + listarNOUtilizacion0(utilizacionServicios);
@@ -1832,6 +1872,8 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				} else {
 					resultado += "\n" + listarNOUtilizacion2(utilizacionServicios);
 				}
+				
+				
 
 				resultado += "\n Operación terminada";
 				panelDatos.actualizarInterfaz(resultado);
@@ -1940,30 +1982,29 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 
 	private String listarFuncionamientoSemanal(List<Object[]> listac) {
 		String resp = "el funcionamiento de EPSAndes es el siguiente: \n";
-
-		int i = 1;
 		for (Object [] tupla : listac)
 		{
 			int numAfiliados= (int) tupla [1];
 
 			resp+= "\n Para la semana ";
 			resp+=  tupla[0] + " \n";
-			resp+= " el tipo de servicio mas consumido es: "; 
-			resp+=  tupla[1] + " \n";
-			resp+= " el tipo de servicio menos consumido es: "; 
-			resp+=  tupla[2] + " \n";
-			resp+= " el servicio mas consumido es: "; 
-			resp+=  tupla[3] + " \n";
-			resp+= " el servicio menos consumido es: "; 
-			resp+=  tupla[4] + " \n";
-			resp+= " la ips mas solicitada es: "; 
-			resp+=  tupla[5] + " \n";
-			resp+= " la ips menos solicitada es: "; 
-			resp+=  tupla[6] + " \n";
-			resp+= " el afiliado que mas ha utilizado servicios es: "; 
-			resp+=  tupla[7] + " \n";
 			resp+= " el numero de afiliados que no usaron los servicios es: "; 
 			resp+= numAfiliados +"\n";
+			resp+= " el tipo de servicio mas consumido es: "; 
+			resp+=  tupla[7] + " \n";
+			resp+= " el tipo de servicio menos consumido es: "; 
+			resp+=  tupla[8] + " \n";
+			resp+= " el servicio mas consumido es: "; 
+			resp+=  tupla[2] + " \n";
+			resp+= " el servicio menos consumido es: "; 
+			resp+=  tupla[3] + " \n";
+			resp+= " la ips mas solicitada es: "; 
+			resp+=  tupla[4] + " \n";
+			resp+= " la ips menos solicitada es: "; 
+			resp+=  tupla[5] + " \n";
+			resp+= " el afiliado que mas ha utilizado servicios es: "; 
+			resp+=  tupla[6] + " \n";
+
 		}
 		return resp;
 	}

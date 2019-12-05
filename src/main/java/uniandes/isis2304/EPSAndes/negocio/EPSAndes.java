@@ -582,6 +582,14 @@ public class EPSAndes
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
+	
+	public List<Object []> darRFC4 (int idRecepcionista)
+	{
+		log.info ("Listando cosas");
+		List<Object []> tuplas = peps.RFC4(idRecepcionista);
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
 
 	public List<Object []> darRFC5 (int numDoc, Timestamp f1, Timestamp f2)
 	{
@@ -631,18 +639,18 @@ public class EPSAndes
 		return tuplas;
 	}
 
-	public List<Object []> darRFC9 (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
+	public List<Object []> darRFC9 (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden, boolean organizador, int orgID)
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC9sinAgrupar(f1, f2, idServicio, tipo, ips, orden);
+		List<Object []> tuplas = peps.RFC9sinAgrupar(f1, f2, idServicio, tipo, ips, orden, organizador, orgID);
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
 
-	public List<Object []> darRFC10 (int criterio, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
+	public List<Object []> darRFC10 (int criterio, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden, boolean organizador, int orgID)
 	{
 		log.info ("Listando cosas");
-		List<Object []> tuplas = peps.RFC10(criterio, f1, f2, idServicio, tipo, ips, orden);
+		List<Object []> tuplas = peps.RFC10(criterio, f1, f2, idServicio, tipo, ips, orden,organizador, orgID);
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}

@@ -1918,6 +1918,21 @@ public class PersistenciaEPSAndes
 
 		return respuesta;
 	}
+	public List<Object []> RFC4(int idRecepcionista)
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF4(pmf.getPersistenceManager(), idRecepcionista);
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			
+			respuesta.add(datos);
+		}
+
+		return respuesta;
+	}
 
 	public List<Object []> RFC5 (int numDoc, Timestamp f1, Timestamp f2)
 	{
@@ -2046,11 +2061,11 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC9sinAgrupar (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
+	public List<Object []> RFC9sinAgrupar (Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden, boolean organizador, int orgID)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
-		List<Object> tuplas = sqlConsulta.RF9sinAgrupar(pmf.getPersistenceManager(), f1, f2, idServicio, tipo, ips, orden);
+		List<Object> tuplas = sqlConsulta.RF9sinAgrupar(pmf.getPersistenceManager(), f1, f2, idServicio, tipo, ips, orden, organizador, orgID);
 		log.info ("consulta exitosa");
 		for ( Object tupla : tuplas)
 		{
@@ -2078,20 +2093,20 @@ public class PersistenciaEPSAndes
 		return respuesta;
 	}
 
-	public List<Object []> RFC10 (int criterio, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden)
+	public List<Object []> RFC10 (int criterio, Timestamp f1, Timestamp f2, long idServicio, long tipo, long ips, String orden, boolean organizador, int orgID)
 	{
 		List<Object []> respuesta = new LinkedList <Object []> ();
 		log.info ("iniciando consulta");
 		List<Object> tuplas = null;
 		switch(criterio) {
 		case 0:
-			tuplas = sqlConsulta.RF10criterioServicio(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			tuplas = sqlConsulta.RF10criterioServicio(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden, organizador, orgID);
 			break;
 		case 1: 
-			tuplas = sqlConsulta.RF10criterioGente(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			tuplas = sqlConsulta.RF10criterioGente(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden, organizador, orgID);
 			break;
 		case 2:
-			tuplas = sqlConsulta.RF10criterioIPS(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden);
+			tuplas = sqlConsulta.RF10criterioIPS(pmf.getPersistenceManager(),f1, f2, idServicio, tipo, ips, orden, organizador, orgID);
 			break;
 		}
 		log.info ("consulta exitosa");
