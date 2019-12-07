@@ -1395,12 +1395,14 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		int i = 1;
 		for (Object [] tupla : lista)
 		{
-			String idServicio= (String) tupla [0];
-			String nombreServicio= (String) tupla [1];
-			String tipo = (String) tupla [2];
+
+			String idServicio= ""+ tupla [0];
+			String nombre= ""+ tupla [1];
+			String tipo= ""+tupla [2];
+
 			String resp1 = i++ + ". " + "[";
 			resp1 += "id Servicio: " + idServicio;
-			resp1 += " - nombre Servicio: " + nombreServicio;
+			resp1 += " - nombre Servicio: " + nombre;
 			resp1 += " - tipo: " + tipo;
 			resp1 += "]";
 			resp += resp1 + "\n";
@@ -2014,13 +2016,13 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 		{
 			List <Integer> listaMeses = EPSAndes.darRFC12a();
 			List <Integer> listaEspecializados = EPSAndes.darRFC12b();
-			List <Integer> listaHospital = EPSAndes.darRFC12b();
+			List<Object []> listaHospital = EPSAndes.darRFC12c();
 
 			String resultado = "En requerimientoFuncional12\n\n";
 			resultado += "\n\n************ Ejecutando RF12 ************ \n";
 			resultado +=  "\n" + listarAfiliadosCostosos(listaMeses,0);
 			resultado +=  "\n" + listarAfiliadosCostosos(listaEspecializados,1);
-			resultado +=  "\n" + listarAfiliadosCostosos(listaHospital,2);
+			resultado +=  "\n" + listarAfiliadosCostososH(listaHospital);
 			resultado += "\n Operación terminada";
 			panelDatos.actualizarInterfaz(resultado);
 		} 
@@ -2064,6 +2066,27 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener
 				resp1 += "]";
 				resp += resp1 + "\n";
 			}
+		}
+		return resp;
+	}
+
+	private String listarAfiliadosCostososH(List<Object[]> lista) {
+		String resp = " Los afiliados costosos que cuando requieren de un servicio de salud terminan hospitalizados son:\n"; 
+		int i = 1;
+		for (Object [] tupla : lista)
+		{
+
+			String numDoc= ""+ tupla [0];
+			String numServicios= ""+ tupla [1];
+			String hospitalizaciones= ""+tupla [2];
+
+
+			String resp1 = i++ + ". " + "[";
+			resp1 += "numero de identificacion afiliado: " + numDoc + " ";
+			resp1 += "Servicios requeridos: " + numServicios + " ";
+			resp1 += "Hospitalizaciones: " + hospitalizaciones + " ";
+			resp1 += "]";
+			resp += resp1 + "\n";
 		}
 		return resp;
 	}

@@ -542,18 +542,15 @@ class SQLConsultas {
 	}
 
 	public List<Object> RF12c(PersistenceManager pm) {
-		// TODO afiliados que cada vez que requieren de un servicio de salud terminan hospitalizados. 
-		String sql = " select numdoc, count(*) from ( ";
-		sql+= "select afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) as meses ";
-		sql+= "from "+peps.darTablaAfiliados()+" afiliados, "+peps.darTablaPrestacionServicio()+" prestacionservicio ";
-		sql+= "where afiliados.numdoc = prestacionservicio.numdoc ";
-		sql+= "group by afiliados.numdoc, TRUNC( prestacionServicio.fechaHora, 'MM' ) )";
-		sql+= "group by numdoc ";
-		sql+= "having count(*)=24 ";
-		sql+= "";
-		sql+= "";
-		sql+= "";
-		sql+= "";
+		// afiliados que cada vez que requieren de un servicio de salud terminan hospitalizados. 
+		String sql = " SELECT AUX.* \n" + 
+				"FROM (\n" + 
+				"    SELECT PRESTACIONSERVICIO.NUMDOC, COUNT(*) AS TOTAL, sum(case when servicios.tipo = 5 then 1 else 0 end) AS HOSPITALIZACON\n" + 
+				"    FROM PRESTACIONSERVICIO, SERVICIOS\n" + 
+				"    WHERE prestacionservicio.id_servicio = servicios.id_servicio\n" + 
+				"    GROUP BY prestacionservicio.numdoc\n" + 
+				"    ) AUX\n" + 
+				"WHERE aux.hospitalizacon >=  (aux.total/2)" ;
 		Query q = pm.newQuery(SQL, sql);
 		return q.executeList(); 
 	}

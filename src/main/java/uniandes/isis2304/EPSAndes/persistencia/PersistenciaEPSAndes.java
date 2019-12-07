@@ -2184,6 +2184,19 @@ public class PersistenciaEPSAndes
 		}
 		return respuesta;
 	}
+	public List<Object []> RFC12c ()
+	{
+		List<Object []> respuesta = new LinkedList <Object []> ();
+		log.info ("iniciando consulta");
+		List<Object> tuplas = sqlConsulta.RF12c(pmf.getPersistenceManager());
+		log.info ("consulta exitosa");
+		for ( Object tupla : tuplas)
+		{
+			Object [] datos = (Object []) tupla;
+			respuesta.add(datos);
+		}
+		return respuesta;
+	}
 
 
 	/**

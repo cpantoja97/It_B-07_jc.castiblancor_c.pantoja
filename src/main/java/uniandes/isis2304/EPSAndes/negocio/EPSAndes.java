@@ -678,6 +678,14 @@ public class EPSAndes
 		log.info ("Listando cosas: Listo!");
 		return tuplas;
 	}
+	
+	public  List<Object []> darRFC12c ()
+	{
+		log.info ("Listando cosas");
+		 List<Object []> tuplas = peps.RFC12c();
+		log.info ("Listando cosas: Listo!");
+		return tuplas;
+	}
 
 	/* ****************************************************************
 	 * 			Métodos para administración
